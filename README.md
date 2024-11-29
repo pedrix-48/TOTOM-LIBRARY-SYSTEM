@@ -11,6 +11,8 @@ FAVOR LEE DIDIAK!!
 
 > Wainhira atu aumenta feature foun ba sistema karik, favor kria lai branch(command 'git checkout -b branc_nia_naran') ida hodi nune'e labele afeta ba main branch. Hafoin ita bele commit uza "git commit -m'deskrisaun ba commit nian'" depois mak push ba repo global ho command "git push origin branch_nia_naran" hafoin ita ba pull request iha github
 
+> Ba kontributor sira ne'ebe mak atu aumenta template ka tampilan de'it, favor kria file html no rai iha template no husik sira ne'ebe hatene uza views sira mak atur. Maibe se karik imi hatene hotu entaun hadia rasik ba.
+
 > antes atu halo servisu iha repo ne'e favor check tiha lai file up to date ga lae ho komando "git pull"
 
 MAK NE'E DEIT HUSI AMI NO OBRIGADU
