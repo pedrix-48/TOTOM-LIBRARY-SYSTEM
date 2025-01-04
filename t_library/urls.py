@@ -8,4 +8,8 @@ urlpatterns = [
     path('home/', views.home, name = 'home'),
     path('', views.loginpage, name = 'login'),
     path('dashboard', views.dashboard, name = 'dash-admin'),
+    path('listalivru', views.lista_livru, name = 'lista-livru'),
+    path('listauthor', views.lista_author, name = 'lista-author'),
+    path('listastaff', views.lista_staff, name = 'lista-staff'),
+    path('listaempresta', views.lista_empresta, name = 'lista-empresta'),
 ]
