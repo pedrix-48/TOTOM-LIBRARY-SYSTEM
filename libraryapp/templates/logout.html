@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+</head>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+    
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+
+<body>
+    <div class="container text-center mt-5">
+        <div class="card shadow-lg p-4" style="max-width: 500px; margin: auto;">
+            <div class="card-body">
+                <h1 class="text-success mb-4">Ita Bo'ot nia Logout Suesu!</h1>
+                <p class="text-muted">Thank you for using our service. You can log back in at any time.</p>
+                <div class="mt-4">
+                    <a href="{% url 'login' %}" class="btn btn-primary">Log in Fila Fali</a>
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary">Fila Ba Login Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
