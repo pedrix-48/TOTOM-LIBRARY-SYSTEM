@@ -34,7 +34,7 @@
             <form action="" method="post">
                 {% csrf_token %}
                 <div class="input-group mb-3">
-                <input type="email" class="form-control" placeholder="Username" />
+                {{ form.username }}
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <span class="bi bi-person-fill-gear"></span>
@@ -42,11 +42,7 @@
                 </div>
                 </div>
                 <div class="input-group mb-3">
-                <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Password"
-                />
+                {{ form.password }}
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <span class="fas fa-lock"></span>

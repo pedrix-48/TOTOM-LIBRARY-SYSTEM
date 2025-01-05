@@ -18,8 +18,15 @@ def loginpage(request):
                 return render(request, 'dashboard.html')
             else:
                 return render(request, 'loginpage.html')
+    else:
+        form = AdminLoginForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'loginpage.html', context)
 
-        return render(request, 'dashboard.html')
+def admin_logout(request):
+    logout(request)
     return render(request, 'loginpage.html')
 
 @login_required(login_url='login')
