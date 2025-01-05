@@ -21,6 +21,12 @@
   <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.min.css' %}">
   <link rel="icon" href="{% static 'icons/font/bootstrap-icons.min.css' %}">
 </head>
+<style>
+  .nav-link.active {
+    color: white;
+  }  
+</style>
+
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -68,7 +74,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="{% url 'dash-admin' %}" class="nav-link">
+            <a href="{% url 'dash-admin' %}" class="nav-link {% if request.path == '/dashboard' %} active {% endif %}">
               <i class=" nav-icon bi bi-bar-chart-line-fill"></i>
               <p>
                 Dashboard
@@ -76,7 +82,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'lista-livru' %}" class="nav-link">
+            <a href="{% url 'lista-livru' %}" class="nav-link {% if request.path == '/listalivru' %} active {% endif %}">
               <i class=" nav-icon bi bi-book"></i>
               <p>
                 Livru
@@ -84,7 +90,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'lista-author' %}" class="nav-link">
+            <a href="{% url 'lista-author' %}" class="nav-link {% if request.path == '/listauthor' %} active {% endif %}">
               <i class="bi bi-person-circle nav-icon"></i>
               <p>
                 Author
@@ -92,7 +98,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'lista-staff' %}" class="nav-link">
+            <a href="{% url 'lista-staff' %}" class="nav-link {% if request.path == '/listastaff' %} active {% endif %}">
               <i class="bi bi-person-fill-check nav-icon"></i>
               <p>
                 Staff
@@ -100,7 +106,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'lista-empresta' %}" class="nav-link">
+            <a href="{% url 'lista-empresta' %}" class="nav-link {% if request.path == '/listaempresta' %} active {% endif %}">
               <i class="bi bi-journal-check nav-icon"></i>
               <p>
                 Empresta
