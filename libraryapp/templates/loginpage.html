@@ -31,7 +31,8 @@
             <div class="card-body">
             <p class="login-box-msg">Login Hodi Bele Hahu ita nia Sesaun!</p>
 
-            <form action="../../index3.html" method="post">
+            <form action="" method="post">
+                {% csrf_token %}
                 <div class="input-group mb-3">
                 <input type="email" class="form-control" placeholder="Username" />
                 <div class="input-group-append">
@@ -54,7 +55,7 @@
                 </div>
             </form>
             <div class="social-auth-links text-center mt-2 mb-3">
-                <a href="#" class="btn btn-block btn-dark">
+                <a href="{% url 'dash-admin' %}" class="btn btn-block btn-dark" type = 'submit'>
                     <i class="bi bi-box-arrow-right"></i> Login
                 </a>
             </div>
