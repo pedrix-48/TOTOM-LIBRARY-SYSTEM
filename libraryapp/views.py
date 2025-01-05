@@ -27,7 +27,7 @@ def loginpage(request):
 
 def admin_logout(request):
     logout(request)
-    return render(request, 'loginpage.html')
+    return render(request, 'logout.html')
 
 @login_required(login_url='login')
 def dashboard(request):

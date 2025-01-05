@@ -14,6 +14,5 @@ class AdminLoginForm(forms.ModelForm):
         })
         self.fields['password'].widget = forms.PasswordInput({
             'class':'form-control',
-            'placeholder':'Password',
-            'type':'password'
+            'placeholder':'Password'
         })
