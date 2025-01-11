@@ -78,8 +78,12 @@ WSGI_APPLICATION = 't_library.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'libraryapp',
+        'USER':'root',
+        'PASSWORD':'frieren',
+        'HOST':'127.0.0.1',
+        'PORT':'3306',
     }
 }
 
@@ -102,6 +106,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'libraryapp.costum_auth.LoginAdminBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
