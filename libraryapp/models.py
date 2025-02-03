@@ -3,10 +3,8 @@ from django.db import models
 
 class Admin_user(models.Model):
     username = models.CharField(max_length=20)
-    password = models.CharField(max_length=50)
+    password = models.CharField(max_length=100)
 
-    def __str__(self):
-        return self.username
 class Departamento(models.Model):
     id_dep = models.CharField(max_length=5, primary_key=True)
     naran_dep = models.CharField(max_length=50)

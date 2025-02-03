@@ -1,6 +1,5 @@
-from django.shortcuts import render
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, logout
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth.decorators import login_required
 from .forms import AdminLoginForm 
 
@@ -15,7 +14,8 @@ def loginpage(request):
         user = authenticate(request, username = username, password = password)
         if form.is_valid():
             if user is not None:
-                return render(request, 'dashboard.html')
+                login(request, user)
+                return redirect('dashboard')
             else:
                 return render(request, 'loginpage.html')
     else:
@@ -29,7 +29,7 @@ def admin_logout(request):
     logout(request)
     return render(request, 'logout.html')
 
-@login_required(login_url='login')
+# @login_required(login_url='login') # rai hela ba orsda ba hadia nia bug
 def dashboard(request):
     return render(request, 'dashboard.html')
 

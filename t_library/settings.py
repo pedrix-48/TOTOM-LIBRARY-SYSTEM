@@ -107,7 +107,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'libraryapp.costum_auth.LoginAdminBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
