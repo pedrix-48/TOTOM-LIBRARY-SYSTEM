@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, logout, login
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect # type: ignore
+from django.contrib.auth import authenticate, logout, login # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
 from .forms import AdminLoginForm 
 
 def home(request):
