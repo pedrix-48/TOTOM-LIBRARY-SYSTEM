@@ -22,6 +22,14 @@
       </tr>
       </thead>
       <tbody>
+        {% for livru in livrus %}
+          <tr>
+            <td>{{ livru.id_livru }}</td>
+            <td>{{ livru.naran_livru }}</td>
+            <td>{{ livru.data_publish }}</td>
+            <td>{{ livru.naran_autor }}</td>
+          </tr>
+        {% endfor %}
       </tbody>
     </table>
   </div>
@@ -50,21 +58,36 @@
   <script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
   <script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js' %}"></script>
 
-<script>
-  $(function () {
-    $("#tabela").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#tabela_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
+  <script>
+    $(function () {
+      $("#tabela").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": [
+          {
+            text: 'Aumenta Livru',
+            action: function (e, dt, node, config) {
+              $('#myFormModal').modal('show'); // This triggers the Bootstrap modal
+            }
+          },
+          "pdf",
+          "print",
+          "colvis"
+        ]
+      }).buttons().container().appendTo('#tabela_wrapper .col-md-6:eq(0)');
+  
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
     });
-  });
-</script>
+  </script>
+
+
 {% endblock content %}
