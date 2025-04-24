@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect # type: ignore
 from django.contrib.auth import authenticate, logout, login # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from .forms import AdminLoginForm 
+from .models import Livru, Author, Staff, Empresta 
 
 def home(request):
     return render(request, 'home.html')
@@ -34,10 +35,18 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 def lista_livru(request):
-    return render(request, 'lista_livru.html')
+    livrus = Livru.objects.all()
+    context = {
+        'livrus': livrus
+    }
+    return render(request, 'lista_livru.html', context)
 
 def lista_author(request):
-    return render(request, 'lista_author.html')
+    authors = Author.objects.all()
+    context = {
+        'authors': authors
+    }
+    return render(request, 'lista_author.html', context)
 
 def lista_staff(request):
     return render(request, 'lista_staff.html')
