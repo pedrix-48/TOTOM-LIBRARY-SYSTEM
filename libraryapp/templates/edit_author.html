@@ -1,14 +1,13 @@
-
 {% load static %}
 
 <div class="modal fade" id="autorFormModal" tabindex="-1" aria-labelledby="autorFormModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form id="livruForm" method = 'post' action="{% url 'add-author' %}">
+        <form id="livruForm" method = 'post'>
             {% csrf_token %}
             <div class = "card card-primary">
                 <div class="card-header">
-                    <h5 class="card-title" id="livruFormModalLabel">Aumenta Autor <i class="bi bi-journal-plus"></i></h5>
+                    <h5 class="card-title" id="livruFormModalLabel">Edit Autor <i class="bi bi-journal-plus"></i></h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">

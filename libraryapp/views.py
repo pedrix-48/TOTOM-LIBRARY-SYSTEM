@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect # type: ignore
-from django.contrib.auth import authenticate, logout, login # type: ignore
-from django.contrib.auth.decorators import login_required # type: ignore
-from .forms import AdminLoginForm 
-from .models import Livru, Author, Staff, Empresta 
+from django.contrib import messages
+from django.shortcuts import render, redirect 
+from django.contrib.auth import authenticate, logout, login 
+from django.contrib.auth.decorators import login_required 
+from .forms import AdminLoginForm, AuthorForm
+from .models import Author
 
 def home(request):
     return render(request, 'home.html')
@@ -35,10 +36,45 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 def lista_author(request):
+    form = AuthorForm()
     authors = Author.objects.all()
     context = {
-        'authors': authors
+        'authors': authors,
+        'form': form,
     }
     return render(request, 'lista_author.html', context)
+
+def add_author(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Guarda Dados Susesu !')
+            return redirect('lista-author')
+        else:
+            print(form.errors)
+    else:
+        form = AuthorForm()
+    context = {
+        'form': form
+    }
+    return render(request, 'add_author.html', context)
+
+def edit_author(request, id_author):
+    author = Author.objects.get(id_author=id_author)
+    form = AuthorForm(instance=author)
+    if request.method == 'POST':
+        form = AuthorForm(request.POST, instance=author)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Guarda Dados Susesu !')
+            return redirect('lista-author')
+        else:
+            print(form.errors)
+    context = {
+        'form': form,
+        'author': author
+    }
+    return render(request, 'edit_author.html', context)
 
 

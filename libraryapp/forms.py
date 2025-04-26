@@ -29,23 +29,19 @@ class AuthorForm(forms.ModelForm):
 
     class Meta:
         model = Author
-        fields = ['id_author', 'naran_author', 'sexu', 'email', 'nasaun']
+        fields = ['naran_author', 'sexu', 'email', 'nasaun']
 
     def __init__(self, *args, **kwargs):
         super(AuthorForm, self).__init__(*args, **kwargs)
-        self.fields['id_author'].widget.attrs.update({
-            'class':'form-control',
-            'placeholder':'ID Author'
-        })
         self.fields['naran_author'].widget.attrs.update({
             'class':'form-control',
-            'placeholder':'Name Author'
+            'placeholder':'Prense Naran Autor'
         })
         self.fields['email'].widget.attrs.update({
             'class':'form-control',
-            'placeholder':'Email'
+            'placeholder':'Prense Email'
         })
         self.fields['nasaun'].widget.attrs.update({
             'class':'form-control',
-            'placeholder':'Nasaun'
+            'placeholder':'Prense Nasaun'
         })
