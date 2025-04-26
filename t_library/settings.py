@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'libraryapp',
+    'livru',
+    'staff',
+    'empresta',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

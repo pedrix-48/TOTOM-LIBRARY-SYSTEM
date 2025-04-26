@@ -34,13 +34,6 @@ def admin_logout(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-def lista_livru(request):
-    livrus = Livru.objects.all()
-    context = {
-        'livrus': livrus
-    }
-    return render(request, 'lista_livru.html', context)
-
 def lista_author(request):
     authors = Author.objects.all()
     context = {
@@ -48,8 +41,4 @@ def lista_author(request):
     }
     return render(request, 'lista_author.html', context)
 
-def lista_staff(request):
-    return render(request, 'lista_staff.html')
 
-def lista_empresta(request):
-    return render(request, 'lista_empresta.html')
