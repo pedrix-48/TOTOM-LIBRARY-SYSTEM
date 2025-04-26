@@ -58,22 +58,20 @@
         "autoWidth": true,
         "paging": true,
         "lengthChange": true,
-        "searching": false,
+        "searching": true,
         "ordering": true,
         "info": true,
         "autoWidth": true,
         "responsive": true,
         "buttons": [
         {
-            text: 'Aumenta Autor',
+            text: 'Aumenta Autor <i class="bi bi-person-plus-fill"></i>',
             className: 'btn btn-success',
             action: function (e, dt, node, config) {
             $('#myFormModal').modal('show'); // This triggers the Bootstrap modal
             }
         },
-        "pdf",
         "print",
-        "colvis"
         ]
     }).buttons().container().appendTo('#tabela_autor_wrapper .col-md-6:eq(0)');
 

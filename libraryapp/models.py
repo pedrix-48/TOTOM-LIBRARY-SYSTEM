@@ -1,5 +1,4 @@
-from django.db import models # type: ignore
-
+from django.db import models 
 
 class Admin_user(models.Model):
     username = models.CharField(max_length=20)
@@ -23,9 +22,9 @@ class Estudante(models.Model):
     def __str__(self):
         return self.naran_estudante
 
-class Auhtor(models.Model):
-    id_author = models.CharField(max_length=5, primary_key=True)
-    naran_author = models.CharField(max_length=100)
+class Author(models.Model):
+    id_author = models.AutoField(primary_key=True)
+    naran_author = models.CharField(max_length=50)
     sexu = models.CharField(max_length=1, choices=[('M','Mane'), ('F', 'Feto')])
     email = models.CharField(max_length=20)
     nasaun = models.CharField(max_length=20)
@@ -37,7 +36,7 @@ class Livru(models.Model):
     id_livru = models.CharField(max_length=10, primary_key=True)
     naran_livru = models.CharField(max_length=100)
     data_publish = models.DateField()
-    id_author = models.ForeignKey(Auhtor, on_delete=models.CASCADE)
+    id_author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.naran_livru

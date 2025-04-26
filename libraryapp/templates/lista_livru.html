@@ -56,24 +56,56 @@
         "autoWidth": true,
         "paging": true,
         "lengthChange": true,
-        "searching": false,
+        "searching": true,
         "ordering": true,
         "info": true,
         "autoWidth": true,
         "responsive": true,
         "buttons": [
         {
-            text: 'Aumenta Livru',
+            text: 'Aumenta Livru <i class="bi bi-journal-plus"></i>',
             className: 'btn btn-success',
             action: function (e, dt, node, config) {
-            $('#myFormModal').modal('show'); // This triggers the Bootstrap modal
+            $('#livruFormModal').modal('show'); // This triggers the Bootstrap modal
             }
         },
-        "pdf",
         "print",
-        "colvis"
         ]
     }).buttons().container().appendTo('#tabela_livru_wrapper .col-md-6:eq(0)');
 });
 </script>
+
+
+<!-- Modal -->
+<div class="modal fade" id="livruFormModal" tabindex="-1" aria-labelledby="livruFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <form id="livruForm">
+            <div class = "card card-primary">
+                <div class="card-header">
+                    <h5 class="card-title" id="livruFormModalLabel">Aumenta Livru <i class="bi bi-journal-plus"></i></h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="naran" class="form-label">Naran Livru</label>
+                        <input type="text" class="form-control" id="naran" name="naran" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="autor" class="form-label">Autor</label>
+                        <input type="text" class="form-control" id="autor" name="autor" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="data" class="form-label">Data Publish</label>
+                        <input type="date" class="form-control" id="data" name="data">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button   button type="submit" class="btn btn-primary">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
