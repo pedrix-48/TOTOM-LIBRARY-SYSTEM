@@ -77,4 +77,10 @@ def edit_author(request, id_author):
     }
     return render(request, 'edit_author.html', context)
 
+def delete_author(request, id_author):
+    author = Author.objects.get(id_author=id_author)
+    if request.method == 'POST':
+        author.delete()
+        return redirect('lista-author')
+
 

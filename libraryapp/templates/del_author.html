@@ -1,0 +1,26 @@
+<!-- Modal -->
+{% load static %}
+
+<div class="modal fade" id="delModal{{ author.id_author }}" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Apaga Dados !! </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="authorForm" method = 'post' action="{% url 'del-author' author.id_author %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
+                <p> Author  <strong>{{ author.naran_author }}</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Taka</button>
+                    <button button type="submit" class="btn btn-danger">Sim</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>

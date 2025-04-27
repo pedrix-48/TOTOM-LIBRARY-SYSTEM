@@ -40,10 +40,12 @@
                         <td>{{ author.email }}</td>
                         <td>{{ author.nasaun }}</td>
                         <td>
-                            <a href="{% url 'edit-author' author.id_author%}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
-                            <a href="" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></a>
+                            <button data-bs-toggle = 'modal' data-bs-target = "#editModal{{ author.id_author }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                            <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ author.id_author }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
+                    {% include 'edit_author.html' %}
+                    {% include 'del_author.html' %}
                 {% endfor %}
             </tbody>
             </table>
@@ -91,5 +93,6 @@
 </script>
 
 {% include 'add_author.html' %}
+
 
 {% endblock content %}

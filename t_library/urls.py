@@ -16,6 +16,7 @@ urlpatterns = [
     # path url ne ba module autor nian
     path('listauthor', views.lista_author, name = 'lista-author'),
     path('author/<str:id_author>/edit/', views.edit_author, name = 'edit-author'),
+    path('author/<str:id_author>/delete/', views.delete_author, name = 'del-author'),
 
     path('add-author/', views.add_author, name='add-author'),
     path('listastaff', staff.lista_staff, name = 'lista-staff'),

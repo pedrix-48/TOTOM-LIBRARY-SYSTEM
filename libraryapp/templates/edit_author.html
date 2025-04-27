@@ -1,34 +1,37 @@
 {% load static %}
-
-<div class="modal fade" id="autorFormModal" tabindex="-1" aria-labelledby="autorFormModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal{{ author.id_author }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form id="livruForm" method = 'post'>
+        <form id="authorForm" method = 'post' action="{% url 'edit-author' author.id_author %}">
             {% csrf_token %}
             <div class = "card card-primary">
-                <div class="card-header">
-                    <h5 class="card-title" id="livruFormModalLabel">Edit Autor <i class="bi bi-journal-plus"></i></h5>
+                <div class="modal-header bg-warning text-white">
+                    <h5 class="modal-title" id="livruFormModalLabel">Edit Autor <i class="bi bi-journal-plus"></i></h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="naran" class="form-label">Naran Autor</label>
-                        {{ form.naran_author }}
+                        <input type="text" name="naran_author" class="form-control" value="{{ author.naran_author }}">
                     </div>
                     <div class="mb-3">
                         <label for="autor" class="form-label">Sexu</label>
-                        {{ form.sexu }}
+                        <select name="sexu" class="form-control">
+                            <option value="M" {% if author.sexu == "M" %}selected{% endif %}>M</option>
+                            <option value="F" {% if author.sexu == "F" %}selected{% endif %}>F</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="data" class="form-label">Email</label>
-                        {{ form.email }}
+                        <input type="text" name="email" class="form-control" value="{{ author.email }}">
                     </div>
                     <div class="mb-3">
                         <label for="data" class="form-label">Nasaun</label>
-                        {{ form.nasaun }}
+                        <input type="text" name="nasaun" class="form-control" value="{{ author.nasaun }}">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button   button type="submit" class="btn btn-primary">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
+                    <button   button type="submit" class="btn btn-warning">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
                 </div>
             </div>
         </form>
