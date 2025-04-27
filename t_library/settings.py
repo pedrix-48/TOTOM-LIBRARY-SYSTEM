@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'livru',
     'staff',
     'empresta',
+    'estundate',
+    'departamentu',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

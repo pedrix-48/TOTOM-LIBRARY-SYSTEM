@@ -6,6 +6,8 @@ from libraryapp import views
 from livru import views_livru as livru
 from staff import views_staff as staff
 from empresta import views_empresta as empresta
+from estundate import views_est as estudante
+from departamentu import views_dep as dep
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -21,5 +23,10 @@ urlpatterns = [
     path('add-author/', views.add_author, name='add-author'),
     path('listastaff', staff.lista_staff, name = 'lista-staff'),
     path('listaempresta', empresta.lista_empresta, name = 'lista-empresta'),
+
+    path('listestu', estudante.lista_estudante, name = 'lista-estudante'),
+
+    
+    path('dep', dep.lista_dep, name = 'lista-dep'),
 ]
 
