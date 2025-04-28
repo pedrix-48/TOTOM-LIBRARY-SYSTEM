@@ -82,5 +82,12 @@ def delete_author(request, id_author):
     if request.method == 'POST':
         author.delete()
         return redirect('lista-author')
+    
+def profile_author(request,id_author):
+    author = Author.objects.get(id_author=id_author)
+    context = {
+        'author': author
+    }
+    return render(request, 'profile_author.html', context)
 
 

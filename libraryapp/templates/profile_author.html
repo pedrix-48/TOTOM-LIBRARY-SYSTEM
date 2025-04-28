@@ -1,0 +1,16 @@
+{% extends "home.html" %}
+{% block content %}
+
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h3>{{ author.naran_author }}</h3>
+      <p><strong>Sexu:</strong> {{ author.sexu }}</p>
+      <p><strong>Email:</strong> {{ author.email }}</p>
+      <p><strong>Nasaun:</strong> {{ author.nasaun }}</p>
+      <a href="{% url 'lista-author' %}" class="btn btn-secondary mt-3"> <i class="bi bi-arrow-left-square"></i> Fila</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

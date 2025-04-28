@@ -8,6 +8,7 @@ from staff import views_staff as staff
 from empresta import views_empresta as empresta
 from estundate import views_est as estudante
 from departamentu import views_dep as dep
+from libraryapp import views as author
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +29,6 @@ urlpatterns = [
 
     
     path('dep', dep.lista_dep, name = 'lista-dep'),
+    path('author/<str:id_author>/', author.profile_author, name='author-profile'),
 ]
 

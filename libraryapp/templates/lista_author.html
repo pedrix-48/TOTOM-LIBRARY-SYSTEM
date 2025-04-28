@@ -35,7 +35,11 @@
                 {% for author in authors %}
                     <tr>
                         <td>{{ author.id_author }}</td>
-                        <td>{{ author.naran_author }}</td>
+                        <td>
+                            <a href="{% url 'author-profile' author.id_author %}" class="text-decoration-none text-dark">
+                                {{ author.naran_author }}
+                            </a>
+                        </td>
                         <td>{{ author.sexu }}</td>
                         <td>{{ author.email }}</td>
                         <td>{{ author.nasaun }}</td>

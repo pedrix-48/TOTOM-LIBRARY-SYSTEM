@@ -2,40 +2,36 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link rel = "shortcut icon" type = 'x-icon' href="{% static 'images/assembly.png' %}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Assembly Library System</title>
+    <meta charset="utf-8">
+    <link rel = "shortcut icon" type = 'x-icon' href="{% static 'images/assembly.png' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Assembly Library System</title>
 
 
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="{% static 'AdminLTE/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{%static 'AdminLTE/plugins/fontawesome-free/css/all.min.css'%}">
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="{% static 'AdminLTE/dist/css/adminlte.min.css' %}">
-  <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.min.css' %}">
-  <script src="{% static 'AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'AdminLTE/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%static 'AdminLTE/plugins/fontawesome-free/css/all.min.css'%}">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{% static 'AdminLTE/dist/css/adminlte.min.css' %}">
+    <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.min.css' %}">
+    <script src="{% static 'AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
-  {% comment %} <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake rounded-circle" src="{% static 'images/assembly metan.png' %}" alt="AdminLTELogo" height="60" width="60">
-  </div>     {% endcomment %}
-
+    
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block justify-content-end">
-        <a href="{% url 'logout' %}" class="nav-link">Logout <i class="bi bi-box-arrow-left ms-3"></i></a>
-      </li>
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block justify-content-end">
+            <a href="{% url 'logout' %}" class="nav-link">Logout <i class="bi bi-box-arrow-left ms-3"></i></a>
+        </li>
     </ul>
 
   </nav>
@@ -62,7 +58,7 @@
       </div>
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2">
+    <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="{% url 'dash-admin' %}" class="nav-link {% if request.path == '/dashboard' %} active {% endif %}">
@@ -121,7 +117,7 @@
             </a>
           </li>
         </ul>
-      </nav>
+    </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
