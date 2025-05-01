@@ -20,13 +20,13 @@
                             <div class="mb-3">
                                 <label for="autor" class="form-label">Sexu</label>
                                 <select name="sexu" class="form-control">
-                                    <option value="M" {% if author.sexu == "M" %}selected{% endif %}>M</option>
-                                    <option value="F" {% if author.sexu == "F" %}selected{% endif %}>F</option>
+                                    <option value="M" {% if author.sexu == "M" %}selected{% endif %}>Mane</option>
+                                    <option value="F" {% if author.sexu == "F" %}selected{% endif %}>Feto</option>
                                 </select>
                             </div>
                             <div class="mb-3">
                                 <label for="autor" class="form-label">Data Moris</label>
-                                <input type="date" name="data_moris" class="form-control" value="{{ author.data_moris }}">
+                                <input type="date" name="data_moris" class="form-control" value="{{ author.data_moris|date:'Y-m-d' }}">
                             </div>
                             <div class="mb-3">
                                 <label for="data" class="form-label">Email</label>
