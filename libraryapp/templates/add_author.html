@@ -2,30 +2,48 @@
 {% load static %}
 
 <div class="modal fade" id="autorFormModal" tabindex="-1" aria-labelledby="autorFormModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <form id="livruForm" method = 'post' action="{% url 'add-author' %}">
+        <form id="livruForm" method = 'post' action="{% url 'add-author' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class = "card card-primary">
                 <div class="card-header">
                     <h5 class="card-title" id="livruFormModalLabel">Aumenta Autor <i class="bi bi-journal-plus"></i></h5>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="naran" class="form-label">Naran Autor</label>
-                        {{ form.naran_author }}
-                    </div>
-                    <div class="mb-3">
-                        <label for="autor" class="form-label">Sexu</label>
-                        {{ form.sexu }}
-                    </div>
-                    <div class="mb-3">
-                        <label for="data" class="form-label">Email</label>
-                        {{ form.email }}
-                    </div>
-                    <div class="mb-3">
-                        <label for="data" class="form-label">Nasaun</label>
-                        {{ form.nasaun }}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Naran Autor</label>
+                                {{ form.naran_author }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Sexu</label>
+                                {{ form.sexu }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Data Moris</label>
+                                {{ form.data_moris }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Nasaun</label>
+                                {{ form.nasaun }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Foto Profile</label>
+                                {{ form.foto_profile }}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Deskrisaun</label>
+                                {{ form.deskrisaun }}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

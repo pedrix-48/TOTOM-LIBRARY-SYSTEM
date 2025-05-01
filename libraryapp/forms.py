@@ -29,7 +29,7 @@ class AuthorForm(forms.ModelForm):
 
     class Meta:
         model = Author
-        fields = ['naran_author', 'sexu', 'email', 'nasaun']
+        fields = ['naran_author', 'sexu', 'data_moris','email', 'nasaun', 'deskrisaun','foto_profile']
 
     def __init__(self, *args, **kwargs):
         super(AuthorForm, self).__init__(*args, **kwargs)
@@ -37,6 +37,13 @@ class AuthorForm(forms.ModelForm):
             'class':'form-control',
             'placeholder':'Prense Naran Autor'
         })
+        self.fields['data_moris'].widget = forms.DateInput(
+            attrs={
+                'class':'form-control',
+                'placeholder':'Prense Data Moris',
+                'type':'date'
+            }
+        )
         self.fields['email'].widget.attrs.update({
             'class':'form-control',
             'placeholder':'Prense Email'
@@ -44,4 +51,12 @@ class AuthorForm(forms.ModelForm):
         self.fields['nasaun'].widget.attrs.update({
             'class':'form-control',
             'placeholder':'Prense Nasaun'
+        })
+        self.fields['deskrisaun'].widget.attrs.update({
+            'class':'form-control',
+            'placeholder':'Prense Deskrisaun'
+        })
+        self.fields['foto_profile'].widget.attrs.update({
+            'class':'form-control',
+            'placeholder':'Upload Foto Profile'
         })

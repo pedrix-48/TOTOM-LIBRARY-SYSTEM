@@ -9,6 +9,7 @@ from empresta import views_empresta as empresta
 from estundate import views_est as estudante
 from departamentu import views_dep as dep
 from libraryapp import views as author
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,3 +33,6 @@ urlpatterns = [
     path('author/<str:id_author>/', author.profile_author, name='author-profile'),
 ]
 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

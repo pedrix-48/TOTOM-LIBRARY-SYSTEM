@@ -23,8 +23,9 @@
             <table id="tabela_autor" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ID Author</th>
+                <th>No</th>
                 <th>Naran Author</th>
+                <th>Data Moris</th>
                 <th>Sexu</th>
                 <th>Email</th>
                 <th>Nasaun</th>
@@ -34,12 +35,13 @@
             <tbody>
                 {% for author in authors %}
                     <tr>
-                        <td>{{ author.id_author }}</td>
+                        <td>{{ forloop.counter }}</td>
                         <td>
                             <a href="{% url 'author-profile' author.id_author %}" class="text-decoration-none text-dark">
                                 {{ author.naran_author }}
                             </a>
                         </td>
+                        <td>{{ author.data_moris }}</td>
                         <td>{{ author.sexu }}</td>
                         <td>{{ author.email }}</td>
                         <td>{{ author.nasaun }}</td>

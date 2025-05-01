@@ -1,32 +1,48 @@
+
 {% load static %}
+
 <div class="modal fade" id="editModal{{ author.id_author }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-        <form id="authorForm" method = 'post' action="{% url 'edit-author' author.id_author %}">
+        <form id="livruForm" method = 'post' action="{% url 'edit-author' author.id_author %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class = "card card-primary">
-                <div class="modal-header bg-warning text-white">
-                    <h5 class="modal-title" id="livruFormModalLabel">Edit Autor <i class="bi bi-pencil-square"></i></h5>
+            <div class = "card card-warning">
+                <div class="card-header">
+                    <h5 class="card-title" id="livruFormModalLabel">Edit Autor <i class="bi bi-pencil-square"></i></h5>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <label for="naran" class="form-label">Naran Autor</label>
-                        <input type="text" name="naran_author" class="form-control" value="{{ author.naran_author }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="autor" class="form-label">Sexu</label>
-                        <select name="sexu" class="form-control">
-                            <option value="M" {% if author.sexu == "M" %}selected{% endif %}>M</option>
-                            <option value="F" {% if author.sexu == "F" %}selected{% endif %}>F</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="data" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" value="{{ author.email }}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="data" class="form-label">Nasaun</label>
-                        <input type="text" name="nasaun" class="form-control" value="{{ author.nasaun }}">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Naran Autor</label>
+                                <input type="text" name="naran_author" class="form-control" value="{{ author.naran_author }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Sexu</label>
+                                <select name="sexu" class="form-control">
+                                    <option value="M" {% if author.sexu == "M" %}selected{% endif %}>M</option>
+                                    <option value="F" {% if author.sexu == "F" %}selected{% endif %}>F</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Data Moris</label>
+                                <input type="date" name="data_moris" class="form-control" value="{{ author.data_moris }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Email</label>
+                                <input type="text" name="email" class="form-control" value="{{ author.email }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Nasaun</label>
+                                <input type="text" name="nasaun" class="form-control" value="{{ author.nasaun }}">
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Deskrisaun</label>
+                                <input type="text" name="deskrisaun" class="form-control" value="{{ author.deskrisaun }}">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

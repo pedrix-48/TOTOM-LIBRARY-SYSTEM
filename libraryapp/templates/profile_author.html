@@ -1,14 +1,66 @@
 {% extends "home.html" %}
 {% block content %}
 
-<div class="container mt-5">
-  <div class="card shadow">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="card bg-default">
+				<h5 class="card-header bg-primary text-white">
+					Profile Husi Author <u>{{ author.naran_author }}</u>
+				</h5>
+				<div class="card-body ms-auto me-auto">
+					<p class="card-text">
+            {% if author.foto_profile %}
+              <img src="{{ author.foto_profile.url }}" alt="Foto Profile" class="img-fluid rounded-circle" style="width: 100px; height: 100px;">
+            {% else %}
+              <img src="/media/staff_default_pic.jpg" alt="Default Profile" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+            {% endif %}
+					</p>
+				</div>
+				<div class="card-footer bg-transparent text-dark ms-auto me-auto">
+					<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#autorFormModal">
+            <i class="bi bi-pencil-square"></i> Troka Foto Profile
+          </button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-8">
+      <div class="card">
+				<h5 class="card-header bg-primary text-white">
+					Detalla Husi Author <strong>{{ author.naran_author }}</strong>
+				</h5>
+				<div class="card-body">
+					<p class="card-text">
+              <p><strong>Sexu:</strong> {{ author.sexu }}</p>
+              <p><strong>Data Moris:</strong> {{ author.data_moris }}</p>
+              <p><strong>Email:</strong> {{ author.email }}</p>
+              <p><strong>Nasaun:</strong> {{ author.nasaun }}</p>
+					</p>
+				</div>
+				<div class="card-footer bg-transparent ms-auto">
+					<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#autorFormModal">
+            <i class="bi bi-pencil-square"></i> Edit Detalla
+          </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class = 'container-fluid'>
+  <div class="card">
+    <h5 class="card-header bg-primary text-white">
+      Deskrisaun
+    </h5>
     <div class="card-body">
-      <h3>{{ author.naran_author }}</h3>
-      <p><strong>Sexu:</strong> {{ author.sexu }}</p>
-      <p><strong>Email:</strong> {{ author.email }}</p>
-      <p><strong>Nasaun:</strong> {{ author.nasaun }}</p>
-      <a href="{% url 'lista-author' %}" class="btn btn-secondary mt-3"> <i class="bi bi-arrow-left-square"></i> Fila</a>
+      <p class="card-text">
+        {{ author.deskrisaun }}
+      </p>
+    </div>
+    <div class="card-footer bg-transparent text-dark ms-auto">
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#autorFormModal">
+        <i class="bi bi-pencil-square"></i> Edit Deskrisaun
+      </button>
     </div>
   </div>
 </div>
