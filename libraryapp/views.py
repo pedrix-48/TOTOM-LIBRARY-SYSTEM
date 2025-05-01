@@ -42,11 +42,11 @@ def lista_author(request):
         'authors': authors,
         'form': form,
     }
-    return render(request, 'lista_author.html', context)
+    return render(request, 'author/lista_author.html', context)
 
 def add_author(request):
     if request.method == 'POST':
-        form = AuthorForm(request.POST)
+        form = AuthorForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Guarda Dados Susesu !')
@@ -58,7 +58,7 @@ def add_author(request):
     context = {
         'form': form
     }
-    return render(request, 'add_author.html', context)
+    return render(request, 'author/add_author.html', context)
 
 def edit_author(request, id_author):
     author = Author.objects.get(id_author=id_author)
@@ -75,7 +75,7 @@ def edit_author(request, id_author):
         'form': form,
         'author': author
     }
-    return render(request, 'edit_author.html', context)
+    return render(request, 'author/edit_author.html', context)
 
 def delete_author(request, id_author):
     author = Author.objects.get(id_author=id_author)
@@ -88,6 +88,6 @@ def profile_author(request,id_author):
     context = {
         'author': author
     }
-    return render(request, 'profile_author.html', context)
+    return render(request, 'author/profile_author.html', context)
 
 
