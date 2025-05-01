@@ -6,7 +6,7 @@
         <div class="modal-content">
         <form id="livruForm" method = 'post' action="{% url 'edit-author' author.id_author %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class = "card card-warning">
+            <div class = "card card-light">
                 <div class="card-header">
                     <h5 class="card-title" id="livruFormModalLabel">Edit Autor <i class="bi bi-pencil-square"></i></h5>
                 </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
-                    <button   button type="submit" class="btn btn-warning">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                    <button   button type="submit" class="btn btn-light">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
                 </div>
             </div>
         </form>

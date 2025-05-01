@@ -16,11 +16,11 @@
 {% endif %}
 
     <div class="card">
-        <div class="card-header bg-secondary text-white">
+        <div class="card-header bg-navy text-white">
             <h3 class="card-title">Lista ba Autor Sira</h3>
         </div>
         <div class="card-body">
-            <table id="tabela_autor" class="table table-bordered table-striped">
+            <table id="tabela_autor" class="table table-bordered table-striped table-dark">
             <thead>
             <tr>
                 <th>No</th>
@@ -37,7 +37,7 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url 'author-profile' author.id_author %}" class="text-decoration-none text-dark">
+                            <a href="{% url 'author-profile' author.id_author %}" class="text-decoration-none text-dark ">
                                 {{ author.naran_author }}
                             </a>
                         </td>
@@ -46,7 +46,7 @@
                         <td>{{ author.email }}</td>
                         <td>{{ author.nasaun }}</td>
                         <td>
-                            <button data-bs-toggle = 'modal' data-bs-target = "#editModal{{ author.id_author }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></button>
+                            <button data-bs-toggle = 'modal' data-bs-target = "#editModal{{ author.id_author }}" class="btn btn-light btn-sm"><i class="bi bi-pencil-square"></i></button>
                             <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ author.id_author }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
