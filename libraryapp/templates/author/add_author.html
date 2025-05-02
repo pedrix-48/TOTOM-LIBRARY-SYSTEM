@@ -2,11 +2,11 @@
 {% load static %}
 
 <div class="modal fade" id="autorFormModal" tabindex="-1" aria-labelledby="autorFormModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
         <form id="livruForm" method = 'post' action="{% url 'add-author' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class = "card card-primary">
+            <div class = "card card-success">
                 <div class="card-header">
                     <h5 class="card-title" id="livruFormModalLabel">Aumenta Autor <i class="bi bi-journal-plus"></i></h5>
                 </div>
@@ -41,18 +41,38 @@
                         <div class="col-md-8">
                             <div class="mb-3">
                                 <label for="data" class="form-label">Deskrisaun</label>
-                                {{ form.deskrisaun }}
+                                <textarea id = "summernote_add">
+                                    {{ author.deskrisaun }}
+                                </textarea>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
-                    <button   button type="submit" class="btn btn-primary">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                    <button   button type="submit" class="btn btn-success">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
                 </div>
             </div>
         </form>
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+      // Initialize Summernote for the deskrisaun field
+        $('#summernote_add').summernote({
+            height: 200, // Set the height of the editor
+            toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['insert', ['link']],
+            ]
+        });
+    });
+</script>
 

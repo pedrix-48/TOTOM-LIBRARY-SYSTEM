@@ -18,7 +18,7 @@
 					</p>
 				</div>
 				<div class="card-footer bg-transparent text-dark ms-auto me-auto">
-					<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#autorFormModal">
+					<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalProfile{{ author.id_author }}">
             <i class="bi bi-pencil-square"></i> Troka Foto Profile
           </button>
 				</div>
@@ -38,7 +38,7 @@
 					</p>
 				</div>
 				<div class="card-footer bg-transparent ms-auto">
-					<button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#autorFormModal">
+					<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#autorFormModal">
             <i class="bi bi-pencil-square"></i> Edit Detalla
           </button>
 				</div>
@@ -54,15 +54,59 @@
     </h5>
     <div class="card-body">
       <p class="card-text">
-        {{ author.deskrisaun }}
+        {{ author.deskrisaun | safe }}
       </p>
     </div>
     <div class="card-footer bg-transparent text-dark ms-auto">
-      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#autorFormModal">
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass">
         <i class="bi bi-pencil-square"></i> Edit Deskrisaun
       </button>
     </div>
   </div>
 </div>
 
+{% comment %} modal ba Edit Profile {% endcomment %}
+
+<div class="modal fade" id="modalProfile{{ author.id_author }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-dark text-white">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img src="{{ author.foto_profile.url }}" alt="Foto Profile" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+          </div>
+          <div class="col-md-6">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    // Initialize Summernote for the deskrisaun field
+    $('#deskrisaun').summernote({
+      height: 200, // Set the height of the editor
+      toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen',  'help']]
+      ]
+    });
+  });
+</script>
 {% endblock %}
