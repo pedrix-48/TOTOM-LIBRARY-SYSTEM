@@ -32,11 +32,31 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
     </ul>
-    <ul class = 'navbar-nav ml-auto'>
-        <li class="nav-item">
-            <a href="{% url 'logout' %}" class="nav-link">Logout <i class="bi bi-box-arrow-left ms-2"></i></a>
-        </li>
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Account <img src = "/media/staff_default_pic.jpg" class="img-fluid rounded-circle ms-2 mb-1" style="width: 2opx; height: 20px;">
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="dropdown-item" href="#">
+              Kona-ba Hau<i class="bi bi-person-fill-gear ms-2"></i>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              Troka Password<i class="bi bi-gear-fill ms-2"></i>
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'logout' %}">
+              Logout <i class="bi bi-box-arrow-left ms-2"></i>
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
+    
 
   </nav>
   <!-- /.navbar -->

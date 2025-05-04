@@ -46,7 +46,8 @@ class AuthorForm(forms.ModelForm):
         )
         self.fields['email'].widget.attrs.update({
             'class':'form-control',
-            'placeholder':'Prense Email'
+            'placeholder':'Prense Email',
+            'type':'email'
         })
         self.fields['nasaun'].widget.attrs.update({
             'class':'form-control',

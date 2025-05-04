@@ -1,8 +1,10 @@
 from django.db import models 
 
 class Admin_user(models.Model):
+    naran_admin = models.CharField(max_length=50, default="")
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=100)
+    foto_profile = models.ImageField( blank=True)
 
 class Departamento(models.Model):
     id_dep = models.CharField(max_length=5, primary_key=True)
@@ -28,8 +30,8 @@ class Author(models.Model):
     data_moris = models.DateField(default='2000-01-01')
     sexu = models.CharField(max_length=1, choices=[('M','Mane'), ('F', 'Feto')])
     email = models.CharField(max_length=50)
-    nasaun = models.CharField(max_length=20)
-    deskrisaun = models.TextField()
+    nasaun = models.CharField(max_length=20, default="Timor Leste")
+    deskrisaun = models.TextField(default="Hau Gosta Han Hudi :)")
     foto_profile = models.ImageField( blank=True)
 
     def __str__(self):
