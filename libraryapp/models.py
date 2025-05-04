@@ -38,9 +38,11 @@ class Author(models.Model):
         return self.naran_author
 
 class Livru(models.Model):
-    id_livru = models.CharField(max_length=10, primary_key=True)
+    id_livru = models.AutoField(primary_key=True)
     naran_livru = models.CharField(max_length=100)
     data_publish = models.DateField()
+    foto_livru = models.ImageField(blank=True)
+    sypnosis = models.TextField(default="BUKU NE TERBAIIIIKKK !!!")
     id_author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
