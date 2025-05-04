@@ -1,0 +1,87 @@
+
+{% load static %}
+
+<div class="modal fade" id="editLivruModal{{ livru.id_livru }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+        <form id="livruForm" method = 'post' action="{% url 'edit-livru' livru.id_livru %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class = "card card-dark">
+                <div class="card-header">
+                    <h5 class="card-title" id="livruFormModalLabel">Edit Livru <i class="bi bi-pencil-square"></i></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Titulu Livru</label>
+                                <input type="text" name="titulu_livru" class="form-control" value="{{ livru.titulu_livru }}">
+                            </div>
+                            <div class="mb-3">
+                                <div class="mb-3">
+                                    <label for="autor" class="form-label">Data Publisidade</label>
+                                    <input type="date" name="data_publish" class="form-control" value="{{ livru.data_publish|date:'Y-m-d' }}">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Husi Nasaun</label>
+                                <input type="text" name="nasaun" class="form-control" value="{{ livru.nasaun }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Tipu Livru</label>
+                                <select name="tipu_livru" class="form-control">
+                                    <option value="Novel" {% if livru.tipu_livru == "Children" %}selected{% endif %}>Novel</option>
+                                    <option value="Light Novel" {% if livru.tipu_livru == "Light Novel" %}selected{% endif %}>Light Novel</option>
+                                    <option value="Manga" {% if livru.tipu_livru == "Manga" %}selected{% endif %}>Manga</option>
+                                    <option value="Education" {% if livru.tipu_livru == "Education" %}selected{% endif %}>Education</option>
+                                    <option value="History" {% if livru.tipu_livru == "History" %}selected{% endif %}>History</option>
+                                    <option value="Thesis" {% if livru.tipu_livru == "Thesis" %}selected{% endif %}>Thesis</option>
+                                    <option value="Children" {% if livru.tipu_livru == "Children" %}selected{% endif %}>Children</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Author</label>
+                                {{ form.id_author }}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Sypnosis</label>
+                                <textarea id="summernote-{{ livru.sypnosis }}" name="sypnosis" class="form-control">{{ livru.sypnosis|safe }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
+                    <button   button type="submit" class="btn btn-dark">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<script>
+        $(document).ready(function () {
+        $('.modal').on('shown.bs.modal', function () {
+            const $textarea = $(this).find('textarea[id^="summernote-"]');
+            if (!$textarea.hasClass('summernote-initialized')) {
+            $textarea.summernote({
+                height: 200,
+                toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['insert', ['link']]
+                ]
+            });
+            $textarea.addClass('summernote-initialized');
+            }
+        });
+        });
+        
+</script>
+    

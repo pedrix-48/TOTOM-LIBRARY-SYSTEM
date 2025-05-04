@@ -40,6 +40,7 @@ hr.bold {
                 <th>Titulu</th>
                 <th>Data Publisidade</th>
                 <th>Husi Nasaun</th>
+                <th>Tipu Livru</th>
                 <th>Autor</th>
                 <th>Asaun</th>
             </tr>
@@ -51,12 +52,15 @@ hr.bold {
                         <td>{{ livru.titulu_livru }}</td>
                         <td>{{ livru.data_publish }}</td>
                         <td>{{ livru.nasaun }}</td>
+                        <td>{{ livru.tipu_livru }}</td>
                         <td>{{ livru.id_author }}</td>
                         <td>
-                            <button data-bs-toggle = 'modal' data-bs-target = "" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
-                            <button data-bs-toggle = 'modal' data-bs-target = "" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                            <button data-bs-toggle = 'modal' data-bs-target = "#editLivruModal{{ livru.id_livru }}" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
+                            <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ livru.id_livru }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
+                    {% include "del_livru.html" %}
+                    {% include "edit_livru.html" %}
                 {% endfor %}
             </tbody>
             </table>

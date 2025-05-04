@@ -20,6 +20,8 @@ urlpatterns = [
     # path url ne ba module livru nian
     path('listalivru', livru.lista_livru, name = 'lista-livru'),
     path('addlivru/', livru.add_livru, name = 'add-livru'),
+    path('livru/<int:id_livru>/delete/', livru.delete_livru, name = 'del-livru'),
+    path('livru/<str:id_livru>/edit/', livru.edit_livru, name = 'edit-livru'),
     #------------------------------------------------------------------
     # path url ne ba module autor nian
     path('listauthor', views.lista_author, name = 'lista-author'),

@@ -25,3 +25,26 @@ def add_livru(request):
         form = LivruForm()
         
     return render(request, "add_livru.html", {'form' : form})
+
+def delete_livru(request, id_livru):
+    livru = Livru.objects.get(id_livru = id_livru)
+    if request.method == "POST":
+        livru.delete()
+        return redirect("lista-livru")
+    
+def edit_livru(request, id_livru):
+    livru = Livru.objects.get(id_livru = id_livru)
+    form = LivruForm(instance = livru)
+    if request.method == "POST":
+        form = LivruForm(request.POST, instance = livru)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Guarda Dados Susesu !")
+            return redirect("lista-livru")
+        else:
+            print(form.errors)
+    context = {
+        "form" : form,
+        "livru" : livru
+    }
+    return render(request, "edit_livru.html", context)

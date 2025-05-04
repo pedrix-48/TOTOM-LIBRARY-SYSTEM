@@ -1,0 +1,43 @@
+<!-- Modal -->
+{% load static %}
+
+<div class="modal fade" id="delModal{{ livru.id_livru }}" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Apaga Dados <i class="bi bi-trash3-fill"></i></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="authorForm" method = 'post' action="{% url 'del-livru' livru.id_livru %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {% if livru.tipu_livru == "Manga" %}
+                        <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
+                        <p> Manga  <strong>{{ livru.titulu_livru }}</strong></p>
+                    {% elif livru.tipu_livru == "Novel" %}
+                        <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
+                        <p> Novel  <strong>{{ livru.titulu_livru }}</strong></p>
+                    {% elif livru.tipu_livru == "Teze" %}
+                        <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
+                        <p> Teze  <strong>{{ livru.titulu_livru }}</strong></p>
+                    {% elif livru.tipu_livru == "History" %}
+                        <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
+                        <p> Livru History  <strong>{{ livru.titulu_livru }}</strong></p>
+                    {% elif livru.tipu_livru == "Light Novel" %}
+                        <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
+                        <p> Light Novel <strong>{{ livru.titulu_livru }}</strong></p>
+                    {% else %}
+                        <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
+                        <p> Livru <strong>{{ livru.titulu_livru }}</strong></p>
+                    {% endif %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Taka</button>
+                    <button button type="submit" class="btn btn-danger">Sim</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
