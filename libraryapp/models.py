@@ -45,6 +45,7 @@ class Livru(models.Model):
     tipu_livru = models.CharField(max_length=11, choices=[
             ("Novel","Novel"), 
             ("Light Novel","Light Novel"), 
+            ("Manga","Manga"), 
             ("Education", "Education"), 
             ("History", "History"), 
             ("Thesis","Thesis"),
@@ -54,7 +55,7 @@ class Livru(models.Model):
     )
     foto_livru = models.ImageField(blank=True)
     sypnosis = models.TextField(default="BUKU NE TERBAIIIIKKK !!!")
-    id_author = models.ManyToManyField(Author)
+    id_author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.titulu_livru
@@ -76,8 +77,4 @@ class Empresta(models.Model):
     id_staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     data_empresta = models.DateField()
     data_devolve = models.DateField()
-
-
-
-
 

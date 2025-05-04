@@ -3,7 +3,7 @@
 <div class="modal fade" id="addLivruModal" tabindex="-1" aria-labelledby="livruFormModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-        <form id="addLivruModal" method = 'POST' action="{% url "add-livru" %}" enctype="multipart/form-data">
+        <form id="addLivru" method = 'POST' action="{% url "add-livru" %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class = "card card-success">
                 <div class="card-header">

@@ -51,7 +51,7 @@ hr.bold {
                         <td>{{ livru.titulu_livru }}</td>
                         <td>{{ livru.data_publish }}</td>
                         <td>{{ livru.nasaun }}</td>
-                        <td>{{ livru.id_livru }}</td>
+                        <td>{{ livru.id_author }}</td>
                         <td>
                             <button data-bs-toggle = 'modal' data-bs-target = "" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
                             <button data-bs-toggle = 'modal' data-bs-target = "" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
@@ -67,9 +67,8 @@ hr.bold {
 <script src="{% static 'AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
 <script src="{% static 'AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
 <script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
-<script src="{% static 'AdminLTE/plugins/jszip/jszip.min.js' %}"></script>
-<script src="{% static 'AdminLTE/plugins/pdfmake/pdfmake.min.js' %}"></script>
 <script src="{% static 'AdminLTE/plugins/pdfmake/vfs_fonts.js '%} "></script></script>
+<script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
 <script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
 
 <script>

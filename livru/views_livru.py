@@ -5,8 +5,10 @@ from django.contrib import messages
 
 def lista_livru(request):
     livrus = Livru.objects.all()
+    form = LivruForm
     context = {
-        'livrus': livrus
+        'livrus': livrus,
+        'form' : form,
     }
     return render(request, 'lista_livru.html', context)
 
@@ -15,7 +17,7 @@ def add_livru(request):
         form = LivruForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success("Guarda Dados Susesu !")
+            messages.success(request, "Guarda Dados Susesu !")
             return redirect("lista-livru")
         else:
             print(form.errors)

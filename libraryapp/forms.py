@@ -68,6 +68,7 @@ class LivruForm(forms.ModelForm):
     TIPU_LIVRU = [
         ("Novel","Novel"), 
         ("Light Novel","Light Novel"), 
+        ("Manga","Manga"), 
         ("Education", "Education"), 
         ("History", "History"), 
         ("Thesis","Thesis"),
