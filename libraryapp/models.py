@@ -39,14 +39,25 @@ class Author(models.Model):
 
 class Livru(models.Model):
     id_livru = models.AutoField(primary_key=True)
-    naran_livru = models.CharField(max_length=100)
-    data_publish = models.DateField()
+    titulu_livru = models.CharField(max_length=100)
+    data_publish = models.DateField(default= '2000-01-01')
+    nasaun = models.CharField(max_length=20, default="Timor Leste")
+    tipu_livru = models.CharField(max_length=11, choices=[
+            ("Novel","Novel"), 
+            ("Light Novel","Light Novel"), 
+            ("Education", "Education"), 
+            ("History", "History"), 
+            ("Thesis","Thesis"),
+            ("Children","Children"),
+        ],
+        default="Novel"
+    )
     foto_livru = models.ImageField(blank=True)
     sypnosis = models.TextField(default="BUKU NE TERBAIIIIKKK !!!")
-    id_author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    id_author = models.ManyToManyField(Author)
 
     def __str__(self):
-        return self.naran_livru
+        return self.titulu_livru
 
 class Staff(models.Model):
     id_staff = models.CharField(max_length=20, primary_key=True)

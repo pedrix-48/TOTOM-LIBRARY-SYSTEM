@@ -16,7 +16,10 @@ urlpatterns = [
     path('', views.loginpage, name = 'login'),
     path('logout', views.admin_logout, name = 'logout'),
     path('dashboard', views.dashboard, name = 'dash-admin'),
+
+    # path url ne ba module livru nian
     path('listalivru', livru.lista_livru, name = 'lista-livru'),
+    path('addlivru/', livru.add_livru, name = 'add-livru'),
     #------------------------------------------------------------------
     # path url ne ba module autor nian
     path('listauthor', views.lista_author, name = 'lista-author'),

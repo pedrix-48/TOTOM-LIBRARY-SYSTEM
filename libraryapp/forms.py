@@ -1,6 +1,5 @@
-from django import forms # type: ignore
-from .models import Admin_user
-from .models import Author
+from django import forms 
+from .models import Admin_user, Author, Livru
 
 class AdminLoginForm(forms.ModelForm):
     class Meta:
@@ -61,4 +60,51 @@ class AuthorForm(forms.ModelForm):
         self.fields['foto_profile'].widget.attrs.update({
             'class':'form-control',
             'placeholder':'Upload Foto Profile'
+        })
+
+
+class LivruForm(forms.ModelForm):
+
+    TIPU_LIVRU = [
+        ("Novel","Novel"), 
+        ("Light Novel","Light Novel"), 
+        ("Education", "Education"), 
+        ("History", "History"), 
+        ("Thesis","Thesis"),
+        ("Children","Children"),
+    ]
+    tipu_livru = forms.ChoiceField(choices=TIPU_LIVRU, widget=forms.Select(attrs={'class': 'form-control'}))
+
+
+    class Meta:
+        model = Livru
+        exclude = ['id_livru']
+
+    def __init__(self, *args, **kwargs):
+        super(LivruForm, self).__init__(*args, **kwargs)
+        self.fields["titulu_livru"].widget.attrs.update({
+            'class' : 'form-control',
+            'placeholder' : 'Prense Titulu Livru'
+        })
+        self.fields['data_publish'].widget = forms.DateInput(
+            attrs={
+                'class':'form-control',
+                'placeholder':'Prense Data Publish',
+                'type':'date'
+            }
+        )
+        self.fields['nasaun'].widget.attrs.update({
+            'class':'form-control',
+            'placeholder':'Prense Nasaun'
+        })
+        self.fields['sypnosis'].widget.attrs.update({
+            'class':'form-control',
+            "id":"summernote_add"
+        })
+        self.fields['id_author'].widget.attrs.update({
+            'class':'form-control',
+        })
+        self.fields['foto_livru'].widget.attrs.update({
+            'class':'form-control',
+            'placeholder':'Upload Cover Livru'
         })

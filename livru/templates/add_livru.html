@@ -1,47 +1,46 @@
-
 {% load static %}
 
-<div class="modal fade" id="autorFormModal" tabindex="-1" aria-labelledby="autorFormModalLabel" aria-hidden="true">
+<div class="modal fade" id="addLivruModal" tabindex="-1" aria-labelledby="livruFormModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-        <form id="livruForm" method = 'post' action="" enctype="multipart/form-data">
+        <form id="addLivruModal" method = 'POST' action="{% url "add-livru" %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class = "card card-success">
                 <div class="card-header">
-                    <h5 class="card-title" id="livruFormModalLabel">Aumenta Autor <i class="bi bi-journal-plus"></i></h5>
+                    <h5 class="card-title" id="livruFormModalLabel">Aumenta Livru <i class="bi bi-journal-plus ml-2"></i></h5>
                 </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="naran" class="form-label">Naran Autor</label>
-                                ----
+                                <label for="titulu" class="form-label">Titulu Livru</label>
+                                {{ form.titulu_livru}}
                             </div>
                             <div class="mb-3">
-                                <label for="autor" class="form-label">Sexu</label>
-                                ----
+                                <label for="data" class="form-label">Data Publisidade</label>
+                                {{ form.data_publish }}
                             </div>
                             <div class="mb-3">
-                                <label for="autor" class="form-label">Data Moris</label>
-                                ----
+                                <label for="nasaun" class="form-label">Husi Nasaun</label>
+                                {{ form.nasaun }}
                             </div>
                             <div class="mb-3">
-                                <label for="data" class="form-label">Email</label>
-                                ----
+                                <label for="nasaun" class="form-label">Tipu Livru</label>
+                                {{ form.tipu_livru }}
                             </div>
                             <div class="mb-3">
-                                <label for="data" class="form-label">Nasaun</label>
-                                ----
+                                <label for="foto" class="form-label">Cover Livru</label>
+                                {{ form.foto_livru }}
                             </div>
                             <div class="mb-3">
-                                <label for="data" class="form-label">Foto Livru</label>
-                                ----
+                                <label for="author" class="form-label">Author</label>
+                                {{ form.id_author }}
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="mb-3">
-                                <label for="data" class="form-label">Sypnosis</label>
-                                ----
+                                <label for="Sypnosis" class="form-label">Sypnosis</label>
+                                {{ form.sypnosis }}
                             </div>
                         </div>
                     </div>
@@ -58,7 +57,6 @@
 
 <script>
     $(document).ready(function() {
-      // Initialize Summernote for the deskrisaun field
         $('#summernote_add').summernote({
             height: 200, // Set the height of the editor
             toolbar: [
