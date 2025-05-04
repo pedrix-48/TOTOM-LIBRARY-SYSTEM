@@ -1,12 +1,25 @@
 {% extends "home.html" %}
 {% block content %}
 
+<style>
+  hr.bold {
+    border: none;
+    border-top: 5px solid black; 
+    margin: 1rem 0;
+  }
+</style>
+
+<h3>
+  Author <strong>{{ author.naran_author }}</strong>
+</h3>
+<a class = "btn btn-sm btn-dark" href = "{% url 'lista-author' %}"><i class="bi bi-arrow-return-left"></i> Fila ba Lista </a>
+<hr class="bg-dark bold">
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-4">
 			<div class="card bg-default">
 				<h5 class="card-header bg-navy text-white">
-					Profile Husi Author <strong>{{ author.naran_author }}</strong>
+					Foto Profile Husi Author 
 				</h5>
 				<div class="card-body ms-auto me-auto">
 					<p class="card-text">
@@ -16,6 +29,9 @@
               <img src="/media/staff_default_pic.jpg" alt="Default Profile" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
             {% endif %}
 					</p>
+          <p class="card-text  text-center">
+            <strong> {{ author.naran_author }} </strong> 
+          </p>
 				</div>
 				<div class="card-footer bg-transparent text-dark ms-auto me-auto">
 					<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#modalProfile{{ author.id_author }}">
@@ -31,6 +47,7 @@
 				</h5>
 				<div class="card-body">
 					<p class="card-text">
+              <p><strong>Naran:</strong> {{ author.naran_author }}</p>
               <p><strong>Sexu:</strong> {{ author.sexu }}</p>
               <p><strong>Data Moris:</strong> {{ author.data_moris }}</p>
               <p><strong>Email:</strong> {{ author.email }}</p>
@@ -38,7 +55,7 @@
 					</p>
 				</div>
 				<div class="card-footer bg-transparent ms-auto">
-					<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#autorFormModal">
+					<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editDetallaProfile{{ author.id_author }}">
             <i class="bi bi-pencil-square"></i> Edit Detalla
           </button>
 				</div>
@@ -50,7 +67,7 @@
 <div class = 'container-fluid'>
   <div class="card">
     <h5 class="card-header bg-navy text-white">
-      Deskrisaun
+      Deskrisaun Husi  <strong>{{ author.naran_author }}</strong>
     </h5>
     <div class="card-body">
       <p class="card-text">
@@ -58,38 +75,128 @@
       </p>
     </div>
     <div class="card-footer bg-transparent text-dark ms-auto">
-      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass">
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editDeskrisaunProfile{{ author.id_author }}">
         <i class="bi bi-pencil-square"></i> Edit Deskrisaun
       </button>
     </div>
   </div>
 </div>
 
-{% comment %} modal ba Edit Profile {% endcomment %}
-
-<div class="modal fade" id="modalProfile{{ author.id_author }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header bg-dark text-white">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-md-6">
-            <img src="{{ author.foto_profile.url }}" alt="Foto Profile" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
-          </div>
-          <div class="col-md-6">
+<!-- Modal ba edit foto profile nian-->
+<form class="form-horizontal" method = "post" action="{% url 'edit-foto' author.id_author  %}" enctype = "multipart/form-data">
+  {% csrf_token %}
+  <div class="modal fade" id="modalProfile{{ author.id_author }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Atualiza Foto Profile</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-4">
+            {% if author.foto_profile %}
+              <img src="{{ author.foto_profile.url }}" alt="Foto Profile" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+            {% else %}
+              <img src="/media/staff_default_pic.jpg" alt="Default Profile" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
+            {% endif %}
+            </div>
+            <div class="col-md-8 mt-auto mb-auto">
+              <div class="form-group">
+                <h6 for="exampleInputFile">Upload Foto Foun ba Author <b>{{ author.naran_author }}</b></h6>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input class="form-control" type="file" id="formFile" name = "foto_profile" required>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Taka</button>
+          <button type="submit" class="btn btn-dark">Atualiza <i class="bi bi-pencil-square ml-1"></i></button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
+
+
+<!-- Modal ba edit detalla nian  -->
+<form method = "post" action = "{% url 'edit-detalla' author.id_author %}" class = "form-horizontal">
+  {% csrf_token %}
+  <div class="modal fade" id="editDetallaProfile{{ author.id_author }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Atualiza Detalla Husi Profile</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="naran" class="form-label">Naran Autor</label>
+              <input type="text" name="naran_author" class="form-control" value="{{ author.naran_author }}">
+              <br>
+              <label for="autor" class="form-label">Sexu</label>
+              <select name="sexu" class="form-control">
+                  <option value="M" {% if author.sexu == "M" %}selected{% endif %}>Mane</option>
+                  <option value="F" {% if author.sexu == "F" %}selected{% endif %}>Feto</option>
+              </select>
+              <br>
+              <div class="mb-3">
+                <label for="autor" class="form-label">Data Moris</label>
+                <input type="date" name="data_moris" class="form-control" value="{{ author.data_moris|date:'Y-m-d' }}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="data" class="form-label">Email</label>
+              <input type="text" name="email" class="form-control" value="{{ author.email }}">
+              <br>
+              <label for="data" class="form-label">Nasaun</label>
+              <input type="text" name="nasaun" class="form-control" value="{{ author.nasaun }}">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Taka</button>
+          <button type="submit" class="btn btn-dark">Atualiza <i class="bi bi-pencil-square ml-1"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<!-- Modal ba edit deskrisaun nian  -->
+
+<form method="post" action="{% url 'edit-detalla' author.id_author %}" class="form-horizontal">
+  {% csrf_token %}
+  <div class="modal fade" id="editDeskrisaunProfile{{ author.id_author }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-dark text-white">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Atualiza Deskrisaun</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="deskrisaun" class="form-label">Deskrisaun</label>
+            {% comment %} <textarea id="deskrisaun" name="deskrisaun" class="form-control" rows="5">{{ author.deskrisaun }}</textarea> {% endcomment %}
+          </div>
+        </div> 
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Taka</button>
+          <button type="submit" class="btn btn-dark">Atualiza <i class="bi bi-pencil-square ml-1"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
 
 <script>
   $(document).ready(function() {

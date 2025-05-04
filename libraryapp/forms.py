@@ -54,7 +54,8 @@ class AuthorForm(forms.ModelForm):
         })
         self.fields['deskrisaun'].widget.attrs.update({
             'class':'form-control',
-            'placeholder':'Prense Deskrisaun'
+            'placeholder':'Prense Deskrisaun',
+            'id':'summernote_add',
         })
         self.fields['foto_profile'].widget.attrs.update({
             'class':'form-control',

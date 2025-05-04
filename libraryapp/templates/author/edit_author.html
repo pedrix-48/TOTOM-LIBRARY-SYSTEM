@@ -40,7 +40,7 @@
                         <div class="col-md-8">
                             <div class="mb-3">
                                 <label for="data" class="form-label">Deskrisaun</label>
-                                <textarea type="text" name="deskrisaun" class="form-control" rows="13" id = "summernote_edit"> {{ author.deskrisaun }} </textarea>
+                                <textarea id="summernote-{{ author.id_author }}" name="deskrisaun" class="form-control">{{ author.deskrisaun|safe }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -54,21 +54,26 @@
         </div>
     </div>
 </div>
-
 <script>
-    $(document).ready(function() {
-      // Initialize Summernote for the deskrisaun field
-        $('#summernote_edit').summernote({
-            height: 200, // Set the height of the editor
-            toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough', 'superscript', 'subscript']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['height', ['height']],
-            ['insert', ['link']],
-            ]
+        $(document).ready(function () {
+        $('.modal').on('shown.bs.modal', function () {
+            const $textarea = $(this).find('textarea[id^="summernote-"]');
+            if (!$textarea.hasClass('summernote-initialized')) {
+            $textarea.summernote({
+                height: 200,
+                toolbar: [
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']],
+                ['insert', ['link']]
+                ]
+            });
+            $textarea.addClass('summernote-initialized');
+            }
         });
-    });
+        });
 </script>
+    
