@@ -14,9 +14,11 @@ hr.bold {
 }
 </style>
 
-<h3>
-    Lista Ba Livru Sira 
-</h3>
+
+<div class="text-center p-3 rounded shadow" style="background: linear-gradient(to right, #004085,rgb(28, 39, 50)); color: white;">
+    <h1><i class="bi bi-journal-text"></i> Lista Ba Livru Sira</h1>
+    <small class="text-muted">Informasaun Kompletu kona ba livru iha sistema</small>
+</div>
 <hr class="bg-dark bold">
 
 
@@ -34,35 +36,41 @@ hr.bold {
         </div>
         <div class="card-body">
             <table id="tabela_livru" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th>Nu</th>
-                <th>Titulu</th>
-                <th>Data Publisidade</th>
-                <th>Husi Nasaun</th>
-                <th>Tipu Livru</th>
-                <th>Autor</th>
-                <th>Asaun</th>
-            </tr>
-            </thead>
-            <tbody>
-                {% for livru in livrus %}
+                <thead>
                     <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ livru.titulu_livru }}</td>
-                        <td>{{ livru.data_publish }}</td>
-                        <td>{{ livru.nasaun }}</td>
-                        <td>{{ livru.tipu_livru }}</td>
-                        <td>{{ livru.id_author }}</td>
-                        <td>
-                            <button data-bs-toggle = 'modal' data-bs-target = "#editLivruModal{{ livru.id_livru }}" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
-                            <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ livru.id_livru }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
-                        </td>
+                        <th>Nu</th>
+                        <th>Titulu</th>
+                        <th>Data Publisidade</th>
+                        <th>Husi Nasaun</th>
+                        <th>Tipu Livru</th>
+                        <th>Autor</th>
+                        <th>Asaun</th>
                     </tr>
-                    {% include "del_livru.html" %}
-                    {% include "edit_livru.html" %}
-                {% endfor %}
-            </tbody>
+                </thead>
+                <tbody>
+                    {% for livru in livrus %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>
+                                <a href = "">
+                                    {{ livru.titulu_livru }}
+                                </a>
+                            </td>
+                            <td>{{ livru.data_publish }}</td>
+                            <td>{{ livru.nasaun }}</td>
+                            <td>{{ livru.tipu_livru }}</td>
+                            <td>{{ livru.id_author }}</td>
+                            <td>
+                                <div class = "d-flex gap-1">
+                                    <button data-bs-toggle = 'modal' data-bs-target = "#editLivruModal{{ livru.id_livru }}" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                    <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ livru.id_livru }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% include "del_livru.html" %}
+                        {% include "edit_livru.html" %}
+                    {% endfor %}
+                </tbody>
             </table>
     </div>
 <script src="{% static 'AdminLTE/plugins/datatables/jquery.dataTables.min.js' %}"></script>
