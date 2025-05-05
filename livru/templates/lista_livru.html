@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static 'AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
 <link rel="stylesheet" href="{% static 'AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'%}">
 <link rel="stylesheet" href="{% static 'AdminLTE/plugins/fontawesome-free/css/all.min.css'%}">
+
 <style>
 hr.bold {
     border: none;
@@ -16,8 +17,8 @@ hr.bold {
 
 
 <div class="text-center p-3 rounded shadow" style="background: linear-gradient(to right, #004085,rgb(28, 39, 50)); color: white;">
-    <h1><i class="bi bi-journal-text"></i> Lista Ba Livru Sira</h1>
-    <small class="text-muted">Informasaun Kompletu kona ba livru iha sistema</small>
+    <h2><i class="bi bi-journal-text"></i> Lista Ba Livru Sira</h2>
+    <small class="text-muted ">Informasaun Kompletu kona ba livru Sira iha sistema</small>
 </div>
 <hr class="bg-dark bold">
 
@@ -52,7 +53,7 @@ hr.bold {
                         <tr>
                             <td>{{ forloop.counter }}</td>
                             <td>
-                                <a href = "">
+                                <a href = "{% url "det-livru" livru.titulu_livru %}">
                                     {{ livru.titulu_livru }}
                                 </a>
                             </td>

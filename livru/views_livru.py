@@ -48,3 +48,10 @@ def edit_livru(request, id_livru):
         "livru" : livru
     }
     return render(request, "edit_livru.html", context)
+
+def detail_livru(request, titulu_livru):
+    livru = Livru.objects.get(titulu_livru = titulu_livru)
+    context = {
+        "livru" : livru
+    }
+    return render(request, "detail_livru.html", context)

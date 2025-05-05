@@ -36,6 +36,18 @@
     <ul class="navbar-nav ms-auto">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Informasaun ba Web 
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li>
+            <a class="dropdown-item" href="#">
+              Kostumiza Sistema <img src = "/media/gear.gif" class="img-fluid rounded-circle me- mb-1" style="width: 2opx; height: 20px;">
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           Account <img src = "/media/default_male.jpg" class="img-fluid rounded-circle ms-2 mb-1" style="width: 2opx; height: 20px;">
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -57,8 +69,6 @@
         </ul>
       </li>
     </ul>
-    
-
   </nav>
   <!-- /.navbar -->
 
@@ -94,7 +104,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{% url 'lista-livru' %}" class="nav-link {% if request.path == '/listalivru' %} active {% endif %}">
+            <a href="{% url 'lista-livru' %}" class="nav-link {% if '/listalivru' in request.path or '/livru/' in request.path %} active {% endif %}">
               <i class=" nav-icon bi bi-book"></i>
               <p>
                 Livru

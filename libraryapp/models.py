@@ -78,3 +78,6 @@ class Empresta(models.Model):
     data_empresta = models.DateField()
     data_devolve = models.DateField()
 
+class InfoWeb(models.Model):
+    pass
+
