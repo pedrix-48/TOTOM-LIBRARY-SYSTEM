@@ -73,15 +73,16 @@ def edit_cover_livru(request, titulu_livru):
 def edit_info_livru(request, titulu_livru):
     livru = get_object_or_404(Livru, titulu_livru = titulu_livru)
     if request.method == "POST":
-        form = EditInfoDetailLivru(request.POST, instance = livru)
+        form = EditInfoDetailLivru(request.POST, request.FILES ,instance = livru)
         if form.is_valid():
             form.save()
             messages.success(request, "Guarda Dados Susesu !")
-            return redirect("det-livru", titulu_livru = titulu_livru)
+            return redirect("det-livru", titulu_livru = livru.titulu_livru)
     else:
         form = EditInfoDetailLivru(instance = livru)
     context = {
-        "livru" : livru
+        "livru" : livru,
+        "form" : form
     }
     return render(request, "detail_livru.html", context)
 

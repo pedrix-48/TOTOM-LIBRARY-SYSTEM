@@ -28,9 +28,9 @@
                                 <input type="text" name="nasaun" class="form-control" value="{{ livru.nasaun }}">
                             </div>
                             <div class="mb-3">
-                                <label for="autor" class="form-label">Tipu Livru</label>
+                                <label for="livr" class="form-label">Tipu Livru</label>
                                 <select name="tipu_livru" class="form-control">
-                                    <option value="Novel" {% if livru.tipu_livru == "Children" %}selected{% endif %}>Novel</option>
+                                    <option value="Novel" {% if livru.tipu_livru == "Novel" %}selected{% endif %}>Novel</option>
                                     <option value="Light Novel" {% if livru.tipu_livru == "Light Novel" %}selected{% endif %}>Light Novel</option>
                                     <option value="Manga" {% if livru.tipu_livru == "Manga" %}selected{% endif %}>Manga</option>
                                     <option value="Education" {% if livru.tipu_livru == "Education" %}selected{% endif %}>Education</option>

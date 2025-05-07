@@ -65,6 +65,7 @@ class EditInfoDetailLivru(forms.ModelForm):
     class Meta:
         model = Livru
         fields = [
+            "tipu_livru",
             "titulu_livru",
             "data_publish",
             "nasaun",
@@ -90,7 +91,6 @@ class EditInfoDetailLivru(forms.ModelForm):
                 'type':'date'
             }
         )
-        self.fields["titulu_livru"].required = False
         self.fields["nasaun"].required = False
         self.fields["id_author"].required = True
         self.fields["data_publish"].required = False
