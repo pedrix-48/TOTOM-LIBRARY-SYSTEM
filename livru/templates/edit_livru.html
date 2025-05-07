@@ -41,6 +41,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="data" class="form-label">Author</label>
+                                {% comment %} <select name="id_author" class="form-control" id="id_author">
+                                    {% for author in authors %}
+                                        <option value="{{ author.id_author }}" {% if author.id_author == livru.id_author.id_author %}selected{% endif %}>
+                                            {{ author.naran_author }}
+                                        </option>
+                                    {% endfor %}
+                                </select> {% endcomment %}
                                 {{ form.id_author }}
                             </div>
                         </div>

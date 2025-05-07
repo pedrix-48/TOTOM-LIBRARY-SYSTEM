@@ -77,7 +77,3 @@ class Empresta(models.Model):
     id_staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     data_empresta = models.DateField()
     data_devolve = models.DateField()
-
-class InfoWeb(models.Model):
-    pass
-

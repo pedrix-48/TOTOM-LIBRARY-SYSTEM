@@ -16,13 +16,16 @@ urlpatterns = [
     path('', views.loginpage, name = 'login'),
     path('logout', views.admin_logout, name = 'logout'),
     path('dashboard', views.dashboard, name = 'dash-admin'),
-
+    #------------------------------------------------------------------
     # path url ne ba module livru nian
     path('listalivru', livru.lista_livru, name = 'lista-livru'),
     path('addlivru/', livru.add_livru, name = 'add-livru'),
     path('livru/<int:id_livru>/delete/', livru.delete_livru, name = 'del-livru'),
     path('livru/<str:id_livru>/edit/', livru.edit_livru, name = 'edit-livru'),
     path('livru/detail-livru/<str:titulu_livru>/', livru.detail_livru, name = 'det-livru'),
+    path('livru/edit-cover/<str:titulu_livru>/', livru.edit_cover_livru, name = 'edit-cover'),
+    path('livru/edit-info/<str:titulu_livru>/', livru.edit_info_livru, name = 'edit-info'),
+    path('livru/edit-sypnosis/<str:titulu_livru>/', livru.editSypnosisLivru, name = 'edit-syp'),
     #------------------------------------------------------------------
     # path url ne ba module autor nian
     path('listauthor', views.lista_author, name = 'lista-author'),
@@ -34,6 +37,8 @@ urlpatterns = [
     path('author/edit-detalla/<str:naran_author>/', views.edit_detalla_profile, name='edit-detalla'),
     path('author/edit-deskrisaun/<str:naran_author>/', views.edit_deskrisaun_profile, name='edit-desk'),
     path('author/profile-author/<str:naran_author>/', author.profile_author, name='profile-author'),
+    #------------------------------------------------------------------
+    # path url ne ba module staff nian
 
     path('listastaff', staff.lista_staff, name = 'lista-staff'),
     path('listaempresta', empresta.lista_empresta, name = 'lista-empresta'),

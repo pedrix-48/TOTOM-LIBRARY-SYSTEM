@@ -1,12 +1,41 @@
 {% extends 'home.html' %}
 {% block content %}
 <style>
-  hr.bold {
-    border: none;
-    border-top: 5px solid black; 
-    margin: 1rem 0;
-  }
+	hr.bold {
+	border: none;
+	border-top: 5px solid black; 
+	margin: 1rem 0;
+	}
 </style> 
+
+
+<!-- Modal ba edit sypnosis nian  -->
+
+<form method="post" action="{% url "edit-syp" livru.titulu_livru %}" class="form-horizontal">
+	{% csrf_token %}
+	<div class="modal fade" id="editSypnosisDetail{{ livru.id_livru }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header bg-dark text-white">
+			<h1 class="modal-title fs-5" id="staticBackdropLabel">Atualiza Deskrisaun</h1>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  </div>
+  
+		  <div class="modal-body">
+			<div class="mb-3">
+			  <label for="deskrisaun" class="form-label">Synopsis</label>
+				<textarea id="sypnosis" name="sypnosis" class="form-control" rows="5">{{ livru.sypnosis }}</textarea> 
+			</div>
+		  </div> 
+  
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Taka</button>
+			<button type="submit" class="btn btn-dark">Atualiza <i class="bi bi-pencil-square ml-1"></i></button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </form>
 
 <div class="d-flex justify-content-between align-items-center p-3 rounded " style="background: linear-gradient(to right, #004085, rgb(30, 48, 68)); color: white; ">
   <a class="btn btn-sm btn-light" href="{% url 'lista-livru' %}">
@@ -14,40 +43,64 @@
   </a>
   <h2 class="mb-0 text-center flex-grow-1">Detalla ba Livru <strong>{{ livru.titulu_livru }}</strong></h2>
 </div>
+{% if form.errors %}
+<div class="alert alert-danger">
+	{{ form.errors }}
+</div>
+{% endif %}
 <hr class="bg-dark bold mb-2">
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-info-circle-fill"></i> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+{% endif %}
 <div class="container-fluid">
 	<div class="row ">
 		<div class="col-md-4">
 			<div class="card animate__animated animate__fadeInLeft">
 				<h5 class="card-header bg-navy text-white text-center">
-					Card title
+					Foto Cover Husi Livru
 				</h5>
 				<div class="card-body">
 					<p class="card-text text-center">
 						{% if livru.foto_livru %}
-              <img src = "{{ livru.foto_livru.url }}" atl = "Cover Foto" class = "img-fluid" style="width: 150px; height: 150px;">
-            {% else %}
-
+							<img src = "{{ livru.foto_livru.url }}" atl = "Cover Foto" class = "img-fluid" style="width: 150px; height: 150px;">
+            			{% else %}
+							<img src = "/media/default_cover.jpg" atl = "Default Cover Foto" class = "img-fluid" style="width: 150px; height: 150px;">
 						{% endif %}
 					</p>
+					<p class="card-text  text-center">
+						<strong> {{ livru.titulu_livru }} </strong> 
+					</p>
 				</div>
-				<div class="card-footer">
-					Card footer
+				<div class="card-footer  bg-transparent text-dark text-center">
+					<button class = "btn-sm btn-dark" data-bs-toggle = "modal" data-bs-target = "#modalCover{{ livru.id_livru }}">
+						<i class="bi bi-pencil-square"></i> Troka Cover
+					</button>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-8">
 			<div class="card animate__animated animate__fadeInRight">
-				<h5 class="card-header">
-					Card title
+				<h5 class="card-header bg-navy">
+					Informasaun Husi {{ livru.titulu_livru }}
 				</h5>
 				<div class="card-body">
 					<p class="card-text">
-						Card content
+						<p><strong>Titulu Livru:</strong> {{ livru.titulu_livru}}</p>
+						<p><strong>Data Publisidade:</strong> {{ livru.data_publish }}</p>
+						<p><strong>Husi Nasaun:</strong> {{ livru.nasaun }}</p>
+						<p><strong>Tipu Livru:</strong> {{ livru.tipu_livru }}</p>
+						<p><strong>Author:</strong> {{ livru.id_author }}</p>
 					</p>
 				</div>
-				<div class="card-footer">
-					Card footer
+				<div class="card-footer bg-transparent ms-auto">
+					<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editInfoLivru{{ livru.id_livru }}">
+						<i class="bi bi-pencil-square"></i> Edit Detalla
+					</button>
 				</div>
 			</div>
 		</div>
@@ -56,20 +109,135 @@
 
 
 <div class = 'container-fluid'>
-  <div class="card animate__animated animate__fadeInUp">
+  	<div class="card animate__animated animate__fadeInUp">
     <h5 class="card-header bg-navy text-white">
-      Deskrisaun Husi  <strong>{{ author.naran_author }}</strong>
+        Sypnosis Husi  <strong>{{ livru.titulu_livru }}</strong>
     </h5>
     <div class="card-body">
-      <p class="card-text">
-        {{ author.deskrisaun | safe }}
-      </p>
+		<p class="card-text">
+			{{ livru.sypnosis | safe }}
+		</p>
     </div>
     <div class="card-footer bg-transparent text-dark ms-auto">
-      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editDeskrisaunProfile{{ author.id_author }}">
-        <i class="bi bi-pencil-square"></i> Edit Deskrisaun
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#editSypnosisDetail{{ livru.id_livru }}">
+        <i class="bi bi-pencil-square"></i> Edit Synopsis
       </button>
     </div>
   </div>
 </div>
+
+<!-- Modal ba Troka Cover Livru nian-->
+<form class="form-horizontal" method = "post" action="{% url 'edit-cover' livru.titulu_livru %}" enctype = "multipart/form-data">
+	{% csrf_token %}
+	<div class="modal fade" id="modalCover{{ livru.id_livru }}" data-bs-backdroFp="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+		  <div class="modal-header bg-dark text-white">
+			<h1 class="modal-title fs-5" id="staticBackdropLabel">Atualiza Foto Profile</h1>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  </div>
+		  <div class="modal-body">
+			<div class="row">
+			  <div class="col-md-4">
+				{% if livru.foto_livru %}
+					<img src = "{{ livru.foto_livru.url }}" atl = "Cover Foto" class = "img-fluid" style="width: 150px; height: 150px;">
+				{% else %}
+					<img src = "/media/default_cover.jpg" atl = "Default Cover Foto" class = "img-fluid" style="width: 150px; height: 150px;">
+				{% endif %}
+			  </div>
+			  <div class="col-md-8 mt-auto mb-auto">
+				<div class="form-group">
+				  <h6 for="exampleInputFile">Upload Cover Foun ba Livru <b>{{ livru.titulu_livru }}</b></h6>
+				  <div class="input-group">
+					<div class="custom-file">
+					  <input class="form-control" type="file" id="formFile" name = "foto_livru" required>
+					</div>
+				  </div>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Taka</button>
+			<button type="submit" class="btn btn-dark">Atualiza <i class="bi bi-pencil-square ml-1"></i></button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </form>
+
+<!-- Modal ba Edit Informasaun Livru nian-->
+
+<form method = "post" action = "{% url "edit-info" livru.titulu_livru %}" class = "form-horizontal">
+	{% csrf_token %}
+	<div class="modal fade" id="editInfoLivru{{ livru.id_livru }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered modal-lg">
+		<div class="modal-content">
+		  <div class="modal-header bg-dark text-white">
+			<h1 class="modal-title fs-5" id="staticBackdropLabel">Atualiza Detalla Husi Profile</h1>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		  </div>
+		  <div class="modal-body">
+			<div class="row">
+			  <div class="col-md-6">
+				<label for="naran" class="form-label">Titulu Livru</label>
+				<input type="text" name="titulu_livru" class="form-control" value="{{ livru.titulu_livru }}">
+				<br>
+				<label for="autor" class="form-label">Data Publisidade</label>
+				<input type="date" name="data_publish" class="form-control" value="{{ livru.data_publish|date:'Y-m-d' }}">
+				<br>
+				<div class="mb-3">
+				  <label for="autor" class="form-label">Husi Nasaun</label>
+				  <input type="text" name="nasaun" class="form-control" value="{{ livru.nasaun }}">
+				</div>
+			  </div>
+			  <div class="col-md-6">
+				<label for="data" class="form-label">Tipu Livru</label>
+				<select name="tipu_livru" class="form-control">
+					<option value="Novel" {% if livru.tipu_livru == "Children" %}selected{% endif %}>Novel</option>
+					<option value="Light Novel" {% if livru.tipu_livru == "Light Novel" %}selected{% endif %}>Light Novel</option>
+					<option value="Manga" {% if livru.tipu_livru == "Manga" %}selected{% endif %}>Manga</option>
+					<option value="Education" {% if livru.tipu_livru == "Education" %}selected{% endif %}>Education</option>
+					<option value="History" {% if livru.tipu_livru == "History" %}selected{% endif %}>History</option>
+					<option value="Thesis" {% if livru.tipu_livru == "Thesis" %}selected{% endif %}>Thesis</option>
+					<option value="Children" {% if livru.tipu_livru == "Children" %}selected{% endif %}>Children</option>
+				</select>
+				<br>
+				<label for="data" class="form-label">Author</label>
+				<!--
+					<input type="text" name="nasaun" class="form-control" value="{{ livru.id_author }}"> 
+					-> pois se hadia tan sementara tau lai ida okos ne lai
+				-->
+					{{  form.id_author }}
+			</div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Taka</button>
+			<button type="submit" class="btn btn-dark">Atualiza <i class="bi bi-pencil-square ml-1"></i></button>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </form>
+
+
+<script>
+$(document).ready(function() {
+	// Initialize Summernote for the deskrisaun field
+	$('#sypnosis').summernote({
+	height: 200, // Set the height of the editor
+	toolbar: [
+		['style', ['bold', 'italic', 'underline', 'clear']],
+		['font', ['strikethrough', 'superscript', 'subscript']],
+		['fontsize', ['fontsize']],
+		['color', ['color']],
+		['para', ['ul', 'ol', 'paragraph']],
+		['height', ['height']],
+		['insert', ['link', 'picture', 'video']],
+		['view', ['fullscreen',  'help']]
+	]
+	});
+});
+</script>
+
 {% endblock content %}
