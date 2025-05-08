@@ -20,8 +20,8 @@
                             <div class="mb-3">
                                 <label for="autor" class="form-label">Sexu</label>
                                 <select name="sexu" class="form-control">
-                                    <option value="M" {% if author.sexu == "M" %}selected{% endif %}>Mane</option>
-                                    <option value="F" {% if author.sexu == "F" %}selected{% endif %}>Feto</option>
+                                    <option value="Mane" {% if author.sexu == "Mane" %}selected{% endif %}>Mane</option>
+                                    <option value="Feto" {% if author.sexu == "Feto" %}selected{% endif %}>Feto</option>
                                 </select>
                             </div>
                             <div class="mb-3">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
                     <button   button type="submit" class="btn btn-dark">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
                 </div>
             </div>

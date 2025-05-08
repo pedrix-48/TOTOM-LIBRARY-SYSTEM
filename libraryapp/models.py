@@ -28,7 +28,7 @@ class Author(models.Model):
     id_author = models.AutoField(primary_key=True)
     naran_author = models.CharField(max_length=50)
     data_moris = models.DateField(default='2000-01-01')
-    sexu = models.CharField(max_length=1, choices=[('M','Mane'), ('F', 'Feto')])
+    sexu = models.CharField(max_length=4, choices=[('Mane','Mane'), ('Feto', 'Feto')])
     email = models.CharField(max_length=50)
     nasaun = models.CharField(max_length=20, default="Timor Leste")
     deskrisaun = models.TextField(default="Hau Gosta Han Hudi :)")

@@ -1,120 +1,8 @@
 {% extends 'home.html' %}
+{% load static %}
 {% block content %}
-<style>
-    :root {
-        --primary-color: #f8f9fa;
-        --secondary-color: #e9ecef;
-        --accent-color: #4a90e2;
-        --text-primary: #212529;
-    }
 
-    .gradient-header {
-        background: linear-gradient(to right, #004085,rgb(28, 39, 50));
-        border: 1px solid rgba(0,0,0,0.1);
-        box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-    }
-
-    .book-card {
-        background: white;
-        border: 1px solid rgba(0,0,0,0.1);
-        border-radius: 12px;
-        transition: transform 0.3s ease;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        height: 100%;
-    }
-
-    .cover-image {
-        border-radius: 12px;
-        transition: transform 0.3s ease;
-        border: 2px solid rgba(0,0,0,0.1);
-        max-height: 200px;
-        object-fit: cover;
-    }
-    .cover-image:hover {
-		transform: translateY(-3px);
-        box-shadow: 0 3px 15px rgba(26, 11, 243, 0.05);
-    }
-
-    .detail-item {
-        background: var(--primary-color);
-        border-radius: 8px;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        transition: all 0.3s ease;
-        border: 1px solid rgba(0,0,0,0.05);
-    }
-
-    .detail-item:hover {
-        transform: translateX(3px);
-        box-shadow: 0 3px 15px rgba(0,0,0,0.05);
-    }
-
-    .text-accent {
-        color: var(--accent-color) !important;
-    }
-
-    .btn-accent {
-        background: var(--accent-color);
-        border: none;
-        color: white !important;
-        transition: all 0.3s ease;
-    }
-
-    .btn-accent:hover {
-        background: #357abd;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
-    }
-
-    .modal-header {
-        background: var(--primary-color);
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-    }
-
-    .modal-content {
-        border: 1px solid rgba(0,0,0,0.1);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-	.underline-hover {
-        cursor: pointer;
-        display: inline-block;
-    }
-    
-    .underline-hover::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 3px;
-        bottom: -5px;
-        left: 50%;
-        background: linear-gradient(45deg, #4a90e2, #6a11cb);
-        transition: all 0.3s ease;
-        transform: translateX(-50%);
-        border-radius: 2px;
-    }
-    
-    .underline-hover:hover::after {
-        width: 100%;
-        left: 0;
-        transform: translateX(0);
-    }
-    
-    .text-accent {
-        color: #4a90e2 !important;
-        transition: color 0.3s ease;
-    }
-    
-    .underline-hover:hover .text-accent {
-        color: #357abd !important;
-        text-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
-    }
-    
-    .text-white {
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        font-weight: 800 !important;
-    }
-</style>
+<link href = "{% static 'AdminLTE/css/styles.css' %}" rel = "stylesheet">
 
 <!-- Modals (Light Mode Adjusted) -->
 <form method="post" action="{% url 'edit-syp' livru.titulu_livru %}" class="form-horizontal">
@@ -146,7 +34,7 @@
             <a class="btn btn-outline-primary" href="{% url 'lista-livru' %}">
                 <i class="bi bi-arrow-left-circle me-2"></i>Fila ba Lista
             </a>
-            <h1 class="display-6 mb-0 text-center fw-bold text-white">Detalla ba <span class = "underline-hover position-relative"><span class="text-accent ">{{ livru.titulu_livru }}</span></span></h1>
+            <h3 class="display-6 mb-0 text-center fw-bold text-white">Detalla ba <span class = "underline-hover position-relative"><span class="text-accent ">{{ livru.titulu_livru }}</span></span></h3>
         </div>
     </div>
 
@@ -176,6 +64,7 @@
                     <h5 class="mb-0 text-white"><i class="bi bi-image me-2"></i>Foto Cover</h5>
                 </div>
                 <div class="card-body text-center">
+                    <div class = "cover-image-container"></div>
                     {% if livru.foto_livru %}
                     	<img src="{{ livru.foto_livru.url }}" class="cover-image img-fluid mb-3">
                     {% else %}

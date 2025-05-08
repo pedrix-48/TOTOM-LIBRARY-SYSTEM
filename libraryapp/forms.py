@@ -20,8 +20,8 @@ class AdminLoginForm(forms.ModelForm):
 class AuthorForm(forms.ModelForm):
 
     SEXU_HILI = [
-        ('M','Mane'),
-        ('F', 'Feto')
+        ('Mane','Mane'),
+        ('Feto', 'Feto')
     ]
 
     sexu = forms.ChoiceField(choices=SEXU_HILI, widget=forms.Select(attrs={'class': 'form-control'}))
@@ -46,7 +46,7 @@ class AuthorForm(forms.ModelForm):
         self.fields['email'].widget.attrs.update({
             'class':'form-control',
             'placeholder':'Prense Email',
-            'type':'email'
+            'type':'email',
         })
         
         self.fields['nasaun'].widget.attrs.update({
@@ -67,8 +67,8 @@ class AuthorForm(forms.ModelForm):
 class AuthorDetallaForm(forms.ModelForm):
 
     SEXU_HILI = [
-        ('M','Mane'),
-        ('F', 'Feto')
+        ('Mane','Mane'),
+        ('Feto', 'Feto')
     ]
 
     sexu = forms.ChoiceField(choices=SEXU_HILI, widget=forms.Select(attrs={'class': 'form-control'}))
