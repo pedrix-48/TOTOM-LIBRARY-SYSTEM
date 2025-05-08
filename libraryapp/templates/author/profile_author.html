@@ -59,9 +59,11 @@
             <a class="btn btn-outline-primary" href="{% url 'lista-author' %}">
                 <i class="bi bi-arrow-left-circle me-2"></i>Fila ba Lista
             </a>
-            <h3 class="mb-0 text-center fw-bold text-white">
-                Author <span class = "underline-hover position-relative"><span class="text-accent">{{ author.naran_author }}</span></span>
-            </h3>
+                <h3 class="mb-0 text-center fw-bold text-white">
+                    Author <a href = "#deskrisaun_profile">
+                                <span class = "underline-hover position-relative"><span class="text-accent">{{ author.naran_author }}</span></span>  
+                            </a>
+                </h3>
         </div>
     </div>
 
@@ -166,7 +168,7 @@
             <h5 class="card-title mb-0 fw-bold"> <i class="bi bi-text-paragraph me-2"></i> DESKRISAUN</h5>
         </div>
         <div class="card-body">
-            <div class="lead">{{ author.deskrisaun | safe }}</div>
+            <div class="lead" id = "deskrisaun_profile">{{ author.deskrisaun | safe }}</div>
         </div>
         <div class="card-footer bg-transparent text-end">
             <button class="btn btn-accent" data-bs-toggle="modal" 

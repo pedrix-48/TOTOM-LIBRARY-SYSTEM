@@ -1,5 +1,3 @@
-/* --------------------NEE PROFILE NIAN STYLE SIRA----------------------- */
-
 :root {
     --light-bg: #f8f9fa;
     --lighter-bg: #ffffff;
@@ -8,6 +6,7 @@
     --border-color: #dee2e6;
 }
 
+/* --------------------NEE PROFILE NIAN STYLE SIRA----------------------- */
 .gradient-header {
     background: linear-gradient(to right, #004085, rgb(28, 39, 50));
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);

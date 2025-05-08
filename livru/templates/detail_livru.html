@@ -34,7 +34,11 @@
             <a class="btn btn-outline-primary" href="{% url 'lista-livru' %}">
                 <i class="bi bi-arrow-left-circle me-2"></i>Fila ba Lista
             </a>
-            <h3 class="display-6 mb-0 text-center fw-bold text-white">Detalla ba <span class = "underline-hover position-relative"><span class="text-accent ">{{ livru.titulu_livru }}</span></span></h3>
+            <h3 class="display-6 mb-0 text-center fw-bold text-white">Detalla ba 
+                    <a href = "#sypnosis_livru">
+                        <span class = "underline-hover position-relative"><span class="text-accent ">{{ livru.titulu_livru }}</span></span>
+                    </a>
+            </h3>
         </div>
     </div>
 
@@ -135,7 +139,7 @@
             <h5 class="mb-0 text-white"><i class="bi bi-text-paragraph me-2"></i>Sypnosis</h5>
         </div>
         <div class="card-body">
-            <div class="lead text-dark">{{ livru.sypnosis | safe }}</div>
+            <div class="lead text-dark" id = "sypnosis_livru">{{ livru.sypnosis | safe }}</div>
         </div>
         <div class="card-footer text-end bg-transparent">
             <button class="btn btn-accent" 
