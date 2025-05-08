@@ -1,18 +1,115 @@
 {% extends "home.html" %} 
-
+{% load static  %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4>Dashboard</h4>
-                </div>
-                <div class="card-body">
-                    <h1>Welcome to Lista Staff</h1>
-                    <p>Here you can manage all the books, authors, staff and the borrowing of books.</p>
-                </div>
-            </div>
-        </div>
+
+<link rel="stylesheet" href="{% static 'AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css' %}">
+<link rel="stylesheet" href="{% static 'AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
+<link rel="stylesheet" href="{% static 'AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css'%}">
+<link rel="stylesheet" href="{% static 'AdminLTE/plugins/fontawesome-free/css/all.min.css'%}">
+<style>
+hr.bold {
+    border: none;
+    border-top: 5px solid black; 
+    margin: 1rem 0;
+}
+</style>
+
+<div class="text-center p-3 rounded shadow" style="background: linear-gradient(to right, #004085,rgb(28, 39, 50)); color: white;">
+    <h2><i class="bi bi-people-fill"></i> Lista Ba Staff Sira</h2>
+    <small class="text-muted">Informasaun Kompletu kona ba Staff Sira iha sistema</small>
+</div>
+
+<hr class="bg-dark bold">
+{% if messages %}
+{% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-info-circle-fill"></i> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+{% endfor %}
+{% endif %}
+    <div class="card">
+        <div class="card-header bg-navy text-white">
+            <h3 class="card-title">Lista ba Staff Sira</h3>
+        </div>
+        <div class="card-body">
+            <table id="tabela_staff" class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Nu</th>
+                <th>Naran Staff</th>
+                <th>Data Moris</th>
+                <th>Sexu</th>
+                <th>Email</th>
+                <th>Hela Fatin</th>
+                <th>Asaun</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for author in authors %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>
+                            <a href="{% url 'profile-author' author.naran_author %}" >
+                                {{ author.naran_author }}
+                            </a>
+                        </td>
+                        <td>{{ author.data_moris }}</td>
+                        <td>{{ author.sexu }}</td>
+                        <td>{{ author.email }}</td>
+                        <td>{{ author.nasaun }}</td>
+                        <td>
+                            <div class = "d-flex gap-1">
+                                <button data-bs-toggle = 'modal' data-bs-target = "#" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
+                                <button data-bs-toggle = 'modal' data-bs-target = "#" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+    </div>
+<script src="{% static 'AdminLTE/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/pdfmake/vfs_fonts.js '%} "></script></script>
+<script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js' %}"></script>
+
+<script>
+    $(function () {
+    $("#tabela_staff").DataTable({
+        "responsive": true,
+        "lengthChange": true,
+        "autoWidth": true,
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "responsive": true,
+        "buttons": [
+        {
+            text: 'Aumenta Staff <i class="bi bi-person-plus-fill"></i>',
+            className: 'btn btn-success',
+            action: function (e, dt, node, config) {
+            $('#staffFormModal').modal('show'); // This triggers the Bootstrap modal
+            }
+        },
+        {
+            extend: 'print',
+            text: 'Imprimi <i class="bi bi-printer-fill"></i>',
+            className: 'btn btn-dark',
+        },
+        ]
+    }).buttons().container().appendTo('#tabela_staff_wrapper .col-md-6:eq(0)');
+
+});
+</script>
+{% include "add_staff.html" %}
+
 {% endblock content %}

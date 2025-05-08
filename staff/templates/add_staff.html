@@ -1,0 +1,76 @@
+
+
+{% load static %}
+<div class="modal fade" id="staffFormModal" tabindex="-1" aria-labelledby="staffFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+        <form id="staffForm" method = 'post' action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class = "card card-success">
+                <div class="card-header">
+                    <h5 class="card-title" id="staffFormModalLabel">Aumenta Staff <i class="bi bi-person-fill-add"></i></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Naran Autor</label>
+                                -----------------
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Sexu</label>
+                                -----------------
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Data Moris</label>
+                                -----------------
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Email</label>
+                                -----------------
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Nasaun</label>
+                                -----------------
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Foto Profile</label>
+                                -----------------
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Deskrisaun</label>
+                                --------------
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
+                    <button   button type="submit" class="btn btn-success">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+      // Initialize Summernote for the deskrisaun field
+        $('#summernote_add').summernote({
+            height: 200, // Set the height of the editor
+            toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']],
+            ['insert', ['link']],
+            ]
+        });
+    });
+</script> 
+

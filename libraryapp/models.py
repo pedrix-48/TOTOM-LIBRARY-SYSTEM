@@ -61,11 +61,13 @@ class Livru(models.Model):
         return self.titulu_livru
 
 class Staff(models.Model):
-    id_staff = models.CharField(max_length=20, primary_key=True)
+    id_staff = models.AutoField(primary_key=True)
     naran_staff = models.CharField(max_length=100)
-    sexu = models.CharField(max_length=1, choices=[('M','Mane'), ('F', 'Feto')])
+    data_moris = models.DateField(default= '2000-01-01')
+    sexu = models.CharField(max_length=4, choices=[('Mane','Mane'), ('Feto', 'Feto')])
     nu_telefone = models.CharField(max_length=11)
-    hela_fatin = models.CharField(max_length=49)
+    email = models.EmailField(max_length=20, default="")
+    hela_fatin = models.CharField(max_length=50)
 
     def __str__(self):
         return self.naran_staff
