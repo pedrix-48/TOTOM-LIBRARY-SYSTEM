@@ -4,7 +4,7 @@
 <div class="modal fade" id="staffFormModal" tabindex="-1" aria-labelledby="staffFormModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-        <form id="staffForm" method = 'post' action="" enctype="multipart/form-data">
+        <form id="staffForm" method = 'post' action="{% url "add-staff" %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class = "card card-success">
                 <div class="card-header">
@@ -12,36 +12,44 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="naran" class="form-label">Naran Autor</label>
-                                -----------------
+                                <label for="naran" class="form-label">Naran Staff</label>
+                                {{ form.naran_staff }}
                             </div>
                             <div class="mb-3">
-                                <label for="autor" class="form-label">Sexu</label>
-                                -----------------
+                                <label for="naran" class="form-label">Username</label>
+                                {{ form.username }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Password</label>
+                                {{ form.password }}
                             </div>
                             <div class="mb-3">
                                 <label for="autor" class="form-label">Data Moris</label>
-                                -----------------
+                                {{ form.data_moris }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Sexu</label>
+                                {{ form.sexu }}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Numeru Telemove</label>
+                                {{ form.nu_telefone }}
                             </div>
                             <div class="mb-3">
                                 <label for="data" class="form-label">Email</label>
-                                -----------------
+                                {{ form.email }}
                             </div>
                             <div class="mb-3">
-                                <label for="data" class="form-label">Nasaun</label>
-                                -----------------
+                                <label for="data" class="form-label">Hela Fatin</label>
+                                {{ form.hela_fatin }}
                             </div>
                             <div class="mb-3">
                                 <label for="data" class="form-label">Foto Profile</label>
-                                -----------------
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Deskrisaun</label>
-                                --------------
+                                {{ form.foto_staff }}
                             </div>
                         </div>
                     </div>

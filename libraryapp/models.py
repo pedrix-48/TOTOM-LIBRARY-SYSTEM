@@ -63,11 +63,14 @@ class Livru(models.Model):
 class Staff(models.Model):
     id_staff = models.AutoField(primary_key=True)
     naran_staff = models.CharField(max_length=100)
+    username = models.CharField(max_length=50, default="username")
+    password = models.CharField(max_length=255, default="password")
     data_moris = models.DateField(default= '2000-01-01')
     sexu = models.CharField(max_length=4, choices=[('Mane','Mane'), ('Feto', 'Feto')])
     nu_telefone = models.CharField(max_length=11)
-    email = models.EmailField(max_length=20, default="")
+    email = models.EmailField(max_length=50, default="")
     hela_fatin = models.CharField(max_length=50)
+    foto_staff = models.ImageField(blank=True)
 
     def __str__(self):
         return self.naran_staff

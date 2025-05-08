@@ -1,0 +1,64 @@
+
+{% load static %}
+<div class="modal fade" id="editModal{{ staff.id_staff }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+        <form id="livruForm" method = 'post' action="{% url "edit-staff" staff.id_staff %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class = "card card-dark">
+                <div class="card-header">
+                    <h5 class="card-title" id="livruFormModalLabel">Edit Staff <i class="bi bi-pencil-square"></i></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Naran Staff</label>
+                                <input type="text" name="naran_staff" class="form-control" value="{{ staff.naran_staff }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Username</label>
+                                <input type="text" name="username" class="form-control" value="{{ staff.username }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">Password</label>
+                                <input type="text" name="password" class="form-control" value="{{ staff.password }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="staff" class="form-label">Data Moris</label>
+                                <input type="date" name="data_moris" class="form-control" value="{{ staff.data_moris|date:'Y-m-d' }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Sexu</label>
+                                <select name="sexu" class="form-control">
+                                    <option value="Mane" {% if staff.sexu == "Mane" %}selected{% endif %}>Mane</option>
+                                    <option value="Feto" {% if staff.sexu == "Feto" %}selected{% endif %}>Feto</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Numeru Telemovel</label>
+                                <input type="text" name="nu_telefone" class="form-control" value="{{ staff.nu_telefone }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Email</label>
+                                <input type="text" name="nasaun" class="form-control" value="{{ staff.email }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Hela Fatin</label>
+                                <input type="text" name="hela_fatin" class="form-control" value="{{ staff.hela_fatin }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
+                    <button   button type="submit" class="btn btn-dark">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+    

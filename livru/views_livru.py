@@ -20,7 +20,7 @@ def add_livru(request):
             messages.success(request, "Guarda Dados Susesu !")
             return redirect("lista-livru")
         else:
-            print(form.errors)
+            messages.error(form.errors)
     else:
         form = LivruForm()
         
