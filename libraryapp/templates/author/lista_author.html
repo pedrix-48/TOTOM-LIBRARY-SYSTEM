@@ -102,6 +102,13 @@ hr.bold {
             }
         },
         {
+            text: 'Apaga Author Hotu <i class="bi bi-person-x"></i>',
+            className: 'btn btn-danger',
+            action: function (e, dt, node, config) {
+            $('#dellAllModal{{ author.id_author }}').modal('show'); // This triggers the Bootstrap modal
+            }
+        },
+        {
             extend: 'print',
             text: 'Imprimi <i class="bi bi-printer-fill"></i>',
             className: 'btn btn-dark',
@@ -113,6 +120,7 @@ hr.bold {
 </script>
 
 {% include 'author/add_author.html' %}
+{% include 'author/dell_all_author.html' %}
 
 
 {% endblock content %}

@@ -83,6 +83,12 @@ def delete_author(request, id_author):
         author.delete()
         return redirect('lista-author')
     
+def del_all_author(request):
+    author = Author.objects.all()
+    if request.method == "POST":
+        author.delete()
+        return redirect("lista-author")
+    
 def profile_author(request,naran_author):
     author = Author.objects.get(naran_author=naran_author)
     context = {

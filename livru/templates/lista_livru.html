@@ -103,6 +103,13 @@ hr.bold {
             }
         },
         {
+            text: 'Apaga Livru Hotu <i class="bi bi-journal-x"></i>',
+            className: 'btn btn-danger',
+            action: function (e, dt, node, config) {
+            $('#delModal{{ livru.id_livru }}').modal('show'); // This triggers the Bootstrap modal
+            }
+        },
+        {
             extend : "print",
             text: 'Imprimi <i class="bi bi-printer-fill"></i>',
             className: 'btn btn-dark',
@@ -112,5 +119,6 @@ hr.bold {
 });
 </script>
 {% include "add_livru.html" %}
+{% include "dell_all_livru.html" %}
 
 {% endblock content %}

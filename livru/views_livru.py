@@ -15,6 +15,7 @@ def lista_livru(request):
 def add_livru(request):
     if request.method == "POST":
         form = LivruForm(request.POST, request.FILES)
+        authors = Author.objects.all()
         if form.is_valid():
             form.save()
             messages.success(request, "Guarda Dados Susesu !")
@@ -24,10 +25,16 @@ def add_livru(request):
     else:
         form = LivruForm()
         
-    return render(request, "add_livru.html", {'form' : form})
+    return render(request, "add_livru.html", {'form' : form, "authors" : authors})
 
 def delete_livru(request, id_livru):
     livru = Livru.objects.get(id_livru = id_livru)
+    if request.method == "POST":
+        livru.delete()
+        return redirect("lista-livru")
+    
+def del_all_livru(request):
+    livru = Livru.objects.all()
     if request.method == "POST":
         livru.delete()
         return redirect("lista-livru")

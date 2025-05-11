@@ -1,0 +1,26 @@
+<!-- Modal -->
+{% load static %}
+
+<div class="modal fade" id="delModal{{ livru.id_livru }}" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Apaga Dados <i class="bi bi-trash3-fill"></i></h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="authorForm" method = 'post' action="{% url "del-all-livru" %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <h5 class = "text-danger">ATENSAUN, DADOS HUSI LIVRU <u>SEI LAKON</u> HOTU !!</h5>
+                    <p class = "fw-bold">Ita Boot Hakarak Duni Apaga Dadus ?? </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Taka</button>
+                    <button button type="submit" class="btn btn-danger">Sim</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+</div>
