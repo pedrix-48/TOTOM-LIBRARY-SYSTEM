@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from libraryapp.models import Staff
 from .forms_staff import StaffForm
+from django.contrib.auth.hashers import make_password
 
 def lista_staff(request):
     staffs = Staff.objects.all()
@@ -13,10 +14,13 @@ def lista_staff(request):
     return render(request, 'lista_staff.html', context)
 
 def add_staff(request):
+    staff = Staff()
     if request.method == "POST":
         form = StaffForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            staff = form.save(commit=False)
+            staff.password = make_password(form.cleaned_data['password'])
+            staff.save()
             messages.success(request, "Guarda Dados Susesu !")
             return redirect("lista-staff")
         else:

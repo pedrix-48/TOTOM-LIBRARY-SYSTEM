@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="titulu" class="form-label">Titulu Livru</label>
                                 {{ form.titulu_livru}}
@@ -24,6 +24,8 @@
                                 <label for="nasaun" class="form-label">Husi Nasaun</label>
                                 {{ form.nasaun }}
                             </div>
+                        </div>
+                        <div class = "col-md-6">
                             <div class="mb-3">
                                 <label for="nasaun" class="form-label">Tipu Livru</label>
                                 {{ form.tipu_livru }}
@@ -37,7 +39,9 @@
                                 {{ form.id_author }}
                             </div>
                         </div>
-                        <div class="col-md-8">
+                    </div>
+                    <div class = "row">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="Sypnosis" class="form-label">Sypnosis</label>
                                 {{ form.sypnosis }}
@@ -46,7 +50,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
                     <button   button type="submit" class="btn btn-success">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
                 </div>
             </div>
@@ -67,6 +71,7 @@
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],
             ['insert', ['link']],
+            ['view'] , ['fullscreen']
             ]
         });
     });

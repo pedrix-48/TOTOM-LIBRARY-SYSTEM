@@ -11,7 +11,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="naran" class="form-label">Naran Autor</label>
                                 {{ form.naran_author }}
@@ -24,6 +24,8 @@
                                 <label for="autor" class="form-label">Data Moris</label>
                                 {{ form.data_moris }}
                             </div>
+                        </div>
+                        <div class = "col-md-6">
                             <div class="mb-3">
                                 <label for="data" class="form-label">Email</label>
                                 {{ form.email }}
@@ -37,7 +39,9 @@
                                 {{ form.foto_profile }}
                             </div>
                         </div>
-                        <div class="col-md-8">
+                    </div>
+                    <div class = "row">
+                        <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="data" class="form-label">Deskrisaun</label>
                                 {{ form.deskrisaun }}
@@ -68,6 +72,7 @@
             ['para', ['ul', 'ol', 'paragraph']],
             ['height', ['height']],
             ['insert', ['link']],
+            ['view'] , ['fullscreen']
             ]
         });
     });
