@@ -41,7 +41,7 @@ class LivruForm(forms.ModelForm):
         })
         self.fields['sypnosis'].widget.attrs.update({
             'class':'form-control',
-            "id":"summernote_add"
+            "id":"summernote"
         })
         self.fields['id_author'].widget.attrs.update({
             'class':'form-control',

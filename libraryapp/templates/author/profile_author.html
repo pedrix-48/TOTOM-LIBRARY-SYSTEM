@@ -3,6 +3,7 @@
 {% block content %}
 
 <link href = "{% static 'AdminLTE/css/styles.css' %}" rel = "stylesheet">
+<script src = "{% static 'AdminLTE/js/script.js' %}"></script>
 
 <!-- Edit Description Modal -->
 <form method="post" action="{% url 'edit-desk' author.naran_author %}" class="form-horizontal">
@@ -16,7 +17,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-floating">
-                        <textarea id="deskrisaun" name="deskrisaun" class="form-control" 
+                        <textarea id="summernote" name="deskrisaun" class="form-control" 
                                   style="height: 200px">{{ author.deskrisaun }}</textarea>
                     </div>
                 </div>
@@ -276,21 +277,4 @@
         </div>
     </div>
 </form>
-
-<script>
-$(document).ready(function() {
-    $('#deskrisaun').summernote({
-        height: 200,
-        toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough', 'superscript', 'subscript']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen']]
-        ]
-    });
-});
-</script>
 {% endblock %}

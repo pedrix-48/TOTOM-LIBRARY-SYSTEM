@@ -3,6 +3,7 @@
 {% block content %}
 
 <link href = "{% static 'AdminLTE/css/styles.css' %}" rel = "stylesheet">
+<script src = "{% static 'AdminLTE/js/script.js' %}"></script>
 
 <!-- Modals (Light Mode Adjusted) -->
 <form method="post" action="{% url 'edit-syp' livru.titulu_livru %}" class="form-horizontal">
@@ -15,7 +16,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <textarea id="sypnosis" name="sypnosis" class="form-control" 
+                    <textarea id="summernote" name="sypnosis" class="form-control" 
                               style="height: 300px">{{ livru.sypnosis }}</textarea>
                 </div>
                 <div class="modal-footer">
@@ -250,22 +251,5 @@
     </div>
 </form>
 
-<script>
-$(document).ready(function() {
-    // Summernote initialization with light theme
-    $('#sypnosis').summernote({
-        height: 300,
-        toolbar: [
-            ['style', ['bold', 'italic', 'underline', 'clear']],
-            ['font', ['strikethrough', 'superscript', 'subscript']],
-            ['fontsize', ['fontsize']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen']]
-        ]
-    });
-});
-</script>
 
 {% endblock content %}
