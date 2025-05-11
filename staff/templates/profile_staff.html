@@ -1,4 +1,245 @@
 {% extends "home.html" %}
+{% load static %}
 {% block content %}
-    
-{% endblock content %}
+
+<link href = "{% static 'AdminLTE/css/styles.css' %}" rel = "stylesheet">
+<script src = "{% static 'AdminLTE/js/script.js' %}"></script>
+
+
+<!-- Delete Photo Modal -->
+<div class="modal fade" id="delFotoModal{{ staff.id_staff }}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Apaga Dados <i class="bi bi-trash3-fill"></i></h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <p>Ita bo'ot Hakarak Apaga Foto Profile Husi</p>
+                    <p><strong>{{ staff.naran_staff }}</strong></p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Taka</button>
+                        <button type="submit" class="btn delete-btn">Sim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container-fluid py-4">
+    <div class="gradient-header p-4 mb-4 rounded-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <a class="btn btn-outline-primary" href="{% url 'lista-staff' %}">
+                <i class="bi bi-arrow-left-circle me-2"></i>Fila ba Lista
+            </a>
+                <h3 class="mb-0 text-center fw-bold text-white">
+                    <span class = "underline-hover position-relative"><span class="text-accent">{{ staff.naran_staff }}</span></span>  
+                </h3>
+        </div>
+    </div>
+    <style>
+        hr.bold {
+            border: none;
+            border-top: 5px solid black; 
+            margin: 1rem 0;
+        }
+    </style>
+    <hr class="bg-dark bold">
+
+    {% if form.errors %}
+    <div class="alert alert-danger alert-dismissible fade show">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ form.errors }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endif %}
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle-fill me-2"></i>{{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <div class="row g-4">
+        <!-- Profile Section -->
+        <div class="col-lg-4">
+            <div class="profile-card animate__animated animate__fadeInLeft">
+                <div class="card-header bg-navy">
+                    <h5 class="card-title text-center mb-0 fw-bold"> <i class="bi bi-image me-2"></i> FOTO PROFILE</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if staff.foto_profile %}
+                    <img src="{{ staff.foto_profile.url }}" class="profile-img rounded-circle">
+                    {% elif staff.sexu == "Mane" %}
+                    <img src="/media/default_male.jpg" class="profile-img rounded-circle">
+                    {% elif staff.sexu == "Feto" %}
+                    <img src="/media/default_female.jpg" class="profile-img rounded-circle">
+                    {% endif %}
+                    <h5 class="mt-3 fw-bold">{{ staff.naran_staff }}</h5>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="d-grid gap-2 mt-4">
+                        <button class="btn delete-btn" data-bs-toggle="modal" 
+                                data-bs-target="#delFotoModal{{ staff.id_staff }}">
+                            <i class="bi bi-trash3"></i> Apaga Foto
+                        </button>
+                        <button class="btn btn-accent" data-bs-toggle="modal" 
+                                data-bs-target="#modalProfile{{ staff.id_staff }}">
+                            <i class="bi bi-pencil-square"></i> Troka Foto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Section -->
+        <div class="col-lg-8">
+            <div class="profile-card animate__animated animate__fadeInRight">
+                <div class="card-header bg-navy">
+                    <h5 class="card-title mb-0 fw-bold"> <i class="bi bi-info-circle me-2"></i> DETALLA STAFF</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="detail-item bg-light p-3 rounded">
+                                <div class="text-muted small"> <i class="bi bi-file-person-fill me-1"></i> Naran</div>
+                                <div class="fw-bold">{{ staff.naran_staff }}</div>
+                            </div>
+                            <div class="detail-item bg-light p-3 rounded">
+                                <div class="text-muted small"> <i class="bi bi-file-person-fill me-1"></i> Username</div>
+                                <div class="fw-bold">{{ staff.username }}</div>
+                            </div>
+                            <div class="detail-item bg-light p-3 rounded mt-3">
+                                <div class="text-muted small"><i class="bi bi-gender-female me-1"></i>Sexu</div>
+                                <div class="fw-bold">{{ staff.sexu }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="detail-item bg-light p-3 rounded">
+                                <div class="text-muted small"><i class="bi bi-calendar3 me-1"></i>Data Moris</div>
+                                <div class="fw-bold" >{{ staff.data_moris }}</div>
+                            </div>
+                            <div class="detail-item bg-light p-3 rounded">
+                                <div class="text-muted small"><i class="bi bi-calendar3 me-1"></i>Password</div>
+                                <div class="fw-bold">{{ staff.password|yesno:"*******,Hidden"  }}</div>
+                            </div>
+                            <div class="detail-item bg-light p-3 rounded mt-3">
+                                <div class="text-muted small"><i class="bi bi-envelope-at-fill me-1"></i> Email</div>
+                                <div class="fw-bold">{{ staff.email }}</div>
+                                
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="detail-item bg-light p-3 rounded">
+                                <div class="text-muted small"><i class="bi bi-globe me-1"></i>Hela Fatin</div>
+                                <div class="fw-bold">{{ staff.hela_fatin }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent text-end">
+                    <button class="btn btn-accent" data-bs-toggle="modal" 
+                            data-bs-target="#editDetallaProfile{{ staff.id_staff }}">
+                        <i class="bi bi-pencil-square me-2"></i>Edit Detalla
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Photo Update Modal -->
+<form method="post" action="{% url 'edit-foto' staff.id_staff %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="modal fade" id="modalProfile{{ staff.id_staff }}">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-navy">
+                    <h5 class="modal-title">Atualiza Foto Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-md-5 text-center">
+                            {% if staff.foto_profile %}
+                            <img src="{{ staff.foto_profile.url }}" class="profile-img rounded-circle">
+                            {% else %}
+                            <img src="/media/default_male.jpg" class="profile-img rounded-circle">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-7">
+                            <div class="form-group">
+                                <label class="form-label">Upload Foto Foun:</label>
+                                <input type="file" class="form-control" name="foto_profile" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Taka</button>
+                    <button type="submit" class="btn btn-accent">Atualiza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Edit Details Modal -->
+<form method="post" action="">
+    {% csrf_token %}
+    <div class="modal fade" id="editDetallaProfile{{ staff.id_staff }}">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-navy">
+                    <h5 class="modal-title">Edit Detalla</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="text" name="naran_staff" class="form-control" 
+                                       value="{{ staff.naran_staff }}" id="editNaran">
+                                <label for="editNaran">Naran Autor</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <select name="sexu" class="form-select" id="editSexu">
+                                    <option value="Mane" {% if staff.sexu == "Mane" %}selected{% endif %}>Mane</option>
+                                    <option value="Feto" {% if staff.sexu == "Feto" %}selected{% endif %}>Feto</option>
+                                </select>
+                                <label for="editSexu">Sexu</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-3">
+                                <input type="date" name="data_moris" class="form-control" 
+                                       value="{{ staff.data_moris|date:'Y-m-d' }}" id="editDataMoris">
+                                <label for="editDataMoris">Data Moris</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" name="email" class="form-control" 
+                                       value="{{ staff.email }}" id="editEmail">
+                                <label for="editEmail">Email</label>
+                            </div>
+                            <div class="form-floating">
+                                <input type="text" name="nasaun" class="form-control" 
+                                       value="{{ staff.nasaun }}" id="editNasaun">
+                                <label for="editNasaun">Nasaun</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Taka</button>
+                    <button type="submit" class="btn btn-accent">Atualiza</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

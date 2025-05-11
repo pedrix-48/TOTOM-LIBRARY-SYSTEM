@@ -58,8 +58,8 @@ def edit_livru(request, id_livru):
     }
     return render(request, "edit_livru.html", context)
 
-def detail_livru(request, titulu_livru):
-    livru = Livru.objects.get(titulu_livru = titulu_livru)
+def detail_livru(request, id_livru):
+    livru = Livru.objects.get(id_livru = id_livru)
     form = EditInfoDetailLivru()
     context = {
         "livru" : livru,
@@ -67,24 +67,24 @@ def detail_livru(request, titulu_livru):
     }
     return render(request, "detail_livru.html", context)
 
-def edit_cover_livru(request, titulu_livru):
-    livru = get_object_or_404(Livru, titulu_livru=titulu_livru)
+def edit_cover_livru(request, id_livru):
+    livru = get_object_or_404(Livru, id_livru=id_livru)
     if request.method == "POST" and "foto_livru" in request.FILES:
         livru.foto_livru = request.FILES['foto_livru'] 
         livru.save()
         messages.success(request, "Troka Cover Livru Susesu !")
-        return redirect("det-livru", titulu_livru=titulu_livru)
+        return redirect("det-livru", id_livru=id_livru)
     context = {"livru": livru}
     return render(request, "detail_livru.html", context)
 
-def edit_info_livru(request, titulu_livru):
-    livru = get_object_or_404(Livru, titulu_livru = titulu_livru)
+def edit_info_livru(request, id_livru):
+    livru = get_object_or_404(Livru, id_livru = id_livru)
     if request.method == "POST":
         form = EditInfoDetailLivru(request.POST, request.FILES ,instance = livru)
         if form.is_valid():
             form.save()
             messages.success(request, "Guarda Dados Susesu !")
-            return redirect("det-livru", titulu_livru = livru.titulu_livru)
+            return redirect("det-livru", id_livru = livru.id_livru)
     else:
         form = EditInfoDetailLivru(instance = livru)
     context = {
@@ -93,14 +93,14 @@ def edit_info_livru(request, titulu_livru):
     }
     return render(request, "detail_livru.html", context)
 
-def editSypnosisLivru(request, titulu_livru):
-    livru = get_object_or_404(Livru, titulu_livru = titulu_livru)
+def editSypnosisLivru(request, id_livru):
+    livru = get_object_or_404(Livru, id_livru = id_livru)
     if request.method == "POST":
         form = EditSypnosisLivruForm(request.POST,  request.FILES, instance = livru)
         if form.is_valid():
             form.save()
             messages.success(request, "Guarda Dados Susesu !")
-            return redirect("det-livru", titulu_livru = titulu_livru)
+            return redirect("det-livru", id_livru = id_livru)
     else:
         form = EditSypnosisLivruForm(instance = livru)
     context = {

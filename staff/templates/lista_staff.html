@@ -52,7 +52,7 @@ hr.bold {
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="#" >
+                            <a href="{% url "profile-staff" staff.id_staff %}" >
                                 {{ staff.naran_staff }}
                             </a>
                         </td>

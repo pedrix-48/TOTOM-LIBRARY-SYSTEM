@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from libraryapp.models import Staff
 from .forms_staff import StaffForm
@@ -28,10 +28,7 @@ def add_staff(request):
             messages.error(request, form.errors)
     else:
         form = StaffForm()
-    context = {
-        "form" : form
-    }
-    return render(request, "add_staff.html", context)
+    return render(request, "add_staff.html", {"form" : form})
 
 def import_staff_xl(request):
     if request.method == "POST":
@@ -46,10 +43,10 @@ def import_staff_xl(request):
                     if len(row) != 8:
                         raise ValueError(f"Row {row_num} has {len(row)} columns, expected 8.")
 
-                    naran_staff, username, password, data_moris, sexu, nu_telefone, email, hela_fatin = row
+                    id_staff, username, password, data_moris, sexu, nu_telefone, email, hela_fatin = row
 
                     Staff.objects.create(
-                        naran_staff=naran_staff,
+                        id_staff=id_staff,
                         username=username,
                         password=make_password(password),
                         data_moris=data_moris,
@@ -90,6 +87,19 @@ def del_all_staff(request):
     if request.method == "POST":
         staffs.delete()
         return redirect("lista-staff")
+    
+def profile_staff(request, id_staff):
+    staff = Staff.objects.get(id_staff = id_staff)
+    return render(request, "profile_staff.html", {"staff" : staff})
+
+def edit_foto_staff(request, id_staff):
+    staff = get_object_or_404(Staff, id_staff = id_staff)
+    if request.method == "POST" and "foto_staff" in request.FILES:
+        staff.foto_staff = request.FILES['foto_staff']
+        staff.save()
+        messages.success(request, "Troka Foto Profile Susesu !")
+        return redirect("profile-staff", id_staff = id_staff)
+    return render(request, "profile_staff.html", {"staff" : staff})
     
 
 

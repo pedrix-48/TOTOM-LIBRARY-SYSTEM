@@ -6,7 +6,7 @@
 <script src = "{% static 'AdminLTE/js/script.js' %}"></script>
 
 <!-- Edit Description Modal -->
-<form method="post" action="{% url 'edit-desk' author.naran_author %}" class="form-horizontal">
+<form method="post" action="{% url 'edit-desk' author.id_author %}" class="form-horizontal">
     {% csrf_token %}
     <div class="modal fade" id="editDeskrisaunProfile{{ author.id_author }}">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -39,7 +39,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{% url 'del-foto' author.naran_author %}">
+                <form method="post" action="{% url 'del-foto-author' author.id_author %}">
                     {% csrf_token %}
                     <p>Ita bo'ot Hakarak Apaga Foto Profile Husi</p>
                     <p>Author <strong>{{ author.naran_author }}</strong></p>
@@ -189,7 +189,7 @@
 </div>
 
 <!-- Photo Update Modal -->
-<form method="post" action="{% url 'edit-foto' author.naran_author %}" enctype="multipart/form-data">
+<form method="post" action="{% url 'edit-foto-author' author.id_author %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="modal fade" id="modalProfile{{ author.id_author }}">
         <div class="modal-dialog modal-dialog-centered">
@@ -203,8 +203,10 @@
                         <div class="col-md-5 text-center">
                             {% if author.foto_profile %}
                             <img src="{{ author.foto_profile.url }}" class="profile-img rounded-circle">
-                            {% else %}
+                            {% elif author.sexu == "Mane"%}
                             <img src="/media/default_male.jpg" class="profile-img rounded-circle">
+                            {% elif author.sexu == "Feto"%}
+                            <img src="/media/default_female.jpg" class="profile-img rounded-circle">
                             {% endif %}
                         </div>
                         <div class="col-md-7">
@@ -225,7 +227,7 @@
 </form>
 
 <!-- Edit Details Modal -->
-<form method="post" action="{% url 'edit-detalla' author.naran_author %}">
+<form method="post" action="{% url 'edit-detalla' author.id_author %}">
     {% csrf_token %}
     <div class="modal fade" id="editDetallaProfile{{ author.id_author }}">
         <div class="modal-dialog modal-dialog-centered modal-lg">

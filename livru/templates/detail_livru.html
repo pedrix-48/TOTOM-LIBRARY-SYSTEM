@@ -6,7 +6,7 @@
 <script src = "{% static 'AdminLTE/js/script.js' %}"></script>
 
 <!-- Modals (Light Mode Adjusted) -->
-<form method="post" action="{% url 'edit-syp' livru.titulu_livru %}" class="form-horizontal">
+<form method="post" action="{% url 'edit-syp' livru.id_livru %}" class="form-horizontal">
     {% csrf_token %}
     <div class="modal fade" id="editSypnosisDetail{{ livru.id_livru }}" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -162,7 +162,7 @@
 
 <!-- Include All Modals Here -->
 <!-- Cover Update Modal -->
-<form method="post" action="{% url 'edit-cover' livru.titulu_livru %}" enctype="multipart/form-data">
+<form method="post" action="{% url 'edit-cover' livru.id_livru %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="modal fade" id="modalCover{{ livru.id_livru }}" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
@@ -198,7 +198,7 @@
 </form>
 
 <!-- Info Update Modal -->
-<form method="post" action="{% url 'edit-info' livru.titulu_livru %}">
+<form method="post" action="{% url 'edit-info' livru.id_livru %}">
     {% csrf_token %}
     <div class="modal fade" id="editInfoLivru{{ livru.id_livru }}" data-bs-backdrop="static">
         <div class="modal-dialog modal-dialog-centered modal-lg">

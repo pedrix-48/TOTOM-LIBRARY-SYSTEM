@@ -89,40 +89,40 @@ def del_all_author(request):
         author.delete()
         return redirect("lista-author")
     
-def profile_author(request,naran_author):
-    author = Author.objects.get(naran_author=naran_author)
+def profile_author(request,id_author):
+    author = Author.objects.get(id_author=id_author)
     context = {
         'author': author
     }
     return render(request, 'author/profile_author.html', context)
 
-def edit_profile_photo(request, naran_author):
-    author = get_object_or_404(Author, naran_author=naran_author)
+def edit_profile_photo(request, id_author):
+    author = get_object_or_404(Author, id_author=id_author)
     if request.method == 'POST' and 'foto_profile' in request.FILES:
         author.foto_profile = request.FILES['foto_profile']
         author.save()
         messages.success(request, "Troka Foto Profile Susesu !!")
-    return redirect('profile-author', naran_author=author.naran_author)
+    return redirect('profile-author', id_author=author.id_author)
 
-def del_foto_profile_author(request, naran_author):
-    author = get_object_or_404(Author, naran_author=naran_author)
+def del_foto_profile_author(request, id_author):
+    author = get_object_or_404(Author, id_author=id_author)
     if request.method == "POST":
         if author.foto_profile:
             author.foto_profile.delete(save=False)
         author.foto_profile = None
         author.save()
         messages.success(request, "Apaga Foto Profile Susesu !!")
-    return redirect("profile-author", naran_author=naran_author)
+    return redirect("profile-author", id_author=id_author)
 
 
-def edit_detalla_profile(request, naran_author):
-    author = get_object_or_404(Author, naran_author=naran_author)
+def edit_detalla_profile(request, id_author):
+    author = get_object_or_404(Author, id_author=id_author)
     if request.method == 'POST':
         form = AuthorDetallaForm(request.POST, request.FILES, instance=author)
         if form.is_valid():
             form.save()
             messages.success(request, 'Guarda Dados Susesu !')
-            return redirect('profile-author', naran_author=author.naran_author)
+            return redirect('profile-author', id_author=author.id_author)
     else:
         form = AuthorDetallaForm(instance=author)
     context = {
@@ -132,14 +132,14 @@ def edit_detalla_profile(request, naran_author):
     return render(request, 'author/profile_author.html', context)
 
 
-def edit_deskrisaun_profile(request, naran_author):
-    author = get_object_or_404(Author, naran_author=naran_author)
+def edit_deskrisaun_profile(request, id_author):
+    author = get_object_or_404(Author, id_author=id_author)
     if request.method == 'POST':
         form = EditAuthorDeskrisaunForm(request.POST, instance = author)
         if form.is_valid():
             form.save()
             messages.success(request, 'Guarda Dados Susesu !')
-            return redirect('profile-author', naran_author=author.naran_author)
+            return redirect('profile-author', id_author=author.id_author)
     else:
         form = EditAuthorDeskrisaunForm(instance = author)
     context = {
