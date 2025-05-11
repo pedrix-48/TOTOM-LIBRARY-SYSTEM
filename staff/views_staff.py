@@ -46,12 +46,17 @@ def edit_staff(request, id_staff):
     return render(request, "edit_staff.html", {"staff" : staff, "form" : form})
 
 
-
 def del_staff(request, id_staff):
     staff = Staff.objects.get(id_staff=id_staff)
     if request.method == "POST":
         staff.delete()
         return redirect('lista-staff')
+    
+def del_all_staff(request):
+    staffs = Staff.objects.all()
+    if request.method == "POST":
+        staffs.delete()
+        return redirect("lista-staff")
     
 
 
