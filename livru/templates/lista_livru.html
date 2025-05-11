@@ -103,7 +103,7 @@ hr.bold {
             }
         },
         {
-            text: 'Apaga Livru Hotu <i class="bi bi-journal-x"></i>',
+            text: 'Apaga Hotu <i class="bi bi-journal-x"></i>',
             className: 'btn btn-danger',
             action: function (e, dt, node, config) {
             $('#delModal{{ livru.id_livru }}').modal('show'); // This triggers the Bootstrap modal
@@ -120,5 +120,6 @@ hr.bold {
 </script>
 {% include "add_livru.html" %}
 {% include "dell_all_livru.html" %}
+
 
 {% endblock content %}

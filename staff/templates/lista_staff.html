@@ -105,10 +105,17 @@ hr.bold {
             }
         },
         {
-            text: 'Apaga Staff Hotu <i class="bi bi-person-x"></i>',
+            text: 'Apaga Hotu <i class="bi bi-person-x"></i>',
             className: 'btn btn-danger',
             action: function (e, dt, node, config) {
-            $('#dellAllModal{{ staff.id_staff }}').modal('show'); // This triggers the Bootstrap modal
+                $('#dellAllModal{{ staff.id_staff }}').modal('show'); // This triggers the Bootstrap modal
+            }
+        },
+        {
+            text: 'Importa(.xsl) <i class="bi bi-upload"></i>',
+            className: 'btn btn-warning',
+            action: function (e, dt, node, config) {
+            $('#importExcelModalLivru').modal('show'); // This triggers the Bootstrap modal
             }
         },
         {
@@ -123,5 +130,6 @@ hr.bold {
 </script>
 {% include "add_staff.html" %}
 {% include "dell_all_staff.html" %}
+{% include "modal_import.html" %}
 
 {% endblock content %}

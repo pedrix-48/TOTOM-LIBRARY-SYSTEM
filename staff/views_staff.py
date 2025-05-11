@@ -3,6 +3,7 @@ from django.contrib import messages
 from libraryapp.models import Staff
 from .forms_staff import StaffForm
 from django.contrib.auth.hashers import make_password
+import openpyxl as xl
 
 def lista_staff(request):
     staffs = Staff.objects.all()
@@ -31,6 +32,38 @@ def add_staff(request):
         "form" : form
     }
     return render(request, "add_staff.html", context)
+
+def import_staff_xl(request):
+    if request.method == "POST":
+        excel_file = request.FILES.get("excel_file")
+        if excel_file.name.endswith(".xlsx"):
+            wb = xl.load_workbook(excel_file)
+            sheet = wb.active
+
+            for row_num, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=2):
+                try:
+                    # Make sure row has exactly 8 values
+                    if len(row) != 8:
+                        raise ValueError(f"Row {row_num} has {len(row)} columns, expected 8.")
+
+                    naran_staff, username, password, data_moris, sexu, nu_telefone, email, hela_fatin = row
+
+                    Staff.objects.create(
+                        naran_staff=naran_staff,
+                        username=username,
+                        password=make_password(password),
+                        data_moris=data_moris,
+                        sexu=sexu,
+                        nu_telefone=str(nu_telefone),
+                        email=email,
+                        hela_fatin=hela_fatin,
+                    )
+                except Exception as e:
+                    messages.error(request, f"Falla Atu Importa Linha {row_num}: {row} - {e}")
+        else:
+            messages.error(request, "Formatu File Invalidu, Favor Upload File Ho Formatu Excel")
+    return redirect("lista-staff")
+
 
 def edit_staff(request, id_staff):
     staff = Staff.objects.get(id_staff = id_staff)
