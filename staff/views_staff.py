@@ -43,10 +43,10 @@ def import_staff_xl(request):
                     if len(row) != 8:
                         raise ValueError(f"Row {row_num} has {len(row)} columns, expected 8.")
 
-                    id_staff, username, password, data_moris, sexu, nu_telefone, email, hela_fatin = row
+                    naran_staff, username, password, data_moris, sexu, nu_telefone, email, hela_fatin = row
 
                     Staff.objects.create(
-                        id_staff=id_staff,
+                        naran_staff=naran_staff,
                         username=username,
                         password=make_password(password),
                         data_moris=data_moris,
@@ -100,6 +100,17 @@ def edit_foto_staff(request, id_staff):
         messages.success(request, "Troka Foto Profile Susesu !")
         return redirect("profile-staff", id_staff = id_staff)
     return render(request, "profile_staff.html", {"staff" : staff})
+
+def del_foto_staff(request, id_staff):
+    staff = get_object_or_404(Staff,id_staff = id_staff)
+    if request.method == "POST":
+        if staff.foto_staff:
+            staff.foto_staff.delete(save = False)
+        staff.foto_staff = None
+        staff.save()
+        messages.success(request, "Apaga Foto Profile Susesu !")
+    return redirect("profile-staff", id_staff = id_staff)
+
     
 
 

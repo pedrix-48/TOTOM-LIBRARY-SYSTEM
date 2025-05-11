@@ -15,7 +15,7 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="">
+                <form method="post" action="{% url 'del-foto-staff' staff.id_staff  %}">
                     {% csrf_token %}
                     <p>Ita bo'ot Hakarak Apaga Foto Profile Husi</p>
                     <p><strong>{{ staff.naran_staff }}</strong></p>
@@ -74,8 +74,8 @@
                     <h5 class="card-title text-center mb-0 fw-bold"> <i class="bi bi-image me-2"></i> FOTO PROFILE</h5>
                 </div>
                 <div class="card-body text-center">
-                    {% if staff.foto_profile %}
-                    <img src="{{ staff.foto_profile.url }}" class="profile-img rounded-circle">
+                    {% if staff.foto_staff %}
+                    <img src="{{ staff.foto_staff.url }}" class="profile-img rounded-circle">
                     {% elif staff.sexu == "Mane" %}
                     <img src="/media/default_male.jpg" class="profile-img rounded-circle">
                     {% elif staff.sexu == "Feto" %}
@@ -154,7 +154,7 @@
     </div>
 
 <!-- Photo Update Modal -->
-<form method="post" action="{% url 'edit-foto' staff.id_staff %}" enctype="multipart/form-data">
+<form method="post" action="{% url 'edit-foto-staff' staff.id_staff %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="modal fade" id="modalProfile{{ staff.id_staff }}">
         <div class="modal-dialog modal-dialog-centered">
@@ -166,8 +166,8 @@
                 <div class="modal-body">
                     <div class="row g-3 align-items-center">
                         <div class="col-md-5 text-center">
-                            {% if staff.foto_profile %}
-                            <img src="{{ staff.foto_profile.url }}" class="profile-img rounded-circle">
+                            {% if staff.foto_staff %}
+                            <img src="{{ staff.foto_staff.url }}" class="profile-img rounded-circle">
                             {% else %}
                             <img src="/media/default_male.jpg" class="profile-img rounded-circle">
                             {% endif %}
@@ -175,7 +175,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label class="form-label">Upload Foto Foun:</label>
-                                <input type="file" class="form-control" name="foto_profile" required>
+                                <input type="file" class="form-control" name="foto_staff" required>
                             </div>
                         </div>
                     </div>

@@ -10,4 +10,5 @@ urlpatterns = [
     path('del-all-staff', views.del_all_staff, name='del-all-staff'),
     path('profile/<str:id_staff>', views.profile_staff, name='profile-staff'),
     path('edit-foto/<str:id_staff>/', views.edit_foto_staff, name='edit-foto-staff'),
+    path('del-foto/<str:id_staff>/', views.del_foto_staff, name='del-foto-staff'),
 ]
