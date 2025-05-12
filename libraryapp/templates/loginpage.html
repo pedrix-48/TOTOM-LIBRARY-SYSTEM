@@ -1,81 +1,131 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <link rel = "shortcut icon" type = 'x-icon' href="{% static 'images/assembly.png' %}">
+        <link rel="shortcut icon" type="x-icon" href="{% static 'images/assembly.png' %}">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Assembly Library System</title>
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
-        />
-        <link
-            rel="stylesheet"
-            href={% static 'AdminLTE/plugins/fontawesome-free/css/all.min.css' %}
-        />
-        <link
-            rel="stylesheet"
-            href= {% static 'AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}
-        />
-        <link rel="stylesheet" href= {% static 'AdminLTE/dist/css/adminlte.min.css' %}/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+        <link rel="stylesheet" href="{% static 'AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'AdminLTE/dist/css/adminlte.min.css' %}">
         <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.min.css' %}">
+        <style>
+            .login-page {
+                background: linear-gradient(135deg,rgb(5, 29, 134) 0%,rgb(18, 6, 31) 100%);
+                min-height: 100vh;
+            }
+            .login-box {
+                width: 400px;
+            }
+            .card {
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+                border: none;
+            }
+            .card-header {
+                background: #fff;
+                border-bottom: none;
+                padding: 2rem;
+            }
+            .brand-logo {
+                width: 80px;
+                margin-bottom: 1rem;
+            }
+            .input-group-text {
+                background: #f8f9fa;
+                border: none;
+            }
+            .form-control {
+                border: 2px solid #e9ecef;
+                border-radius: 8px;
+                padding: 1rem;
+                transition: all 0.3s ease;
+            }
+            .form-control:focus {
+                border-color: #667eea;
+                box-shadow: none;
+            }
+            .btn-primary {
+                background: #667eea;
+                border: none;
+                padding: 12px 30px;
+                transition: all 0.3s ease;
+            }
+            .btn-primary:hover {
+                background: #764ba2;
+                transform: translateY(-2px);
+            }
+            .btn-secondary {
+                background:rgb(7, 18, 67);
+                border: none;
+                padding: 12px 30px;
+                transition: all 0.3s ease;
+            }
+            .btn-secondary:hover {
+                background:rgb(1, 3, 14);
+                transform: translateY(-2px);
+            }
+        </style>
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
-        <div class="card card-outline card-dark">
-            <div class="card-header text-center">
-            <h2><b>Bemvindo, Admin!</b></h2>
-            </div>
-            <div class="card-body">
-            <p class="login-box-msg">Login Hodi Bele Hahu ita nia Sesaun!</p>
-            <form action="" method="post">
-                {% csrf_token %}
-                <div class="input-group mb-3">
-                {{ form.username }}
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                    <span class="bi bi-person-fill-gear"></span>
+            <div class="card card-outline card-primary">
+                <div class="card-header text-center">
+                    <img src="{% static 'images/assembly.png' %}" alt="Logo" class="brand-logo">
+                    <h2 class="mb-2"><b>Assembly Library System</b></h2>
+                    <p class="text-muted">Administrator Portal</p>
+                </div>
+                <div class="card-body">
+                    {% if form.errors %}
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        Invalid username or password. Please try again.
+                    </div>
+                    {% endif %}
+
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-4">
+                            {{ form.username }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="bi bi-person-fill"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-4">
+                            {{ form.password }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-block btn-sm">
+                                    <i class="bi bi-box-arrow-in-right mr-2"></i>Sign In
+                                </button>
+                                <button type="submit" class="btn btn-secondary btn-block btn-sm">
+                                    <i class="bi bi-box-arrow-in-right mr-2"></i>Fila
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <p class="mb-1">
+                            <a href="forgot-password.html" class="text-dark">Haluha Password ?</a>
+                        </p>
                     </div>
                 </div>
-                </div>
-                <div class="input-group mb-3">
-                {{ form.password }}
-                <div class="input-group-append">
-                    <div class="input-group-text">
-                    <span class="fas fa-lock"></span>
-                    </div>
-                </div>
-                </div>
-            </form>
-            <div class="social-auth-links text-center mt-2 mb-3">
-                <a href="{% url 'dash-admin' %}" class="btn btn-block btn-dark" type = 'submit'>
-                    <i class="bi bi-box-arrow-right"></i> Login
-                </a>
-            </div>
             </div>
         </div>
-        </div>
-        <script src={% static 'AdminLTE/plugins/jquery/jquery.min.js' %}></script>
-        <script src={% static 'AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js'  %}></script>
-        <script src={% static 'AdminLTE/dist/js/adminlte.min.js' %}></script>
+
+        <script src="{% static 'AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'AdminLTE/dist/js/adminlte.min.js' %}"></script>
     </body>
-    <script>
-        $(function () {
-          $("#example1").DataTable({
-            "responsive": true, "lengthChange": false, "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-          }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-          $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
-            "responsive": true,
-          });
-        });
-      </script>
 </html>

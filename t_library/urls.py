@@ -6,7 +6,8 @@ from libraryapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.loginpage, name='login'),
+    path('login/', views.loginpage, name='login'),
+    path('', views.homepage, name='homepage'),
     path('logout/', views.admin_logout, name='logout'),
     path('dashboard/', views.dashboard, name='dash-admin'),
 

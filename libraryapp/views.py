@@ -5,8 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import AdminLoginForm, AuthorForm, AuthorDetallaForm, EditAuthorDeskrisaunForm
 from .models import Author
 
-def home(request):
-    return render(request, 'home.html')
+def homepage(request):
+    return render(request, 'homepage.html')
 
 def loginpage(request):
     if request.method == 'POST':
