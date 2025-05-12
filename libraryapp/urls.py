@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('list/', views.lista_author, name='lista-author'),
     path('add/', views.add_author, name='add-author'),
+    path('all-livru/', views.load_livru_hotu, name='all-livru'),
     path('<str:id_author>/edit/', views.edit_author, name='edit-author'),
     path('<str:id_author>/delete/', views.delete_author, name='del-author'),
     path('del-all-author', views.del_all_author, name='del-all-author'),

@@ -4,9 +4,10 @@
     --accent: #4a90e2;
     --text-primary: #212529;
     --border-color: #dee2e6;
+    --primary-color: #fff; /* Added missing variable */
 }
 
-/* --------------------NEE PROFILE NIAN STYLE SIRA----------------------- */
+/* -------------------- COMMON STYLES ----------------------- */
 .gradient-header {
     background: linear-gradient(to right, #004085, rgb(28, 39, 50));
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
@@ -20,13 +21,58 @@
     margin-bottom: 1rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    border-left: 3px solid var(--accent) !important;
 }
 
 .detail-item:hover {
-    transform: translateX(3px);
+    background-color: rgba(74, 144, 226, 0.05);
+    transform: translateX(5px);
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
 }
 
+.text-accent {
+    color: var(--accent) !important;
+    transition: color 0.3s ease;
+}
+
+.btn-accent {
+    background: var(--accent);
+    color: white !important;
+    transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+    background: #357abd;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+
+.underline-hover {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+}
+
+.underline-hover::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 50%;
+    background: linear-gradient(45deg, #4a90e2, #6a11cb);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.underline-hover:hover::after {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+}
+
+/* -------------------- PROFILE SPECIFIC STYLES ----------------------- */
 .profile-card {
     background: var(--lighter-bg);
     border: 1px solid var(--border-color);
@@ -43,17 +89,6 @@
     box-shadow: 0 4px 15px rgba(74, 144, 226, 0.1);
 }
 
-.btn-accent {
-    background: var(--accent);
-    color: white !important;
-    transition: all 0.3s ease;
-}
-
-.btn-accent:hover {
-    background: #357abd;
-    transform: translateY(-2px);
-}
-
 .delete-btn {
     background: #dc3545;
     color: white !important;
@@ -65,60 +100,7 @@
     transform: translateY(-2px);
 }
 
-.underline-hover {
-    cursor: pointer;
-    display: inline-block;
-}
-
-.underline-hover::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 3px;
-    bottom: -5px;
-    left: 50%;
-    background: linear-gradient(45deg, #4a90e2, #6a11cb);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
-
-.underline-hover:hover::after {
-    width: 100%;
-    left: 0;
-    transform: translateX(0);
-}
-
-.text-accent {
-    color: #4a90e2 !important;
-    transition: color 0.3s ease;
-}
-
-.underline-hover:hover .text-accent {
-    color: #357abd !important;
-    text-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
-}
-
-.text-white {
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-weight: 800 !important;
-}
-
-.detail-item.bg-light {
-    border-left: 3px solid var(--accent) !important;
-    padding: 0.75rem 1.25rem;
-    transition: all 0.3s ease;
-}
-
-/* --------------------NEE DETAIL LIVRU NIAN NIAN STYLE SIRA----------------------- */
-
-.gradient-header {
-    background: linear-gradient(to right, #004085, rgb(28, 39, 50));
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-}
-
+/* -------------------- BOOK DETAILS SPECIFIC STYLES ----------------------- */
 .book-card {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -134,7 +116,6 @@
     border: 2px solid rgba(0, 0, 0, 0.1);
     max-height: 200px;
     object-fit: cover;
-
 }
 
 .cover-image:hover {
@@ -142,32 +123,12 @@
     box-shadow: 0 3px 15px rgba(26, 11, 243, 0.05);
 }
 
-.detail-item {
-    background: var(--primary-color);
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    object-fit: detail;
+.detail-list {
+    list-style: none;
+    padding-left: 0;
 }
 
-.detail-item:hover {
-    transform: translateX(3px);
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
-}
-
-.text-accent {
-    color: var(--accent-color) !important;
-}
-
-
-.btn-accent:hover {
-    background: #357abd;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
-}
-
+/* -------------------- MODAL STYLES ----------------------- */
 .modal-header {
     background: var(--primary-color);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -178,115 +139,8 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.underline-hover {
-    cursor: pointer;
-    display: inline-block;
-}
-
-.underline-hover::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 3px;
-    bottom: -5px;
-    left: 50%;
-    background: linear-gradient(45deg, #4a90e2, #6a11cb);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
-
-.underline-hover:hover::after {
-    width: 100%;
-    left: 0;
-    transform: translateX(0);
-}
-
-.text-accent {
-    color: #4a90e2 !important;
-    transition: color 0.3s ease;
-}
-
-.underline-hover:hover .text-accent {
-    color: #357abd !important;
-    text-shadow: 0 2px 8px rgba(74, 144, 226, 0.2);
-}
-
 .text-white {
     letter-spacing: 0.5px;
     text-transform: uppercase;
     font-weight: 800 !important;
-}
-
-.detail-list {
-    list-style: none;
-    padding-left: 0;
-}
-
-.detail-item {
-    border-left: 3px solid var(--accent) !important;
-    padding: 0.75rem 1.25rem;
-    transition: all 0.3s ease;
-}
-
-.detail-item:hover {
-    background-color: rgba(74, 144, 226, 0.05);
-    transform: translateX(5px);
-}
-
-/* --------------------LOGIN PAGE ADMIN NIAN STYLE SIRA----------------------- */
-
-.login-page {
-    background: linear-gradient(135deg, rgb(5, 29, 134) 0%, rgb(18, 6, 31) 100%);
-    min-height: 100vh;
-}
-
-.login-box {
-    width: 400px;
-}
-
-.card {
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border: none;
-}
-
-.card-header {
-    background: #fff;
-    border-bottom: none;
-    padding: 2rem;
-}
-
-.brand-logo {
-    width: 80px;
-    margin-bottom: 1rem;
-}
-
-.input-group-text {
-    background: #f8f9fa;
-    border: none;
-}
-
-.form-control {
-    border: 2px solid #e9ecef;
-    border-radius: 8px;
-    padding: 1rem;
-    transition: all 0.3s ease;
-}
-
-.form-control:focus {
-    border-color: #667eea;
-    box-shadow: none;
-}
-
-.btn-primary {
-    background: #667eea;
-    border: none;
-    padding: 12px 30px;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    background: #764ba2;
-    transform: translateY(-2px);
 }

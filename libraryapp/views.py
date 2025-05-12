@@ -3,10 +3,19 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import authenticate, logout, login 
 from django.contrib.auth.decorators import login_required 
 from .forms import AdminLoginForm, AuthorForm, AuthorDetallaForm, EditAuthorDeskrisaunForm
-from .models import Author
+from .models import Author, Livru
 
 def homepage(request):
-    return render(request, 'homepage.html')
+    livrus = Livru.objects.all()[:3]
+    context = {
+        "livrus" : livrus
+    }
+    return render(request, 'homepage.html', context)
+
+def load_livru_hotu(request):
+    livrus = Livru.objects.all()
+    return render(request, "all_livru.html", {"livrus" : livrus})
+
 
 def loginpage(request):
     if request.method == 'POST':

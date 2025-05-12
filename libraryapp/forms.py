@@ -63,6 +63,7 @@ class AuthorForm(forms.ModelForm):
             'class':'form-control',
             'placeholder':'Upload Foto Profile'
         })
+        self.fields['email'].required = False
 
 class AuthorDetallaForm(forms.ModelForm):
 

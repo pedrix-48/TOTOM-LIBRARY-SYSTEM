@@ -1,59 +1,124 @@
 {% extends "navbar.html" %}
 {% load static %}
+
 {% block content %}
-<link href="{% static 'AdminLTE/plugins/css/bootstrap.min.css' %}" rel="stylesheet">
-<style>
-    .card-header-custom {
-        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-        color: white;
-        border-bottom: none;
-        padding: 1rem 1.25rem;
+  <style>
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; }
+    .navbar { box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
+    .carousel-item::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.4);
     }
-    .card {
-        border: none;
-        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
-        margin-bottom: 1.5rem;
+    .card-book { transition: transform .3s, box-shadow .3s; height: 100%;}
+    .card-book:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .card-img-top { height: 560px; object-fit: cover; }
+
+
+    .carousel-caption {
+      position: absolute;
+      top: 20%; left: 10%; width: 40%;
+      text-align: left; z-index: 2;
     }
-    .card-footer {
-        background-color: white;
-        border-top: 1px solid rgba(0, 0, 0, 0.125);
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .carousel-caption {
+        top: auto; bottom: 15%; left: 50%; width: 80%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: rgba(0,0,0,0.6);
+        padding: 1rem;
+        border-radius: 0.5rem;
+      }
     }
+    
 </style>
-
-<section class="container mt-4">
-    <div class="row">
-        <div class="col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-header card-header-custom">
-                    <h5 class="m-0 font-weight-bold">Card title</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">
-                        Card content
-                    </p>
-                </div>
-                <div class="card-footer">
-                    Card footer
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 mb-4">
-            <div class="card h-100">
-                <div class="card-header card-header-custom">
-                    <h5 class="m-0 font-weight-bold">Card title</h5>
-                </div>
-                <div class="card-body">
-                    <p class="card-text">
-                        Card content
-                    </p>
-                </div>
-                <div class="card-footer">
-                    Card footer
-                </div>
-            </div>
-        </div>
+<div id="featuredCarousel" class="carousel slide position-relative" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#featuredCarousel" data-bs-slide-to="2"></button>
     </div>
-</section>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-aos="fade-down">
+        <img src="/static/images/lib_1.jpg" class="d-block w-100" alt="Book 1">
+        <div class="carousel-caption">
+          <h2 class="display-5 fw-bold text-white">Mai Le'e no Ita Aprende Hamutuk</h2>
+          <p class="text-white">Explore a curated selection of the finest literature.</p>
+          <a href="#books" class="btn btn-outline-light btn-lg mt-3">Browse Collection</a>
+        </div>
+      </div>
+      <div class="carousel-item" data-aos="fade-down" data-aos-delay="100">
+        <img src="/static/images/lib_2.png" class="d-block w-100" alt="Book 2">
+        <div class="carousel-caption">
+          <h2 class="display-5 fw-bold text-white">Mai Konhese Diak Liu Tan Ami</h2>
+          <p class="text-white">Connect with fellow readers and authors.</p>
+          <a href="#about" class="btn btn-outline-light btn-lg mt-3">Learn More</a>
+        </div>
+      </div>
+      <div class="carousel-item" data-aos="fade-down" data-aos-delay="100">
+        <img src="/static/images/lib_3.png" class="d-block w-100" alt="Book 3">
+        <div class="carousel-caption">
+          <h2 class="display-5 fw-bold text-white">Exclusive Events</h2>
+          <p class="text-white">Attend readings, workshops, and community gatherings.</p>
+          <a href="#departments" class="btn btn-outline-light btn-lg mt-3">See Events</a>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#featuredCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#featuredCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 
-<script src="{% static 'AdminLTE/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Books Section -->
+  <section id="books" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-right">Our Curated Collection</h2>
+      <div class="row g-4">
+        {% for livru in livrus  %}
+        <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:"1" }}00">
+          <div class="card card-book h-100 shadow-sm">
+            <img src="{{ livru.foto_livru.url }}" class="card-img-top" alt="Book 1">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title"><strong>{{ livru.titulu_livru }}</strong></h5>
+              <p class="card-text flex-grow-1">{{ livru.sypnosis | truncatewords:20 | safe }}</p>
+              <a href="#" class="btn btn-primary mt-3 align-self-start">Read More <i class="fa-solid fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+    <div class="text-center mt-5 mb-5">
+        <a href="{% url 'all-livru' %}" class="btn btn-outline-primary">View All Books</a>
+    </div>
+
+  <!-- Departments Section -->
+  <section id="departments" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5" data-aos="fade-left">Departamentu</h2>
+      <div class="row row-cols-1 row-cols-md-4 g-4">
+        <div class="col" data-aos="flip-up" data-aos-delay="100">...<!-- as before -->
+        </div>
+        <!-- Add remaining department cards similarly -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container text-center" data-aos="fade-up">
+      <h2 class="mb-4">Kona-ba Ami</h2>
+      <p class="lead mx-auto" style="max-width:600px;">We’re committed to fostering a love of reading and learning through exceptional resources and community engagement.</p>
+    </div>
+  </section>
 {% endblock content %}
+
