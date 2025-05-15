@@ -1,73 +1,119 @@
-
+{% extends "home.html" %}
 {% load static %}
-<script src = "{% static 'AdminLTE/js/script.js' %}"></script>
+{% block content %}
 
-<div class="modal fade" id="editLivruModal{{ livru.id_livru }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-        <form id="livruForm" method = 'post' action="{% url 'edit-livru' livru.id_livru %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class = "card card-dark">
-                <div class="card-header">
-                    <h5 class="card-title" id="livruFormModalLabel">Edit Livru <i class="bi bi-pencil-square"></i></h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="naran" class="form-label">Titulu Livru</label>
-                                <input type="text" name="titulu_livru" class="form-control" value="{{ livru.titulu_livru }}">
-                            </div>
-                            <div class="mb-3">
-                                <div class="mb-3">
-                                    <label for="autor" class="form-label">Data Publisidade</label>
-                                    <input type="date" name="data_publish" class="form-control" value="{{ livru.data_publish|date:'Y-m-d' }}">
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Husi Nasaun</label>
-                                <input type="text" name="nasaun" class="form-control" value="{{ livru.nasaun }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="livr" class="form-label">Tipu Livru</label>
-                                <select name="tipu_livru" class="form-control">
-                                    <option value="Novel" {% if livru.tipu_livru == "Novel" %}selected{% endif %}>Novel</option>
-                                    <option value="Light Novel" {% if livru.tipu_livru == "Light Novel" %}selected{% endif %}>Light Novel</option>
-                                    <option value="Manga" {% if livru.tipu_livru == "Manga" %}selected{% endif %}>Manga</option>
-                                    <option value="Education" {% if livru.tipu_livru == "Education" %}selected{% endif %}>Education</option>
-                                    <option value="History" {% if livru.tipu_livru == "History" %}selected{% endif %}>History</option>
-                                    <option value="Thesis" {% if livru.tipu_livru == "Thesis" %}selected{% endif %}>Thesis</option>
-                                    <option value="Children" {% if livru.tipu_livru == "Children" %}selected{% endif %}>Children</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Author</label>
-                                {% comment %} <select name="id_author" class="form-control" id="id_author">
-                                    {% for author in authors %}
-                                        <option value="{{ author.id_author }}" {% if author.id_author == livru.id_author.id_author %}selected{% endif %}>
-                                            {{ author.naran_author }}
-                                        </option>
-                                    {% endfor %}
-                                </select> {% endcomment %}
-                                {{ form.id_author }}
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Sypnosis</label>
-                                <textarea id="summernote-{{ livru.sypnosis }}" name="sypnosis" class="form-control">{{ livru.sypnosis|safe }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
-                    <button   button type="submit" class="btn btn-dark">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
-                </div>
-            </div>
-        </form>
+<link href = "{% static 'AdminLTE/css/styles.css' %}" rel = "stylesheet">
+<link href = "{% static 'AdminLTE/plugins/select2/css/select2.min.css' %}" rel = "stylesheet">
+<link href = "{% static 'AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}" rel = "stylesheet">
+    <div class="gradient-header p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <a class="btn btn-outline-primary" href="{% url 'lista-livru' %}">
+                <i class="bi bi-arrow-left-circle me-2"></i>Fila ba Lista
+            </a>
+            {% if livru.tipu_livru == "Manga" %}
+                <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Manga
+            {% elif livru.tipu_livru == "Novel" %}
+                <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Novel
+            {% elif livru.tipu_livru == "Light Novel" %}
+                <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Light Novel
+            {% elif livru.tipu_livru == "Thesis" %}
+                <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Teze
+            {% elif livru.tipu_livru == "History" %}
+                <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Livru Istoria
+            {% elif livru.tipu_livru == "Education" %}
+                <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Livru
+            {% elif livru.tipu_livru == "Children" %}
+                <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Livru Labarik
+            {% endif %}
+                    <a href = "#">
+                        <span class = "underline-hover position-relative"><span class="text-accent ">{{ livru.titulu_livru }}</span></span>
+                    </a>
+            </h3>
         </div>
     </div>
+    <style>
+        hr.bold {
+            border: none;
+            border-top: 5px solid black; 
+            margin: 1rem 0;
+        }
+    </style>
+    <hr class="bg-dark bold">
+<div class="card card-navy">
+    <div class="card-header">
+        <h3 class="card-title text-white"><i class="bi bi-info-circle me-2"></i>EDIT LIVRU</h3>
+    </div>
+<form method = "POST" action="{% url 'edit-livru' livru.id_livru %}" >
+    {% csrf_token %}
+    <div class="card-body">
+        <div class="form-group">
+            <label for="titulu_livru">Titulu Livru</label>
+            <input type="text" name="titulu_livru" class="form-control" value="{{ livru.titulu_livru }}">
+        </div>
+        <div class="form-group">
+            <label for="data_publish">Data Publisidade</label>
+            <input type="date" name="data_publish" class="form-control" value="{{ livru.data_publish|date:'Y-m-d'}}">
+        </div>
+        <div class="form-group">
+            <label for="nasaun">Husi Nasaun</label>
+            <input type="text" name="nasaun" class="form-control" value="{{ livru.nasaun }}">
+        </div>
+        <div class="form-group">
+            <label for="tipu_livru">Tipu Livru</label>
+                <select name="tipu_livru" class="form-control">
+                    <option value="Novel" {% if livru.tipu_livru == "Novel" %}selected{% endif %}>Novel</option>
+                    <option value="Light Novel" {% if livru.tipu_livru == "Light Novel" %}selected{% endif %}>Light Novel</option>
+                    <option value="Manga" {% if livru.tipu_livru == "Manga" %}selected{% endif %}>Manga</option>
+                    <option value="Education" {% if livru.tipu_livru == "Education" %}selected{% endif %}>Education</option>
+                    <option value="History" {% if livru.tipu_livru == "History" %}selected{% endif %}>History</option>
+                    <option value="Thesis" {% if livru.tipu_livru == "Thesis" %}selected{% endif %}>Thesis</option>
+                    <option value="Children" {% if livru.tipu_livru == "Children" %}selected{% endif %}>Children</option>
+                </select>
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            {{ form.id_author }}
+        </div>
+        <div class="form-group">
+            <label for="sypnosis">Sypnosis</label>
+            <textarea id="summernote" name="sypnosis" class="form-control">{{ livru.sypnosis|safe }}</textarea>
+        </div>
+    </div>
+    <div class="card-footer bg-transparent text-end">
+        <a type="submit" class="btn btn-outline-secondary">Fila</a>
+        <button type="submit" class="btn btn-dark">Guarda <i class="bi bi-floppy2-fill ms-1"></i></button>
+    </div>
+</form>
 </div>
+
+<script>
+    $(document).ready(function() {
+    // Initialize Summernote for the deskrisaun field
+    $('#summernote').summernote({
+        height: 200, // Set the height of the editor
+        toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['insert', ['link']],
+        ['view'] , ['fullscreen']
+        ]
+    });
+});
+</script>
+<script src = "{% static 'AdminLTE/plugins/select2/js/select2.full.min.js' %}"></script>
+
+<script>
+    $('.select2').select2()
+
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+</script>
+
+{% endblock content %}
 
     

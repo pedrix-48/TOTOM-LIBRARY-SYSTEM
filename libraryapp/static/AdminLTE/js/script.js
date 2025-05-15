@@ -19,6 +19,7 @@ $(document).ready(function () {
         }
     });
 });
+
 $(document).ready(function() {
     // Initialize Summernote for the deskrisaun field
     $('#summernote').summernote({

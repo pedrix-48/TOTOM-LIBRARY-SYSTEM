@@ -57,7 +57,7 @@ hr.bold {
                             </a>
                         </td>
                         <td>{{ staff.username }}</td>
-                        <td>{{ staff.password|yesno:"*********,Hidden"  }}</td>
+                        <td>{{ staff.password |slice:":11"  }}...</td>
                         <td>{{ staff.data_moris }}</td>
                         <td>{{ staff.sexu }}</td>
                         <td>{{ staff.nu_telefone }}</td>

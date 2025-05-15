@@ -9,7 +9,7 @@ urlpatterns = [
     path('login/', views.loginpage, name='login'),
     path('', views.homepage, name='homepage'),
     path('logout/', views.admin_logout, name='logout'),
-    path('dashboard/', views.dashboard, name='dash-admin'),
+    path('dashboard/', views.dashboard, name='dashboard'),
 
     path('livru/', include('livru.urls')),
     path('author/', include('libraryapp.urls')),

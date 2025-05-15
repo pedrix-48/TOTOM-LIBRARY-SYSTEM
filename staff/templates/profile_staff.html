@@ -127,7 +127,7 @@
                             </div>
                             <div class="detail-item bg-light p-3 rounded">
                                 <div class="text-muted small"><i class="bi bi-calendar3 me-1"></i>Password</div>
-                                <div class="fw-bold">{{ staff.password|yesno:"*******,Hidden"  }}</div>
+                                <div class="fw-bold">{{ staff.password|slice:":35"  }}.....</div>
                             </div>
                             <div class="detail-item bg-light p-3 rounded mt-3">
                                 <div class="text-muted small"><i class="bi bi-envelope-at-fill me-1"></i> Email</div>

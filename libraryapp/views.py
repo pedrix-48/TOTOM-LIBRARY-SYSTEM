@@ -40,9 +40,10 @@ def admin_logout(request):
     logout(request)
     return render(request, 'logout.html')
 
-# @login_required(login_url='login') # rai hela ba orsda ba hadia nia bug
+@login_required(login_url='login') # rai hela ba orsda ba hadia nia bug
 def dashboard(request):
     return render(request, 'dashboard.html')
+
 
 def lista_author(request):
     form = AuthorForm()

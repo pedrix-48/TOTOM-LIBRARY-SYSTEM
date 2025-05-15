@@ -1,4 +1,5 @@
 from django.db import models 
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 class Admin_user(models.Model):
     naran_admin = models.CharField(max_length=50, default="")
@@ -60,7 +61,7 @@ class Livru(models.Model):
     def __str__(self):
         return self.titulu_livru
 
-class Staff(models.Model):
+class Staff(AbstractBaseUser):
     id_staff = models.AutoField(primary_key=True)
     naran_staff = models.CharField(max_length=100)
     username = models.CharField(max_length=50, default="username")
@@ -72,6 +73,16 @@ class Staff(models.Model):
     hela_fatin = models.CharField(max_length=50)
     foto_staff = models.ImageField(blank=True)
 
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = []
+
+
+    def has_perm(self, perm, obj = None):
+        return True
+    
+    def has_module_perms(self, perm, obj = None):
+        return True
+
     def __str__(self):
         return self.naran_staff
 
@@ -82,3 +93,4 @@ class Empresta(models.Model):
     id_staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     data_empresta = models.DateField()
     data_devolve = models.DateField()
+

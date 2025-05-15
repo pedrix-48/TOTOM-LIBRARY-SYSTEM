@@ -44,7 +44,7 @@ class LivruForm(forms.ModelForm):
             "id":"summernote"
         })
         self.fields['id_author'].widget.attrs.update({
-            'class':'form-control',
+            'class':'select2bs4 form-control',
         })
         self.fields['foto_livru'].widget.attrs.update({
             'class':'form-control',

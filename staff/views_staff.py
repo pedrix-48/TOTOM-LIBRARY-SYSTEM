@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from libraryapp.models import Staff
-from .forms_staff import StaffForm
+from .forms_staff import StaffForm, EditDetallaFormStaff
 from django.contrib.auth.hashers import make_password
 import openpyxl as xl
 
@@ -63,17 +63,24 @@ def import_staff_xl(request):
 
 
 def edit_staff(request, id_staff):
-    staff = Staff.objects.get(id_staff = id_staff)
-    form = StaffForm(instance = staff)
-    if request.method == "POST":
-        form = StaffForm(request.POST, instance = staff)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Guarda Dados Susesu !")
-            return redirect("lista-staff")
-        else:
-            messages.error(request, form.errors)
-    return render(request, "edit_staff.html", {"staff" : staff, "form" : form})
+    staff = Staff()
+    staff = get_object_or_404(Staff, id_staff = id_staff)
+    if request.method  == "POST":
+        form = EditDetallaFormStaff(request.POST, instance = staff)
+        if form.is_valid() and form.cleaned_data['password']:
+            staff.set_password(form.cleaned_data['password'])
+        form.save(commit=False)
+        form.save()
+        messages.success(request, "Guarda Dados Susesu !")
+        return redirect("lista-staff")
+    else:
+        form = EditDetallaFormStaff(instance = staff)
+    context = {
+        "form" : form,
+        "staff" : staff
+    }
+    return render(request, "edit_staff.html", context)
+
 
 
 def del_staff(request, id_staff):
@@ -110,6 +117,13 @@ def del_foto_staff(request, id_staff):
         staff.save()
         messages.success(request, "Apaga Foto Profile Susesu !")
     return redirect("profile-staff", id_staff = id_staff)
+
+def edit_detalla_staff(request, id_staff):
+    staff = get_object_or_404(Staff, id_staff = id_staff)
+    if request.method == "POST":
+        form = EditDetallaFormStaff(request.POST, instance = staff)
+        if form.is_valid():
+            form.save()
 
     
 
