@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'AdminLTE/plugins/aos/dist/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'AdminLTE/dist/css/adminlte.min.css' %}">
     
     <style>
         :root {
@@ -34,7 +36,7 @@
             margin-bottom: 3rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-
+        .navbar { box-shadow: 0 2px 6px rgba(0,0,0,0.2); }
         .card {
             border: none;
             border-radius: 12px;
@@ -149,15 +151,43 @@
         }
     </style>
 </head>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'homepage' %}"><i class="bi bi-arrow-bar-left me-2"></i>Fila</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Filter
+          </a>
+          <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Livru Hotu-Hotu</a></li>
+              <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Novel</a></li>
+            <li><a class="dropdown-item" href="#">Light Novel</a></li>
+            <li><a class="dropdown-item" href="#">Manga</a></li>
+            <li><a class="dropdown-item" href="#">Teze</a></li>
+            <li><a class="dropdown-item" href="#">Istoria</a></li>
+            <li><a class="dropdown-item" href="#">Children</a></li>
+            <li><a class="dropdown-item" href="#">Education</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
 <body>
     <header class="header-section">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <a href="{% url 'homepage' %}" class="btn btn-outline-light back-button">
-                    <i class="fas fa-arrow-left me-2"></i>
-                    Back to Main
-                </a>
-            </div>
             <h1 class="text-center text-white mb-0 display-5 fw-bold">
                 <i class="fas fa-book-open me-3"></i>
                 Library Collection
@@ -180,7 +210,7 @@
                     <div class="card-body">
                         <h3 class="card-title">{{ livru.titulu_livru }}</h3>
                         <div class="card-text">
-                            {{ livru.sypnosis|truncatewords:15|safe }}
+                            {{ livru.short_sypnosis | safe }}
                         </div>
                         <div class="mt-auto pt-2">
                             <a href="#" class="btn btn-primary w-100">

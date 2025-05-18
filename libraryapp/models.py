@@ -1,5 +1,7 @@
-from django.db import models 
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.db import models
+from django.utils.html import strip_tags
+from django.utils.text import Truncator
+from django.contrib.auth.models import User
 
 class Admin_user(models.Model):
     naran_admin = models.CharField(max_length=50, default="")
@@ -13,14 +15,22 @@ class Departamento(models.Model):
 
     def __str__(self):
         return self.naran_dep
+class Periodo(models.Model):
+    tinan_periodo = models.CharField(max_length=4, unique=True)
+
+    def __str__ (self):
+        return self.tinan_periodo
 
 class Estudante(models.Model):
     nre = models.CharField(max_length=11, primary_key=True)
     naran_estudante = models.CharField(max_length=50)
-    sexu = models.CharField(max_length=1, choices=[('M','Mane'), ('F', 'Feto')])
+    sexu = models.CharField(max_length=4, choices=[('Mane','Mane'), ('Feto', 'Feto')])
     id_dep = models.ForeignKey(Departamento, on_delete=models.CASCADE)
-    periodo = models.CharField(max_length=4)
+    periodo = models.ForeignKey(Periodo, on_delete=models.CASCADE)
     nu_telefone = models.CharField(max_length=11)
+    data_moris = models.DateField(default="2000-01-01")
+    email = models.EmailField(blank=True, max_length=50)
+    hela_fatin = models.CharField(max_length= 30)
 
     def __str__(self):
         return self.naran_estudante
@@ -29,8 +39,8 @@ class Author(models.Model):
     id_author = models.AutoField(primary_key=True)
     naran_author = models.CharField(max_length=50)
     data_moris = models.DateField(default='2000-01-01')
+    email = models.EmailField(max_length=50, blank=True)
     sexu = models.CharField(max_length=4, choices=[('Mane','Mane'), ('Feto', 'Feto')])
-    email = models.CharField(max_length=50)
     nasaun = models.CharField(max_length=20, default="Timor Leste")
     deskrisaun = models.TextField(default="Hau Gosta Han Hudi :)")
     foto_profile = models.ImageField( blank=True)
@@ -58,10 +68,15 @@ class Livru(models.Model):
     sypnosis = models.TextField(default="BUKU NE TERBAIIIIKKK !!!")
     id_author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
+    def short_sypnosis(self):
+        plain_text = strip_tags(self.sypnosis)
+        return Truncator(plain_text).words(20, truncate='...')
+
+
     def __str__(self):
         return self.titulu_livru
 
-class Staff(AbstractBaseUser):
+class Staff(models.Model):
     id_staff = models.AutoField(primary_key=True)
     naran_staff = models.CharField(max_length=100)
     username = models.CharField(max_length=50, default="username")
@@ -73,18 +88,24 @@ class Staff(AbstractBaseUser):
     hela_fatin = models.CharField(max_length=50)
     foto_staff = models.ImageField(blank=True)
 
-    USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
+class StaffUser(models.Model):
+    id_staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+'''  Se Fix
+    # USERNAME_FIELD = 'username'
+    # REQUIRED_FIELDS = []
 
 
-    def has_perm(self, perm, obj = None):
-        return True
+    # def has_perm(self, perm, obj = None):
+    #     return True
     
-    def has_module_perms(self, perm, obj = None):
-        return True
+    # def has_module_perms(self, perm, obj = None):
+    #     return True
 
-    def __str__(self):
-        return self.naran_staff
+    # def __str__(self):
+    #     return self.naran_staff
+'''
 
 class Empresta(models.Model):
     id_empresta = models.CharField(max_length= 10, primary_key=True)
@@ -93,4 +114,6 @@ class Empresta(models.Model):
     id_staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
     data_empresta = models.DateField()
     data_devolve = models.DateField()
+
+
 
