@@ -9,7 +9,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form id="authorForm" method = 'post' action="{% url "del-staff" staff.id_staff %}">
+            <form id="authorForm" method = 'post' action="{% url "del-staff" item.staff.id_staff %}">
                 {% csrf_token %}
                 <div class="mb-3">
                 <p>Ita bo'ot Hakarak Apaga Dados Husi</p>

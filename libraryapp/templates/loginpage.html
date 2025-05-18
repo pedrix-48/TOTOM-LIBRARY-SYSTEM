@@ -8,9 +8,9 @@
         <title>Assembly Library System</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <link rel="stylesheet" href="{% static 'AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
-        <link rel="stylesheet" href="{% static 'AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'AdminLTE/dist/css/adminlte.min.css' %}">
         <link rel="stylesheet" href="{% static 'icons/font/bootstrap-icons.min.css' %}">
+        <link rel="stylesheet" href="{% static 'AdminLTE/css/bootstrap.min.css' %}">
         <style>
             .login-page {
                 background: linear-gradient(135deg,rgb(5, 29, 134) 0%,rgb(18, 6, 31) 100%);
@@ -76,6 +76,14 @@
                     <img src="{% static 'images/assembly.png' %}" alt="Logo" class="brand-logo">
                     <h2 class="mb-2"><b>Assembly Library System</b></h2>
                     <p class="text-muted">Administrator Portal</p>
+                    {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="bi bi-info-circle-fill"></i> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                    {% endif %}
                 </div>
                 <div class="card-body">
                     {% if form.errors %}
@@ -125,7 +133,6 @@
         </div>
 
         <script src="{% static 'AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
-        <script src="{% static 'AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-        <script src="{% static 'AdminLTE/dist/js/adminlte.min.js' %}"></script>
+        <script src="{% static 'AdminLTE/js/bootstrap.bundle.min.js' %}"></script>
     </body>
 </html>

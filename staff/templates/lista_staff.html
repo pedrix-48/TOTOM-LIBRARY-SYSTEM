@@ -48,21 +48,21 @@ hr.bold {
             </tr>
             </thead>
             <tbody>
-                {% for staff in staffs %}
+                {% for item in staffs %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>
-                            <a href="{% url "profile-staff" staff.id_staff %}" >
-                                {{ staff.naran_staff }}
+                            <a href="{% url "profile-staff" item.staff.id_staff %}" >
+                                {{ item.staff.naran_staff }}
                             </a>
                         </td>
-                        <td>{{ staff.username }}</td>
-                        <td>{{ staff.password |slice:":11"  }}...</td>
-                        <td>{{ staff.data_moris }}</td>
-                        <td>{{ staff.sexu }}</td>
-                        <td>{{ staff.nu_telefone }}</td>
-                        <td>{{ staff.email }}</td>
-                        <td>{{ staff.hela_fatin }}</td>
+                        <td>{{ item.username }}</td>
+                        <td>{{ item.password |slice:":11"  }}...</td> 
+                        <td>{{ item.staff.data_moris }}</td>
+                        <td>{{ item.staff.sexu }}</td>
+                        <td>{{ item.staff.nu_telefone }}</td>
+                        <td>{{ item.staff.email }}</td>
+                        <td>{{ item.staff.hela_fatin }}</td>
                         <td>
                             <div class = "d-flex gap-1">
                                 <button data-bs-toggle = 'modal' data-bs-target = "#editModal{{ staff.id_staff }}" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>

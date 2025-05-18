@@ -3,7 +3,7 @@
 <div class="modal fade" id="editModal{{ staff.id_staff }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-        <form id="livruForm" method = 'post' action="{% url "edit-staff" staff.id_staff %}" enctype="multipart/form-data">
+        <form id="livruForm" method = 'post' action="{% url "edit-staff" item.staff.id_staff %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class = "card card-dark">
                 <div class="card-header">

@@ -17,14 +17,14 @@
                                 <label for="naran" class="form-label">Naran Staff</label>
                                 {{ form.naran_staff }}
                             </div>
-                            <div class="mb-3">
+                            {% comment %} <div class="mb-3">
                                 <label for="naran" class="form-label">Username</label>
                                 {{ form.username }}
                             </div>
                             <div class="mb-3">
                                 <label for="naran" class="form-label">Password</label>
                                 {{ form.password }}
-                            </div>
+                            </div> {% endcomment %}
                             <div class="mb-3">
                                 <label for="autor" class="form-label">Data Moris</label>
                                 {{ form.data_moris }}
@@ -33,12 +33,12 @@
                                 <label for="autor" class="form-label">Sexu</label>
                                 {{ form.sexu }}
                             </div>
-                        </div>
-                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="data" class="form-label">Numeru Telemove</label>
                                 {{ form.nu_telefone }}
                             </div>
+                        </div>
+                        <div class="col-md-6">
                             <div class="mb-3">
                                 <label for="data" class="form-label">Email</label>
                                 {{ form.email }}

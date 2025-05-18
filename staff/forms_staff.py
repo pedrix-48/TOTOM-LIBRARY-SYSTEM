@@ -22,14 +22,14 @@ class StaffForm(forms.ModelForm):
             "class":"form-control",
             "placeholder" : "Prense Naran Staff"
         })
-        self.fields['username'].widget.attrs.update({
-            "class":"form-control",
-            "placeholder" : "Prense Username"
-        })
-        self.fields['password'].widget.attrs.update({
-            "class":"form-control",
-            "placeholder" : "Prense Password"
-        })
+        # self.fields['username'].widget.attrs.update({
+        #     "class":"form-control",
+        #     "placeholder" : "Prense Username"
+        # })
+        # self.fields['password'].widget.attrs.update({
+        #     "class":"form-control",
+        #     "placeholder" : "Prense Password"
+        # })
         self.fields['nu_telefone'].widget.attrs.update({
             "class":"form-control",
             "placeholder" : "Prense Numeru Telemovel"

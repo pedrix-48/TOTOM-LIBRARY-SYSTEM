@@ -28,7 +28,7 @@ def loginpage(request):
                 login(request, user)
                 return redirect('dashboard')
             else:
-                return render(request, 'loginpage.html')
+                messages.error(request,"Username Ou Password Sei Sala !!")
     else:
         form = AdminLoginForm()
     context = {
@@ -44,7 +44,7 @@ def admin_logout(request):
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-
+@login_required(login_url='login') 
 def lista_author(request):
     form = AuthorForm()
     authors = Author.objects.all()
@@ -54,6 +54,8 @@ def lista_author(request):
     }
     return render(request, 'author/lista_author.html', context)
 
+
+@login_required(login_url='login') 
 def add_author(request):
     if request.method == 'POST':
         form = AuthorForm(request.POST, request.FILES)
@@ -70,6 +72,7 @@ def add_author(request):
     }
     return render(request, 'author/add_author.html', context)
 
+@login_required(login_url='login') 
 def edit_author(request, id_author):
     author = Author.objects.get(id_author=id_author)
     form = AuthorForm(instance=author)
@@ -87,18 +90,21 @@ def edit_author(request, id_author):
     }
     return render(request, 'author/edit_author.html', context)
 
+@login_required(login_url='login') 
 def delete_author(request, id_author):
     author = Author.objects.get(id_author=id_author)
     if request.method == 'POST':
         author.delete()
         return redirect('lista-author')
     
+@login_required(login_url='login') 
 def del_all_author(request):
     author = Author.objects.all()
     if request.method == "POST":
         author.delete()
         return redirect("lista-author")
-    
+
+@login_required(login_url='login') 
 def profile_author(request,id_author):
     author = Author.objects.get(id_author=id_author)
     context = {
@@ -106,6 +112,7 @@ def profile_author(request,id_author):
     }
     return render(request, 'author/profile_author.html', context)
 
+@login_required(login_url='login') 
 def edit_profile_photo(request, id_author):
     author = get_object_or_404(Author, id_author=id_author)
     if request.method == 'POST' and 'foto_profile' in request.FILES:
@@ -114,6 +121,7 @@ def edit_profile_photo(request, id_author):
         messages.success(request, "Troka Foto Profile Susesu !!")
     return redirect('profile-author', id_author=author.id_author)
 
+@login_required(login_url='login') 
 def del_foto_profile_author(request, id_author):
     author = get_object_or_404(Author, id_author=id_author)
     if request.method == "POST":
@@ -124,7 +132,7 @@ def del_foto_profile_author(request, id_author):
         messages.success(request, "Apaga Foto Profile Susesu !!")
     return redirect("profile-author", id_author=id_author)
 
-
+@login_required(login_url='login') 
 def edit_detalla_profile(request, id_author):
     author = get_object_or_404(Author, id_author=id_author)
     if request.method == 'POST':
@@ -141,7 +149,7 @@ def edit_detalla_profile(request, id_author):
     }
     return render(request, 'author/profile_author.html', context)
 
-
+@login_required(login_url='login') 
 def edit_deskrisaun_profile(request, id_author):
     author = get_object_or_404(Author, id_author=id_author)
     if request.method == 'POST':

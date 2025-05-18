@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from libraryapp.models import Livru, Author
 from .forms_livru import LivruForm, EditInfoDetailLivru, EditSypnosisLivruForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url='login')
 def lista_livru(request):
     livrus = Livru.objects.all()
     form = LivruForm
@@ -12,6 +14,7 @@ def lista_livru(request):
     }
     return render(request, 'lista_livru.html', context)
 
+@login_required(login_url='login')
 def add_livru(request):
     if request.method == "POST":
         form = LivruForm(request.POST, request.FILES)
@@ -27,18 +30,21 @@ def add_livru(request):
         
     return render(request, "add_livru.html", {'form' : form, "authors" : authors})
 
+@login_required(login_url='login')
 def delete_livru(request, id_livru):
     livru = Livru.objects.get(id_livru = id_livru)
     if request.method == "POST":
         livru.delete()
         return redirect("lista-livru")
-    
+
+@login_required(login_url='login')
 def del_all_livru(request):
     livru = Livru.objects.all()
     if request.method == "POST":
         livru.delete()
         return redirect("lista-livru")
-    
+
+@login_required(login_url='login')
 def edit_livru(request, id_livru):
     livru = Livru.objects.get(id_livru = id_livru)
     form = LivruForm(instance = livru)
@@ -58,6 +64,7 @@ def edit_livru(request, id_livru):
     }
     return render(request, "edit_livru.html", context)
 
+@login_required(login_url='login')
 def detail_livru(request, id_livru):
     livru = Livru.objects.get(id_livru = id_livru)
     form = EditInfoDetailLivru()
@@ -67,6 +74,7 @@ def detail_livru(request, id_livru):
     }
     return render(request, "detail_livru.html", context)
 
+@login_required(login_url='login')
 def edit_cover_livru(request, id_livru):
     livru = get_object_or_404(Livru, id_livru=id_livru)
     if request.method == "POST" and "foto_livru" in request.FILES:
@@ -77,6 +85,7 @@ def edit_cover_livru(request, id_livru):
     context = {"livru": livru}
     return render(request, "detail_livru.html", context)
 
+@login_required(login_url='login')
 def edit_info_livru(request, id_livru):
     livru = get_object_or_404(Livru, id_livru = id_livru)
     if request.method == "POST":
@@ -93,6 +102,7 @@ def edit_info_livru(request, id_livru):
     }
     return render(request, "detail_livru.html", context)
 
+@login_required(login_url='login')
 def editSypnosisLivru(request, id_livru):
     livru = get_object_or_404(Livru, id_livru = id_livru)
     if request.method == "POST":
