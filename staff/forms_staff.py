@@ -1,5 +1,6 @@
 from django import forms
 from libraryapp.models import Staff
+from django.contrib.auth.models import User
 
 
 class StaffForm(forms.ModelForm):
@@ -8,13 +9,26 @@ class StaffForm(forms.ModelForm):
         ("Feto","Feto"),
     ]
 
+    username = forms.CharField(max_length=255, required=False)
+    password = forms.PasswordInput()
+
     sexu = forms.ChoiceField(choices=SEXU, widget=forms.Select(attrs={
         "class" : "form-control"
     }))
 
     class Meta:
         model = Staff
-        exclude = ['id_staff']
+        fields = [
+            'naran_staff',
+            'username',
+            # 'password',
+            'nu_telefone',
+            'email',
+            'hela_fatin',
+            'foto_staff',
+            'data_moris',
+
+        ]
 
     def __init__(self, *args, **kwargs):
         super(StaffForm, self).__init__(*args, **kwargs)
@@ -22,10 +36,10 @@ class StaffForm(forms.ModelForm):
             "class":"form-control",
             "placeholder" : "Prense Naran Staff"
         })
-        # self.fields['username'].widget.attrs.update({
-        #     "class":"form-control",
-        #     "placeholder" : "Prense Username"
-        # })
+        self.fields['username'].widget.attrs.update({
+            "class":"form-control",
+            "placeholder" : "Prense Username"
+        })
         # self.fields['password'].widget.attrs.update({
         #     "class":"form-control",
         #     "placeholder" : "Prense Password"
@@ -77,14 +91,6 @@ class EditDetallaFormStaff(forms.ModelForm):
             "class":"form-control",
             "placeholder" : "Prense Naran Staff"
         })
-        self.fields['username'].widget.attrs.update({
-            "class":"form-control",
-            "placeholder" : "Prense Username"
-        })
-        self.fields['password'].widget.attrs.update({
-            "class":"form-control",
-            "placeholder" : "Prense Password"
-        })
         self.fields['nu_telefone'].widget.attrs.update({
             "class":"form-control",
             "placeholder" : "Prense Numeru Telemovel"
@@ -109,6 +115,11 @@ class EditDetallaFormStaff(forms.ModelForm):
         self.fields['hela_fatin'].required = False
         self.fields['email'].required = False
         self.fields['nu_telefone'].required = False
-        self.fields['username'].required = False
-        self.fields['password'].required = False
         self.fields['data_moris'].required = False
+
+class UserEditForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput(), required=False)
+
+    class Meta:
+        model = User
+        fields = ['username', 'password']

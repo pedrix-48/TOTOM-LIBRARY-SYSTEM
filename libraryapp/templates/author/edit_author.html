@@ -1,59 +1,100 @@
-
+{% extends "home.html" %}
 {% load static %}
-<script src = "{% static 'AdminLTE/js/script.js' %}"></script>
+{% block content %}
 
-<div class="modal fade" id="editModal{{ author.id_author }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-        <form id="livruForm" method = 'post' action="{% url 'edit-author' author.id_author %}" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class = "card card-dark">
-                <div class="card-header">
-                    <h5 class="card-title" id="livruFormModalLabel">Edit Autor <i class="bi bi-pencil-square"></i></h5>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="mb-3">
-                                <label for="naran" class="form-label">Naran Autor</label>
-                                <input type="text" name="naran_author" class="form-control" value="{{ author.naran_author }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="autor" class="form-label">Sexu</label>
-                                <select name="sexu" class="form-control">
-                                    <option value="Mane" {% if author.sexu == "Mane" %}selected{% endif %}>Mane</option>
-                                    <option value="Feto" {% if author.sexu == "Feto" %}selected{% endif %}>Feto</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="autor" class="form-label">Data Moris</label>
-                                <input type="date" name="data_moris" class="form-control" value="{{ author.data_moris|date:'Y-m-d' }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Email</label>
-                                <input type="text" name="email" class="form-control" value="{{ author.email }}">
-                            </div>
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Nasaun</label>
-                                <input type="text" name="nasaun" class="form-control" value="{{ author.nasaun }}">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="mb-3">
-                                <label for="data" class="form-label">Deskrisaun</label>
-                                <textarea id="summernote-{{ author.id_author }}" name="deskrisaun" class="form-control">{{ author.deskrisaun|safe }}</textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
-                    <button   button type="submit" class="btn btn-dark">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
-                </div>
-            </div>
-        </form>
+<link href = "{% static 'AdminLTE/css/styles.css' %}" rel = "stylesheet">
+<link href = "{% static 'AdminLTE/plugins/select2/css/select2.min.css' %}" rel = "stylesheet">
+<link href = "{% static 'AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}" rel = "stylesheet">
+    <div class="gradient-header p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+            <a class="btn btn-outline-primary" href="{% url 'lista-author' %}">
+                <i class="bi bi-arrow-left-circle me-2"></i>Fila ba Lista
+            </a>
+            <h3 class="display-6 mb-0 text-center fw-bold text-white">Edit Author
+                    <a href = "#">
+                        <span class = "underline-hover position-relative"><span class="text-accent ">{{ author.naran_author }}</span></span>
+                    </a>
+            </h3>
         </div>
     </div>
+    <style>
+        hr.bold {
+            border: none;
+            border-top: 5px solid black; 
+            margin: 1rem 0;
+        }
+    </style>
+    <hr class="bg-dark bold">
+<div class="card card-navy">
+    <div class="card-header">
+        <h3 class="card-title text-white"><i class="bi bi-info-circle me-2"></i>EDIT author</h3>
+    </div>
+<form method = "POST" >
+    {% csrf_token %}
+    <div class="card-body">
+        <div class="form-group">
+            <label for="naran_author">Naran Author</label>
+            <input type="text" name="naran_author" class="form-control" value="{{ author.naran_author }}">
+        </div>
+        <div class="form-group">
+            <label for="data_moris">Data Moris</label>
+            <input type="date" name="data_moris" class="form-control" value="{{ author.data_moris|date:'Y-m-d'}}">
+        </div>
+        <div class="form-group">
+            <label for="sexu">Sexu</label>
+            <select name="sexu" class="form-control">
+                <option value="Mane" {% if author.sexu == "Mane" %}selected{% endif %}>Mane</option>
+                <option value="Feto" {% if author.sexu == "Feto" %}selected{% endif %}>Feto</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" value="{{ author.email }}">
+        </div>
+        <div class="form-group">
+            <label for="nasaun">Husi Nasaun</label>
+            <input type="text" name="nasaun" class="form-control" value="{{ author.nasaun }}">
+        </div>
+        <div class="form-group">
+            <label for="deskrisaun">Sypnosis</label>
+            <textarea id="summernote" name="deskrisaun" class="form-control">{{ author.deskrisaun|safe }}</textarea>
+        </div>
+    </div>
+    <div class="card-footer bg-transparent text-end">
+        <a type="submit" class="btn btn-outline-secondary" href = "{% url 'lista-author' %}">Fila</a>
+        <button type="submit" class="btn btn-dark">Guarda <i class="bi bi-floppy2-fill ms-1"></i></button>
+    </div>
+</form>
 </div>
+
+<script>
+    $(document).ready(function() {
+    // Initialize Summernote for the deskrisaun field
+    $('#summernote').summernote({
+        height: 200, // Set the height of the editor
+        toolbar: [
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['font', ['strikethrough', 'superscript', 'subscript']],
+        ['fontsize', ['fontsize']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['height', ['height']],
+        ['insert', ['link']],
+        ['view'] , ['fullscreen']
+        ]
+    });
+});
+</script>
+<script src = "{% static 'AdminLTE/plugins/select2/js/select2.full.min.js' %}"></script>
+
+<script>
+    $('.select2').select2()
+
+    $('.select2bs4').select2({
+        theme: 'bootstrap4'
+    })
+</script>
+
+{% endblock content %}
 
     

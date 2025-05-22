@@ -83,23 +83,18 @@ def import_staff_xl(request):
 
 @login_required(login_url='login')
 def edit_staff(request, id_staff):
-    staff = Staff()
-    staff = get_object_or_404(Staff, id_staff = id_staff)
-    if request.method  == "POST":
-        form = EditDetallaFormStaff(request.POST, instance = staff)
-        if form.is_valid() and form.cleaned_data['password']:
-            staff.set_password(form.cleaned_data['password'])
-        form.save(commit=False)
-        form.save()
-        messages.success(request, "Guarda Dados Susesu !")
-        return redirect("lista-staff")
+    staff = Staff.objects.get(id_staff = id_staff)
+    form = StaffForm(instance = staff)
+    if request.method == "POST":
+        form = StaffForm(request.POST, instance = staff)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            staff.username = username
+            staff.save()
+            messages.success(request, "Guarda Dados Susesu !")
     else:
-        form = EditDetallaFormStaff(instance = staff)
-    context = {
-        "form" : form,
-        "staff" : staff
-    }
-    return render(request, "edit_staff.html", context)
+        form = StaffForm(instance = staff)
+    return render(request, 'edit_staff.html', {"form" : form, "staff": staff})
 
 @login_required(login_url='login')
 def del_staff(request, id_staff):
@@ -117,8 +112,15 @@ def del_all_staff(request):
 
 @login_required(login_url='login')
 def profile_staff(request, id_staff):
-    staff = Staff.objects.get(id_staff = id_staff)
-    return render(request, "profile_staff.html", {"staff" : staff})
+    staff = get_object_or_404(Staff, id_staff = id_staff)
+    try:
+        staff_user = StaffUser.objects.get(id_staff = staff)
+        user = staff_user.user
+        password = staff_user.user.password
+    except StaffUser.DoesNotExist:
+        user = None
+    
+    return render(request, "profile_staff.html", {"staff" : staff, "user" : user})
 
 @login_required(login_url='login')
 def edit_foto_staff(request, id_staff):
@@ -143,11 +145,7 @@ def del_foto_staff(request, id_staff):
 
 @login_required(login_url='login')
 def edit_detalla_staff(request, id_staff):
-    staff = get_object_or_404(Staff, id_staff = id_staff)
-    if request.method == "POST":
-        form = EditDetallaFormStaff(request.POST, instance = staff)
-        if form.is_valid():
-            form.save()
+    pass
 
     
 
