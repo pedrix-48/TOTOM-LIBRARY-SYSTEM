@@ -139,7 +139,7 @@
           <li class="nav-item">
             {% url 'lista-staff' as lista_staff_url %}
             {% url 'profile-staff' as profile_staff_url %}
-            <a href="{{ lista_staff_url }}" class="nav-link {% if request.resolver_match.url_name == 'lista-staff' or request.resolver_match.url_name == 'profile-staff' %}active{% endif %}">
+            <a href="{{ lista_staff_url }}" class="nav-link {% if request.resolver_match.url_name == 'lista-staff' or request.resolver_match.url_name == 'profile-staff' or '/edit-staff' in request.path  or 'edit-password-staff' in request.path %}active{% endif %}">
               <i class="bi bi-person-fill-check nav-icon"></i>
               <p>
                 Staff
@@ -167,7 +167,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0" align = 'center'>{{ title }}</h1>
+            
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->

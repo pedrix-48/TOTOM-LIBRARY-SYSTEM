@@ -1,7 +1,7 @@
 <!-- Modal -->
 {% load static %}
 
-<div class="modal fade" id="delModal{{ staff.id_staff }}" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
+<div class="modal fade" id="delModal{{ item.staff.id_staff }}" tabindex="-1" aria-labelledby="delModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header bg-danger text-white">
@@ -13,7 +13,7 @@
                 {% csrf_token %}
                 <div class="mb-3">
                 <p>Ita bo'ot Hakarak Apaga Dados Husi</p>
-                <p> Staff  <strong>{{ staff.naran_staff }}</strong></p>
+                <p> Staff  <strong>{{ item.staff.naran_staff }}</strong></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Taka</button>

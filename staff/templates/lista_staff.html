@@ -57,7 +57,7 @@ hr.bold {
                             </a>
                         </td>
                         <td>{{ item.username }}</td>
-                        <td>{{ item.password |slice:":11"  }}...</td> 
+                        <td>{{ item.password |slice:":11"  }}...<a href = "{% url 'edit-password-staff' item.staff.id_staff %}" class = 'btn btn-sm btn-info'>Troka Password <i class="bi bi-pencil-fill"></i></a></td> 
                         <td>{{ item.staff.data_moris }}</td>
                         <td>{{ item.staff.sexu }}</td>
                         <td>{{ item.staff.nu_telefone }}</td>
@@ -65,12 +65,11 @@ hr.bold {
                         <td>{{ item.staff.hela_fatin }}</td>
                         <td>
                             <div class = "d-flex gap-1">
-                                <button data-bs-toggle = 'modal' data-bs-target = "#editModal{{ staff.id_staff }}" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
-                                <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ staff.id_staff }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                <a href = "{% url 'edit-staff' item.staff.id_staff %}" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ item.staff.id_staff }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
-                    {% include "edit_staff.html" %}
                     {% include "del_staff.html" %}
                 {% endfor %}
             </tbody>

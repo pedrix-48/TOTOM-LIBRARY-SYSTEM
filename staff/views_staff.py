@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from libraryapp.models import Staff, StaffUser
-from .forms_staff import StaffForm, EditDetallaFormStaff
+from libraryapp.models import Staff, StaffUser, User
+from .forms_staff import StaffForm, EditDetallaFormStaff, UserEditForm, BootstrapPasswordChangeForm
+from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
 import openpyxl as xl
 
 
@@ -83,25 +85,56 @@ def import_staff_xl(request):
 
 @login_required(login_url='login')
 def edit_staff(request, id_staff):
-    staff = Staff.objects.get(id_staff = id_staff)
-    form = StaffForm(instance = staff)
+    staff = get_object_or_404(Staff, id_staff=id_staff)
+    
+    try:
+        staff_user = StaffUser.objects.get(id_staff=staff)
+        user = staff_user.user
+    except StaffUser.DoesNotExist:
+        messages.error(request, "Staff Laiha !")
+        return redirect("lista-staff")
+    
     if request.method == "POST":
-        form = StaffForm(request.POST, instance = staff)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            staff.username = username
-            staff.save()
+        staff_form = StaffForm(request.POST, request.FILES, instance=staff)
+        user_form = UserEditForm(request.POST, instance=user)
+        
+        if staff_form.is_valid() and user_form.is_valid():
+            staff_form.save()
+            username = user_form.cleaned_data['username']
+            user.username = username
+            user.save()
+            
             messages.success(request, "Guarda Dados Susesu !")
-    else:
-        form = StaffForm(instance = staff)
-    return render(request, 'edit_staff.html', {"form" : form, "staff": staff})
+            return redirect("lista-staff")
+        else:
+            if staff_form.errors:
+                messages.error(request, staff_form.errors)
+            if user_form.errors:
+                messages.error(request, "user_form.errors")
+    # else:
+    #     staff_form = StaffForm(instance=staff)
+    #     user_form = UserEditForm(instance=user)
+    
+    return render(request, "edit_staff.html", {
+        # "staff_form": staff_form,
+        # "user_form": user_form,
+        "staff": staff,
+        "user": user
+    })
 
 @login_required(login_url='login')
 def del_staff(request, id_staff):
-    staff = Staff.objects.get(id_staff=id_staff)
-    if request.method == "POST":
-        staff.delete()
-        return redirect('lista-staff')
+    staff = get_object_or_404(Staff, id_staff=id_staff)
+    
+    try:
+        staff_user = StaffUser.objects.get(id_staff=staff)
+        user = staff_user.user
+        user.delete()
+        staff_user.delete()
+    except StaffUser.DoesNotExist:
+        messages.warning(request, "Staff user relationship not found.")
+    staff.delete()
+    return redirect("lista-staff")
 
 @login_required(login_url='login')
 def del_all_staff(request):
@@ -147,6 +180,22 @@ def del_foto_staff(request, id_staff):
 def edit_detalla_staff(request, id_staff):
     pass
 
+class EditPasswordStaff(PasswordChangeView):
+    template_name = "edit_password.html"
+    success_url = "/staff/list/"
+    form_class = BootstrapPasswordChangeForm
     
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        staff = get_object_or_404(Staff, id_staff=self.kwargs['id_staff'])
 
+        staff_user = get_object_or_404(StaffUser, id_staff=staff)
+        kwargs['user'] = staff_user.user  # Now this works
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        staff = get_object_or_404(Staff, id_staff=self.kwargs['id_staff'])
+        context['staff'] = staff
+        return context
 

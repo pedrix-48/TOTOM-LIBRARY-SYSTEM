@@ -1,6 +1,7 @@
 from django import forms
 from libraryapp.models import Staff
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 class StaffForm(forms.ModelForm):
@@ -27,6 +28,7 @@ class StaffForm(forms.ModelForm):
             'hela_fatin',
             'foto_staff',
             'data_moris',
+            'sexu',
 
         ]
 
@@ -40,10 +42,6 @@ class StaffForm(forms.ModelForm):
             "class":"form-control",
             "placeholder" : "Prense Username"
         })
-        # self.fields['password'].widget.attrs.update({
-        #     "class":"form-control",
-        #     "placeholder" : "Prense Password"
-        # })
         self.fields['nu_telefone'].widget.attrs.update({
             "class":"form-control",
             "placeholder" : "Prense Numeru Telemovel"
@@ -70,6 +68,7 @@ class StaffForm(forms.ModelForm):
         )
         self.fields['email'].required = False
         self.fields['nu_telefone'].required = False
+        
 
 class EditDetallaFormStaff(forms.ModelForm):
     SEXU = [
@@ -118,8 +117,18 @@ class EditDetallaFormStaff(forms.ModelForm):
         self.fields['data_moris'].required = False
 
 class UserEditForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(), required=False)
 
     class Meta:
         model = User
-        fields = ['username', 'password']
+        fields = ['username']
+        
+class BootstrapPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        for field in self.fields.values():
+            field.widget.attrs.update({
+                'class': 'form-control',
+                'placeholder': field.label
+            })
+    
