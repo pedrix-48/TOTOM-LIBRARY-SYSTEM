@@ -57,7 +57,7 @@ hr.bold {
                             </a>
                         </td>
                         <td>{{ item.username }}</td>
-                        <td>{{ item.password |slice:":11"  }}...<a href = "{% url 'edit-password-staff' item.staff.id_staff %}" class = 'btn btn-sm btn-info'>Troka Password <i class="bi bi-pencil-fill"></i></a></td> 
+                        <td>{{ item.password |slice:":11"  }}...<a href = "{% url 'edit-password-staff' item.staff.id_staff %}" class = 'btn btn-sm btn-info'>Edit Password <i class="bi bi-pencil-fill"></i></a></td> 
                         <td>{{ item.staff.data_moris }}</td>
                         <td>{{ item.staff.sexu }}</td>
                         <td>{{ item.staff.nu_telefone }}</td>

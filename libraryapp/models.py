@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 
 class Admin_user(models.Model):
     naran_admin = models.CharField(max_length=50, default="")
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=100)
+    username = models.CharField(max_length=20, default="")
+    password = models.CharField(max_length=100, default="password")
     foto_profile = models.ImageField( blank=True)
 
 class Departamento(models.Model):

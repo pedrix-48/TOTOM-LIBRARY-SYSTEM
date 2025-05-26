@@ -26,11 +26,15 @@
                                 {{ form.sexu }}
                             </div>
                             <div class="mb-3">
-                                <label for="data" class="form-label">Numeru Telemove</label>
-                                {{ form.nu_telefone }}
+                                <label for="autor" class="form-label">Username</label>
+                                {{ staff_user.username }}
                             </div>
                         </div>
                         <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Numeru Telemove</label>
+                                {{ form.nu_telefone }}
+                            </div>
                             <div class="mb-3">
                                 <label for="data" class="form-label">Email</label>
                                 {{ form.email }}

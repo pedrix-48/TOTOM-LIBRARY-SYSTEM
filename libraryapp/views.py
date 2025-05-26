@@ -2,7 +2,9 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, render, redirect 
 from django.contrib.auth import authenticate, logout, login 
 from django.contrib.auth.decorators import login_required 
+from django.contrib.auth.views import LoginView
 from .forms import AdminLoginForm, AuthorForm, AuthorDetallaForm, EditAuthorDeskrisaunForm
+from staff.forms_staff import LoginUserForm
 from .models import Author, Livru
 
 def homepage(request):
@@ -36,11 +38,28 @@ def loginpage(request):
     }
     return render(request, 'loginpage.html', context)
 
+class StaffLoginView(LoginView):
+    form_class = LoginUserForm
+    authentication_form = LoginUserForm
+    template_name = 'loginpage.html'
+    
+    def form_valid(self,form):
+        user = form.get_user()
+        if user.is_staff:
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, "Ita La Autoriza Atu Asesu !")
+            return redirect('login')
+    
+    def get_success_url(self):
+        return super().get_success_url()
+    
+
 def admin_logout(request):
     logout(request)
     return render(request, 'logout.html')
 
-@login_required(login_url='login') # rai hela ba orsda ba hadia nia bug
+@login_required(login_url='login') 
 def dashboard(request):
     return render(request, 'dashboard.html')
 

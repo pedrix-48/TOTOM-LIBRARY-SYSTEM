@@ -168,8 +168,10 @@
                         <div class="col-md-5 text-center">
                             {% if staff.foto_staff %}
                             <img src="{{ staff.foto_staff.url }}" class="profile-img rounded-circle">
-                            {% else %}
+                            {% elif staff.sexu == "Mane" %}
                             <img src="/media/default_male.jpg" class="profile-img rounded-circle">
+                            {% elif staff.sexu == "Feto" %}
+                            <img src="/media/default_female.jpg" class="profile-img rounded-circle">
                             {% endif %}
                         </div>
                         <div class="col-md-7">

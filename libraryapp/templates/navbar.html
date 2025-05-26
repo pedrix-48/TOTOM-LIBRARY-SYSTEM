@@ -59,14 +59,10 @@
                 <li class="nav-item"><a class="nav-link" href="#books">Livru</a></li>
                 <li class="nav-item"><a class="nav-link" href="#departments">Departamentu</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">Kona-ba Ami</a></li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarLoginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li class="nav-item">
+                    <a class="nav-link " href="{% url 'login' %}" id="navbarLoginDropdown" role="button" >
                         <i class="fa-solid fa-right-to-bracket me-1"></i>Login
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarLoginDropdown">
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Admin</a></li> 
-                        <li><a class="dropdown-item" href="">Staff</a></li>
-                    </ul>
                 </li>
             </ul>
         </div>

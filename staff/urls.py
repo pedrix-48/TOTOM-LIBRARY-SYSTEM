@@ -1,7 +1,9 @@
 from django.urls import path
 from . import views_staff as views
+# from libraryapp.views import staff_login
 
 urlpatterns = [
+    # path('staff-login/', staff_login, name='staff-login'),
     path('list/', views.lista_staff, name='lista-staff'),
     path('add-staff/', views.add_staff, name='add-staff'),
     path('import-staff/', views.import_staff_xl, name='import-staff'),

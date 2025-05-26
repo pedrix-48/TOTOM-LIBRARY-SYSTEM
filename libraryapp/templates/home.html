@@ -136,6 +136,7 @@
               </p>
             </a>
           </li>
+          {% if perms.libraryapp.view_staff %}
           <li class="nav-item">
             {% url 'lista-staff' as lista_staff_url %}
             {% url 'profile-staff' as profile_staff_url %}
@@ -146,6 +147,7 @@
               </p>
             </a>
           </li>
+          {% endif %}
           <li class="nav-item">
             {% url 'lista-empresta' as lista_empresta_url %}
             <a href="{{ lista_empresta_url }}" class="nav-link {% if request.path == lista_empresta_url %} active {% endif %}">
@@ -203,6 +205,21 @@
     <script src="{% static 'AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'AdminLTE/plugins/chart.js/Chart.min.js' %}"></script>
     <script src="{% static 'AdminLTE/dist/js/adminlte.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const body = document.body;
+
+        if (localStorage.getItem("sidebar-collapsed") === "true") {
+          body.classList.add("sidebar-collapse");
+        }
+
+        document.querySelector('[data-widget="pushmenu"]')?.addEventListener("click", function () {
+          const collapsed = body.classList.contains("sidebar-collapse");
+          localStorage.setItem("sidebar-collapsed", !collapsed);
+        });
+      });
+    </script>
+
   </body>
 </html>
 

@@ -2,6 +2,7 @@ from django import forms
 from libraryapp.models import Staff
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class StaffForm(forms.ModelForm):
@@ -122,6 +123,10 @@ class UserEditForm(forms.ModelForm):
         model = User
         fields = ['username']
         
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({"class" : "form-control", "placeholder" : "Prense Username"})
+        
 class BootstrapPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -131,4 +136,22 @@ class BootstrapPasswordChangeForm(PasswordChangeForm):
                 'class': 'form-control',
                 'placeholder': field.label
             })
+class LoginUserForm(AuthenticationForm):
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Prense Username"
+        })
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            "class": "form-control",
+            "placeholder": "Prense Password"
+        })
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
+    
     

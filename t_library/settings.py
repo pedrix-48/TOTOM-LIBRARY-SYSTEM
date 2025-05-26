@@ -64,7 +64,7 @@ TEMPLATES = [
         'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
-            'string_if_invalid': 'INVALID VARIABLE: %s',
+            # 'string_if_invalid': 'INVALID VARIABLE: %s',
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
