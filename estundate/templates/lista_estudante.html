@@ -102,7 +102,7 @@ hr.bold {
             text: 'Aumenta Estudante <i class="bi bi-person-plus-fill"></i>',
             className: 'btn btn-success',
             action: function (e, dt, node, config) {
-            $('#autorFormModal').modal('show'); // This triggers the Bootstrap modal
+            $('#estudanteFormModal').modal('show'); // This triggers the Bootstrap modal
             }
         },
         {
@@ -123,8 +123,8 @@ hr.bold {
 });
 </script>
 
-{% comment %} {% include 'estudante/add_estudante.html' %}
-{% include 'estudante/dell_all_estudante.html' %} {% endcomment %}
+{% include 'add_estudante.html' %}
+{% comment %} {% include 'estudante/dell_all_estudante.html' %} {% endcomment %}
 
 
 {% endblock content %}

@@ -22,7 +22,7 @@ class Periodo(models.Model):
         return self.tinan_periodo
 
 class Estudante(models.Model):
-    nre = models.CharField(max_length=11, primary_key=True)
+    nre = models.CharField(max_length=11, primary_key=True, unique=True)
     naran_estudante = models.CharField(max_length=50)
     sexu = models.CharField(max_length=4, choices=[('Mane','Mane'), ('Feto', 'Feto')])
     id_dep = models.ForeignKey(Departamento, on_delete=models.CASCADE)
@@ -30,6 +30,7 @@ class Estudante(models.Model):
     nu_telefone = models.CharField(max_length=11)
     data_moris = models.DateField(default="2000-01-01")
     email = models.EmailField(blank=True, max_length=50)
+    foto_profile = models.ImageField(blank=True)
     hela_fatin = models.CharField(max_length= 30)
 
     def __str__(self):

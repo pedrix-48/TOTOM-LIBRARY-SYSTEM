@@ -1,0 +1,71 @@
+
+{% load static %}
+<script src = "{% static 'AdminLTE/js/script.js' %}"></script>
+<div class="modal fade" id="estudanteFormModal" tabindex="-1" aria-labelledby="estudanteFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+        <form id="livruForm" method = 'post' action="{% url 'add-estudante' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class = "card card-success">
+                <div class="card-header">
+                    <h5 class="card-title" id="livruFormModalLabel">Aumenta Estudante <i class="bi bi-person-fill-add"></i></h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="naran" class="form-label">NRE</label>
+                                {{ form.nre }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Naran Estudante</label>
+                                {{ form.naran_estudante }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Data Moris</label>
+                                {{ form.data_moris}}
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Sexu</label>
+                                {{ form.sexu }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="autor" class="form-label">Periodo</label>
+                                {{ form.periodo }}
+                            </div>
+                        </div>
+                        <div class = "col-md-6">
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Departamento</label>
+                                {{ form.id_dep }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Numeru Telefone</label>
+                                {{ form.nu_telefone }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Email</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Hela Fatin</label>
+                                {{ form.hela_fatin }}
+                            </div>
+                            <div class="mb-3">
+                                <label for="data" class="form-label">Foto Profile</label>
+                                {{ form.foto_profile }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">Taka</button>
+                    <button   button type="submit" class="btn btn-success">Guarda <i class="bi bi-floppy2-fill ms-2"></i></button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+
+
