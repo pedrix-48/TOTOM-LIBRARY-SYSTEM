@@ -64,7 +64,6 @@ def add_staff(request):
     
     return render(request, "add_staff.html", {"form": form, "staff_user": staff_user})
 
-
 @login_required(login_url='login')
 def import_staff_xl(request):
     if request.method == "POST":

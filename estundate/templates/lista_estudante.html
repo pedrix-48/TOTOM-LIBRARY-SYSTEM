@@ -15,7 +15,7 @@ hr.bold {
 </style>
 
 <div class="text-center p-3 rounded shadow" style="background: linear-gradient(to right, #004085,rgb(28, 39, 50)); color: white;">
-    <h2><i class="bi bi-people-fill"></i> Lista Ba estudante Sira</h2>
+    <h2><i class="bi bi-people-fill"></i> Lista Ba Estudante Sira</h2>
     <small class="text-muted">Informasaun Kompletu kona ba estudante Sira iha sistema</small>
 </div>
 
@@ -30,10 +30,19 @@ hr.bold {
 {% endif %}
     <div class="card">
         <div class="card-header bg-navy text-white">
-            <h3 class="card-title">Lista ba Autor Sira <i class="bi bi-person-lines-fill ms-1"></i></h3>
+            <h3 class="card-title">Lista ba Estudante Sira <i class="bi bi-person-lines-fill ms-1"></i></h3>
         </div>
         <div class="card-body">
-            <table id="tabela_autor" class="table table-bordered table-striped">
+            <div class="mb-3 ">
+                <label for="periodoFilter" class="form-label">Filtra Periodo:</label>
+                <select id="periodoFilter" class="form-select" style="width: 150px; display: inline-block;">
+                    <option value="">Hotu (All)</option>
+                    {% for p in periodo %}
+                        <option value="{{ p.tinan_periodo }}">{{ p.tinan_periodo }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <table id="tabela_estudante" class="table table-bordered table-striped">
             <thead>
             <tr>
                 <th>No</th>
@@ -64,13 +73,12 @@ hr.bold {
                         <td>{{ estudante.email }}</td>
                         <td>
                             <div class = "d-flex gap-1">
-                                <button data-bs-toggle = 'modal' data-bs-target = "#editModal{{ estudante.id_estudante }}" class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></button>
-                                <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ estudante.id_estudante }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                <a href = "{% url 'edit-estudante' estudante.nre %}"class="btn btn-dark btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                <button data-bs-toggle = 'modal' data-bs-target = "#delModal{{ estudante.nre }}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
-                    {% comment %} {% include 'estudante/edit_estudante.html' %}
-                    {% include 'estudante/del_estudante.html' %} {% endcomment %}
+                        {% include 'del_estudante.html' %}
                 {% endfor %}
             </tbody>
             </table>
@@ -87,7 +95,7 @@ hr.bold {
 
 <script>
     $(function () {
-    $("#tabela_autor").DataTable({
+    var table = $("#tabela_estudante").DataTable({
         "responsive": true,
         "lengthChange": true,
         "autoWidth": false,
@@ -118,7 +126,14 @@ hr.bold {
             className: 'btn btn-dark',
         },
         ]
-    }).buttons().container().appendTo('#tabela_autor_wrapper .col-md-6:eq(0)');
+    })
+    table.buttons().container().appendTo('#tabela_estudante_wrapper .col-md-6:eq(0)');
+
+        $('#periodoFilter').on('change', function () {
+            var selected = $(this).val();
+            table.column(5).search(selected).draw(); 
+        });
+$('.select2').select2()
 
 });
 </script>

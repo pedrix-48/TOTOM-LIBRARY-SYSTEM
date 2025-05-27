@@ -18,7 +18,6 @@ def load_livru_hotu(request):
     livrus = Livru.objects.all()
     return render(request, "all_livru.html", {"livrus" : livrus})
 
-
 def loginpage(request):
     if request.method == 'POST':
         form = AdminLoginForm(request.POST)
@@ -38,7 +37,7 @@ def loginpage(request):
     }
     return render(request, 'loginpage.html', context)
 
-class StaffLoginView(LoginView):
+class StaffLoginView(LoginView): # HAU LAHATENE TAMBA SA MAK CLASS NEE BELE DIAK, SO MAROMAK MK HATENE :()
     form_class = LoginUserForm
     authentication_form = LoginUserForm
     template_name = 'loginpage.html'

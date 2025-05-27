@@ -121,7 +121,7 @@
           </li>
           <li class="nav-item">
             {% url 'lista-estudante' as lista_estudante_url %}
-            <a href="{{ lista_estudante_url }}" class="nav-link {% if request.path == lista_estudante_url %} active {% endif %}">
+            <a href="{{ lista_estudante_url }}" class="nav-link {% if request.path == lista_estudante_url or '/edit-estudante/' in request.path %} active {% endif %}">
               <i class="bi bi-person-arms-up"></i>
               <p>
                 Estudante

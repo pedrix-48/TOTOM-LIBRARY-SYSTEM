@@ -33,12 +33,12 @@
     {% csrf_token %}
     <div class="card-body">
         <div class="form-group">
-            <label for="naran_estudante">Naran estudante</label>
-            <input type="text" name="naran_estudante" class="form-control" value="{{ estudante.naran_estudante }}">
+            <label for="naran_estudante">NRE</label>
+            <input type="text" name="nre" class="form-control" value="{{ estudante.nre }}">
         </div>
         <div class="form-group">
-            <label for="data_moris">Data Moris</label>
-            <input type="date" name="data_moris" class="form-control" value="{{ estudante.data_moris|date:'Y-m-d'}}">
+            <label for="naran_estudante">Naran Estudante</label>
+            <input type="text" name="naran_estudante" class="form-control" value="{{ estudante.naran_estudante }}">
         </div>
         <div class="form-group">
             <label for="sexu">Sexu</label>
@@ -48,16 +48,20 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" name="email" class="form-control" value="{{ estudante.email }}">
+            <label for="dep">Departamento</label>
+            {{ form.id_dep }}
         </div>
         <div class="form-group">
-            <label for="nasaun">Husi Nasaun</label>
-            <input type="text" name="nasaun" class="form-control" value="{{ estudante.nasaun }}">
+            <label for="nasaun">Periodo</label>
+            {{ form.periodo }}
         </div>
         <div class="form-group">
-            <label for="deskrisaun">Sypnosis</label>
-            <textarea id="summernote" name="deskrisaun" class="form-control">{{ estudante.deskrisaun|safe }}</textarea>
+            <label for="nasaun">Numeru Telefone</label>
+            <input type="text" name="nu_telefone" class="form-control" value="{{ estudante.nu_telefone }}">
+        </div>
+        <div class="form-group">
+            <label for="nasaun">Numeru Telefone</label>
+            <input type="email" name="email" class="form-control" value="{{ estudante.email }}">
         </div>
     </div>
     <div class="card-footer bg-transparent text-end">
