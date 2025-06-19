@@ -1,7 +1,5 @@
 
 {% load static %}
-<link href = "{% static 'AdminLTE/plugins/select2/css/select2.min.css' %}" rel = "stylesheet">
-<link href = "{% static 'AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css' %}" rel = "stylesheet">
 <div class="modal fade" id="estudanteFormModal" tabindex="-1" aria-labelledby="estudanteFormModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog modal-lg">
         <div class="modal-content">
@@ -68,14 +66,5 @@
         </div>
     </div>
 </div>
-<script src = "{% static 'AdminLTE/plugins/select2/js/select2.full.min.js' %}"></script>
-<script src = "{% static 'AdminLTE/js/script.js' %}"></script>
-<script>
-    $('.select2').select2()
 
-    $('.select2bs4').select2({
-        theme: 'bootstrap4',
-        placeholder: "Hili Periodo",
-        dropdownParent: $('#estudanteFormModal')
-    })
-</script>
+<script src = "{% static 'AdminLTE/js/script.js' %}"></script>

@@ -1,0 +1,22 @@
+
+<div class="modal fade" id="importExcelModalEstudante" tabindex="-1" aria-labelledby="importExcelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'import-est' %}">
+          {% csrf_token %}
+          <div class="modal-header bg-warning">
+            <h5 class="modal-title" id="importExcelModalLabel">Importa Dadus Estudante Husi Excel</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <input type="file" name="excel_file" accept=".xlsx" class="form-control" required>
+          </div>
+          <div class="modal-footer">
+            <button typy = "button"class="btn btn-outline-secondary" data-bs-dismiss="modal">Taka</button>
+            <button type="submit" class="btn btn-warning">Importa <i class="bi bi-box-arrow-in-down"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

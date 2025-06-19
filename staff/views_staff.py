@@ -87,7 +87,7 @@ def import_staff_xl(request):
                         nu_telefone=str(nu_telefone),
                         email=email,
                         hela_fatin=hela_fatin,
-                    )
+                    ) 
 
                     user = User.objects.create(
                         username=username,
